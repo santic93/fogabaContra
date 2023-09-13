@@ -171,12 +171,12 @@ export default function Formulario() {
                 <hr className='border border-primary border-2 opacity-50' />
                 {Array.isArray(fogaba) && fogaba.length ? (
                   <>
-                    <div className='text-danger text-start w-50 mb-2 mt-2'>
+                    <div className='text-start w-50 mb-2 mt-2'>
                       <b>
                         {' '}
                         <mark>Historia Fogaba</mark>
                         {' '} <b className='text-danger'>{posicion === "S" && "PYME INHABILITADA"}</b>
-                        <p className="fs-6">{posicion === "S" && "Preguntar a legales para obtener detalles"}</p>
+                        <p className='fs-6 fst-italic'>{posicion === "S" && "Preguntar a legales para obtener detalles"}</p>
                       </b>
                     </div>
                     <table className='table text-center table-bordered small'>
