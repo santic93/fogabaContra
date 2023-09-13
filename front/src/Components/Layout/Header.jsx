@@ -18,7 +18,7 @@ export default function Header() {
     buscar,
   } = useContext(Context);
   const { razonSocial, domicilio, localidad } = afip;
-  
+
   const [searchQuery, setSearchQuery] = useState('');
   const [url, setUrl] = useState('');
 
@@ -31,7 +31,7 @@ export default function Header() {
     history('/consulta');
     setTimeout(() => {
       fetchData();
-    }, 1500);
+    }, 2000);
   };
   const fetchData = async () => {
     try {

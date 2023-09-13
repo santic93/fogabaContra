@@ -21,7 +21,9 @@ export default function UseContext({ children }) {
   };
 
   const completeFogaba = (fogaba) => {
-    const posicion = fogaba[0][9];
+    let posicion = null
+    console.log(fogaba)
+    fogaba.length ? posicion = fogaba[0][9] : posicion = null;
     dispatch({
       type: 'COMPLETE_FOGABA',
       payload: { fogaba, posicion },

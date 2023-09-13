@@ -179,6 +179,7 @@ export default function Formulario() {
                         <p className='fs-6 fst-italic'>{posicion === "S" && "Preguntar a legales para obtener detalles"}</p>
                       </b>
                     </div>
+
                     <table className='table text-center table-bordered small'>
                       <thead>
                         <tr>
