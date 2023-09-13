@@ -29,7 +29,7 @@ app.get('/carteras', async (req, res) => {
   try {
     const searchQuery = req.query.searchQuery;
     const connection = await oracledb.getConnection(dbConfig);
-    const query = `SELECT OPERACION, LINEA, FECHAFORM, MONEDA, CREDITO, GARANTIA, SALDOVIVO, ESTADO, ESTADOFORM FROM FOGABASIS.VOPERACIONESPORCUIT WHERE CUIT='${searchQuery}'`;
+    const query = `SELECT OPERACION, LINEA, FECHAFORM, MONEDA, CREDITO, GARANTIA, SALDOVIVO, ESTADO, ESTADOFORM, INHABILITADO FROM FOGABASIS.VOPERACIONESPORCUIT WHERE CUIT='${searchQuery}'`;
     const result = await connection.execute(query);
     const data = result.rows;
     res.json(data);
@@ -43,27 +43,34 @@ app.get('/carteras', async (req, res) => {
 app.post('/insertarDatos', async (req, res) => {
   try {
     // Obtener los datos del cuerpo de la solicitud POST
-    const { activoCorriente, activoNoCorriente, pasivoCorriente, pasivoNoCorriente } = req.body;
+    const {
+      activoCorriente,
+      activoNoCorriente,
+      pasivoCorriente,
+      pasivoNoCorriente,
+    } = req.body;
 
     const connection = await oracledb.getConnection(dbConfig);
-    
+
     // Consulta SQL para insertar datos en la base de datos
     const query = `
       INSERT INTO TU_TABLA (ACTIVO_CORRIENTE, ACTIVO_NO_CORRIENTE, PASIVO_CORRIENTE, PASIVO_NO_CORRIENTE)
       VALUES (:activoCorriente, :activoNoCorriente, :pasivoCorriente, :pasivoNoCorriente)
     `;
-    
+
     const bindParams = {
       activoCorriente,
       activoNoCorriente,
       pasivoCorriente,
       pasivoNoCorriente,
     };
-    
-    const result = await connection.execute(query, bindParams, { autoCommit: true });
-    
+
+    const result = await connection.execute(query, bindParams, {
+      autoCommit: true,
+    });
+
     res.json({ message: 'Datos insertados correctamente' });
-    
+
     connection.close();
   } catch (error) {
     console.error('Error en la inserción:', error);

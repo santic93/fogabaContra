@@ -8,7 +8,7 @@ export default function UseReducer(state, action) {
     case COMPLETE_DEUDA:
       return { ...state, deuda: payload.orden, sumaTotal: payload.sumaTotal };
     case COMPLETE_FOGABA:
-      return { ...state, fogaba: payload };
+      return { ...state, fogaba: payload.fogaba, posicion: payload.posicion };
     case COMPLETE_AFIP:
       return { ...state, afip: payload };
     case ESTOY_BUSCANDO:

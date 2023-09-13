@@ -8,6 +8,7 @@ export default function UseContext({ children }) {
     fogaba: [],
     buscar: false,
     sumaTotal: 0,
+    posicion: null,
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
   const completeDeudaBancos = (deuda) => {
@@ -20,9 +21,10 @@ export default function UseContext({ children }) {
   };
 
   const completeFogaba = (fogaba) => {
+    const posicion = fogaba[0][9];
     dispatch({
       type: 'COMPLETE_FOGABA',
-      payload: fogaba,
+      payload: { fogaba, posicion },
     });
   };
   const completeAfip = (afip) => {
@@ -45,6 +47,7 @@ export default function UseContext({ children }) {
         afip: state.afip,
         buscar: state.buscar,
         sumaTotal: state.sumaTotal,
+        posicion: state.posicion,
         buscando,
         completeAfip,
         completeDeudaBancos,

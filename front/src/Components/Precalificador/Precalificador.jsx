@@ -146,7 +146,7 @@ export default function Precalificador() {
         <div className='probandoDos'>
           <input type='date' name='' id='' />
 
-          <h1>Balances</h1>
+          <h1>Ejercicios</h1>
         </div>
       </div>
       <div className='row align-items-start'>
@@ -166,6 +166,7 @@ export default function Precalificador() {
                 <td>Activo Corriente</td>
                 <td>
                   <input
+                    className='text-end'
                     maxLength={15}
                     required
                     min={-1}
@@ -185,6 +186,7 @@ export default function Precalificador() {
                 </td>
                 <td className='border-bottom border-black'>
                   <input
+                    className='text-end'
                     maxLength={15}
                     required
                     min={-1}
@@ -202,7 +204,7 @@ export default function Precalificador() {
                 <td className='fw-bold text-danger text-uppercase'>
                   ACTIVO TOTAL
                 </td>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-danger text-uppercase text-end'>
                   $ {activoTotal.toLocaleString()}
                 </td>
               </tr>
@@ -211,6 +213,7 @@ export default function Precalificador() {
                 <td>Pasivo Corriente</td>
                 <td>
                   <input
+                    className='text-end'
                     maxLength={15}
                     min={-1}
                     required
@@ -230,6 +233,7 @@ export default function Precalificador() {
                 </td>
                 <td className='border-bottom border-black'>
                   <input
+                    className='text-end'
                     maxLength={15}
                     min={-1}
                     required
@@ -247,21 +251,21 @@ export default function Precalificador() {
                 <td className='fw-bold text-danger text-uppercase'>
                   PASIVO TOTAL
                 </td>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-danger text-uppercase text-end'>
                   $ {pasivoTotal.toLocaleString()}
                 </td>
               </tr>
               <tr>
                 <th scope='row'></th>
                 <td className='fw-bold'>Total patrimonio neto</td>
-                <td className='fw-bold'>{totalPatrimonioNeto}</td>
+                <td className='fw-bold text-end'>$ {totalPatrimonioNeto}</td>
               </tr>
               <tr>
                 <th scope='row'></th>
                 <td className='border-bottom border-black fw-bold'>
                   Total pasivo + p.neto
                 </td>
-                <td className='border-bottom border-black fw-bold'>
+                <td className='border-bottom border-black fw-bold text-end'>
                   $ {totalPasivoPatrimonioNeto.toLocaleString()}
                 </td>
               </tr>
@@ -270,7 +274,7 @@ export default function Precalificador() {
                 <td className='fw-bold text-danger text-uppercase'>
                   Comprobacion
                 </td>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-danger text-uppercase text-end'>
                   $ {comprobacion.toLocaleString()}
                 </td>
               </tr>
@@ -291,6 +295,7 @@ export default function Precalificador() {
                 <td>Ventas</td>
                 <td>
                   <input
+                    className='text-end'
                     maxLength={15}
                     type='text'
                     placeholder='ventas'
@@ -305,6 +310,7 @@ export default function Precalificador() {
                 <td className='border-bottom border-black'>C.M.V</td>
                 <td className='border-bottom border-black'>
                   <input
+                    className='text-end'
                     maxLength={15}
                     type='text'
                     placeholder='c.m.v'
@@ -319,7 +325,7 @@ export default function Precalificador() {
                 <td className='fw-bold text-danger text-uppercase'>
                   Resultado / margen bruto
                 </td>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-danger text-uppercase text-end'>
                   $ {resultadoMargenBruto.toLocaleString()}
                 </td>
               </tr>
@@ -329,6 +335,7 @@ export default function Precalificador() {
                 </td>
                 <td className='border-bottom border-black'>
                   <input
+                    className='text-end'
                     maxLength={15}
                     type='text'
                     placeholder=' Gastos Administrativos + Co'
@@ -344,7 +351,7 @@ export default function Precalificador() {
                 <td className='fw-bold text-danger text-uppercase'>
                   Resultado / margen operativo
                 </td>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-danger text-uppercase text-end'>
                   $ {resultadoMargenOperativo.toLocaleString()}
                 </td>
               </tr>
@@ -352,6 +359,7 @@ export default function Precalificador() {
                 <td>Otros Ing</td>
                 <td>
                   <input
+                    className='text-end'
                     maxLength={15}
                     type='text'
                     placeholder='Otros Ing'
@@ -367,6 +375,7 @@ export default function Precalificador() {
                 <td className='border-bottom border-black'>RECPAM</td>
                 <td className='border-bottom border-black'>
                   <input
+                    className='text-end'
                     maxLength={15}
                     type='text'
                     placeholder='RECPAM'
@@ -379,13 +388,13 @@ export default function Precalificador() {
               </tr>
               <tr>
                 <td className='fw-bold'>Otros Ing/Egresos + RECPAM</td>
-                <td className='fw-bold'>$ {otrosIngresosEgresosRecpam}</td>
+                <td className='fw-bold text-end'>$ {otrosIngresosEgresosRecpam}</td>
               </tr>
               <tr>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-danger text-uppercase text-end'>
                   Resultado antes de impuestos
                 </td>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-danger text-uppercase text-end'>
                   $ {resultadosAntesImpuestos.toLocaleString()}
                 </td>
               </tr>
@@ -393,6 +402,7 @@ export default function Precalificador() {
                 <td>Impuesto Ganancias</td>
                 <td>
                   <input
+                    className='text-end'
                     maxLength={15}
                     min={-1}
                     type='text'
@@ -406,10 +416,10 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='fw-bold text-danger text-uppercase '>
+                <td className='fw-bold text-danger text-uppercase text-end'>
                   Resultado neto / final
                 </td>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-danger text-uppercase text-end'>
                   $ {resultadoNetoFinal.toLocaleString()}
                 </td>
               </tr>
@@ -417,6 +427,7 @@ export default function Precalificador() {
                 <td>Amortizaciones</td>
                 <td>
                   <input
+                    className='text-end'
                     maxLength={15}
                     min={-1}
                     type='text'
@@ -433,7 +444,7 @@ export default function Precalificador() {
                 <td className='fw-bold text-danger text-uppercase '>
                   Capacidad de Generacion
                 </td>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-danger text-uppercase text-end'>
                   $ {capacidadDeGeneracion.toLocaleString()}
                 </td>
               </tr>

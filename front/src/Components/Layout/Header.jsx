@@ -17,8 +17,8 @@ export default function Header() {
     buscando,
     buscar,
   } = useContext(Context);
-  const { razonSocial, domicilio } = afip;
-
+  const { razonSocial, domicilio, localidad } = afip;
+  
   const [searchQuery, setSearchQuery] = useState('');
   const [url, setUrl] = useState('');
 
@@ -148,15 +148,18 @@ export default function Header() {
         </div>
       </div>
       <div className='personal'>
-        <h1 className={`${buscar ? 'placeholder-glow' : ''}`}>
+        <h5 className={`${buscar ? 'placeholder-glow' : 'w-25'}`}>
           {' '}
           <b className={`${buscar ? 'placeholder' : ''}`}>{razonSocial}</b>
-        </h1>
-        <h1 className={`${buscar ? 'placeholder-glow' : ''}`}>
+        </h5>
+        <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>
+          <b className={`${buscar ? 'placeholder' : ''}`}>{localidad}</b>
+        </h5>
+        <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>
           <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b>
-        </h1>
+        </h5>
       </div>
-      <hr />
+      <hr className='border border-secondary.bg-gradient border-2 opacity-50' />
     </div>
   );
 }
