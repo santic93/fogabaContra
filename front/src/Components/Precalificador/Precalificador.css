@@ -1,0 +1,39 @@
+/* .containerr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
+} */
+
+/* .formularioo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+} */
+
+/* .input-groupp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+} */
+
+.probando {
+  display: flex;
+  align-items: center;
+}
+
+.probandoDos {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo específico para el input */
+.probandoDos input {
+  margin-right: 350px; /* Añade un margen derecho para separar el input del título */
+  
+}
+
+/* Añade cualquier otro estilo necesario para los elementos */

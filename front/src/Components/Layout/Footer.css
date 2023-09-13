@@ -1,0 +1,15 @@
+.footer {
+    background-color: #252525ff;
+    position: fixed;
+    width: 100%;
+    padding: 5px;
+    color: white;
+    font-weight: bolder;
+    transition: transform 0.3s; /* Agrega una transición suave para la animación */
+    transform: translateY(100%); /* Inicialmente, oculta el footer fuera de la pantalla */
+  }
+  
+  .footer.visible {
+    transform: translateY(0); /* Muestra el footer moviéndolo hacia arriba */
+  }
+  

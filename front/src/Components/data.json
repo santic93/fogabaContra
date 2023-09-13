@@ -1,0 +1,649 @@
+{
+  "Respuesta": {
+    "Consulta": {
+      "Fec": 20230906115104,
+      "ServidorWeb": "sac.nosis.com",
+      "Tipo": "Sin SSL",
+      "CodCliente": 468999,
+      "NroConsulta": 1,
+      "ConsCDA": 99052,
+      "ConsNroGrupoVR": "",
+      "ConsSoloDoc": "",
+      "ConsDatosAdicionales": "",
+      "ConsultaXML": {
+        "Doc": 20370300241,
+        "RZ": {
+          "__cdata": "20370300241"
+        },
+        "Filtro": "",
+        "Setup": "",
+        "MaxResp": ""
+      },
+      "ConsultaHTML": {
+        "Doc": "",
+        "RZ": {
+          "__cdata": ""
+        },
+        "Filtro": "",
+        "MaxResp": ""
+      },
+      "Resultado": {
+        "EstadoOk": "Si",
+        "IdNovedad": 0,
+        "Novedad": ""
+      }
+    },
+    "ParteXML": {
+      "Dato": [
+        {
+          "Clave": {
+            "Identificador": "VI20370300241",
+            "Doc": 20370300241,
+            "RZ": "CASTRO SANTIAGO ALBERTO",
+            "Prefijo": "VI",
+            "SubPrefijo": 0,
+            "Estado": 0,
+            "FechaNov": 20230906,
+            "EncPor": 2
+          },
+          "RZ": "CASTRO SANTIAGO ALBERTO",
+          "Doc": 20370300241,
+          "Apellido": "CASTRO",
+          "Nombre": "SANTIAGO ALBERTO",
+          "Doc_Tipo": "CUIT",
+          "Tipo": "DNI",
+          "TipoVD": "EB",
+          "FecAfip": 20150507,
+          "Sexo": "Masculino",
+          "FecNac": 19930420,
+          "Edad": 30,
+          "Act01": "#AF01854920",
+          "Act01_Descrip": "Enseñanza de cursos relacionados con informática",
+          "CLANAE_Nivel3_Cod": 85.4,
+          "CLANAE_Nivel3_Desc": "Servicios de enseñanza n.c.p.",
+          "CLANAE_Nivel5_Cod": 85.492,
+          "CLANAE_Nivel5_Desc": "Enseñanza de cursos relacionados con informática",
+          "CatMonotributo": "C - Locaciones de Servicios",
+          "RelDependencia": "Si",
+          "Aut_Monotrib": "Si",
+          "SinActividad": "No",
+          "DomFiscal": {
+            "Dom": "Santa Fe Av 4900 Piso 3",
+            "Loc": "Capital Federal",
+            "CP": 1425,
+            "Prov": "Capital Federal"
+          },
+          "DomAlternativos": {
+            "Doms": {
+              "Dom": [
+                "Santa Fe Av 4900 Entre Las Cal Piso 3 - (1425) - Ciudad Autonoma Buenos Aires - Capital Federal",
+                "25 656 Piso 3 - (6600) - Mercedes - Buenos Aires",
+                "1 741 - Mercedes - Buenos Aires"
+              ]
+            }
+          },
+          "Web": {
+            "Sitios": {
+              "Sitio": ["www.inesdeluca.com.ar", "www.ohlalaeyb.com.ar"]
+            }
+          },
+          "Impuestos": {
+            "Imp": ""
+          },
+          "SSSalud": {
+            "ObraSoc": {
+              "Descrip": "Obra Social Del Personal Del Organismo de Control Externo",
+              "FecAlta": 20210901,
+              "Titular_Parentesco": "Titular",
+              "Titular_Condicion": "Relacion de Dependencia",
+              "UltPeriodo": "05/2023",
+              "FecAct": 20230601
+            }
+          }
+        },
+        {
+          "Clave": {
+            "Identificador": "CD04689990010051YDL79610844365",
+            "Doc": 20370300241,
+            "RZ": 20370300241,
+            "Prefijo": "CD",
+            "SubPrefijo": 0,
+            "Estado": 2,
+            "FechaNov": 20230906,
+            "EncPor": 2
+          },
+          "CalculoCDA": {
+            "Documento": 20370300241,
+            "RazonSocial": 20370300241,
+            "Item": [
+              {
+                "Descrip": "Dictamen",
+                "Valor": "OBSERVADO",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Identidad V&#225;lida",
+                "Valor": "N/C",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Edad",
+                "Valor": "Ok",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Fecha Contrato Social",
+                "Valor": "N/C",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Actividades",
+                "Valor": "N/C",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Aportes Patronales",
+                "Valor": "N/C",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Bureau de Cr&#233;dito del BCRA",
+                "Valor": "No",
+                "Detalle": "Bureau de Cr&#233;dito del BCRA&#58; Sit.2 o sup. &#61; 2"
+              },
+              {
+                "Descrip": "Oficios Judiciales",
+                "Valor": "Ok",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Cheques Rechazados del BCRA",
+                "Valor": "Ok",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Deudores Ent. Liquidadas",
+                "Valor": "N/C",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Concurso o Quiebra",
+                "Valor": "Ok",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Pedido Quiebra",
+                "Valor": "Ok",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Juicios - Demandado",
+                "Valor": "Ok",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Comunicaciones del BCRA y de Fuentes Directas",
+                "Valor": "Ok",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Referencias Comerciales Propias",
+                "Valor": "N/C",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Referencias Comerciales de Terceros",
+                "Valor": "N/C",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Facturas Ap&#243;crifas",
+                "Valor": "Ok",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Laudos Incumplidos",
+                "Valor": "Ok",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Antecedentes Fiscales",
+                "Valor": "Ok",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Documentos Cuestionados",
+                "Valor": "N/C",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Deudores Previsionales",
+                "Valor": "N/C",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Score",
+                "Valor": "No",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Score",
+                "Valor": 166,
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Nivel Socioeconomico",
+                "Valor": "N/C",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Nivel Socioeconomico",
+                "Valor": "A",
+                "Detalle": ""
+              },
+              {
+                "Descrip": "Compromisos mensuales",
+                "Valor": 161019,
+                "Detalle": ""
+              }
+            ]
+          }
+        },
+        {
+          "Clave": {
+            "Identificador": "RD20370300241",
+            "Doc": 20370300241,
+            "RZ": "",
+            "Prefijo": "RD",
+            "SubPrefijo": 0,
+            "Estado": 0,
+            "FechaNov": 20230906,
+            "EncPor": 2
+          },
+          "Cuil": 20370300241,
+          "RZ": "CASTRO SANTIAGO ALBERTO",
+          "Doc": 20370300241,
+          "Nov": "Con Datos",
+          "FecAct": "16/08/2023 23:35:09",
+          "TipoDoc": "DNI",
+          "FecNac": 19930420,
+          "FecUltConsulta": "16/08/2023 23:35:09",
+          "Titular_SitRevista": "",
+          "Beneficio": "",
+          "Empleadores": {
+            "Empleador": [
+              {
+                "Cuit": 30712306870,
+                "RZ": "SK PROMOCIONES SRL",
+                "SitRevista": "",
+                "FechaDesde": 201401,
+                "FechaHasta": 201401
+              },
+              {
+                "Cuit": 30712526218,
+                "RZ": "CONVENIO MARCO MJYDH ACARA AUTOMOTOR LEYES 23 283 Y 23 412",
+                "SitRevista": "",
+                "FechaDesde": 201310,
+                "FechaHasta": 202307
+              },
+              {
+                "Cuit": 30527148762,
+                "RZ": "INSTITUTO TECNICO ORT A 763",
+                "SitRevista": "",
+                "FechaDesde": 202305,
+                "FechaHasta": 202307
+              }
+            ]
+          },
+          "ObrasSociales": {
+            "ObraSocial": {
+              "Codigo": 406,
+              "FechaIni": 20080425,
+              "Descripcion": "Obra Social del Personal del Organismo de Control Externo"
+            }
+          },
+          "Adherentes": ""
+        },
+        {
+          "Clave": {
+            "Identificador": "AP20370300241",
+            "Doc": 20370300241,
+            "RZ": "",
+            "Prefijo": "AP",
+            "SubPrefijo": 0,
+            "Estado": 0,
+            "FechaNov": 20230816,
+            "EncPor": 2
+          },
+          "Doc": 20370300241,
+          "Rz": "CASTRO SANTIAGO ALBERTO",
+          "Nov": "",
+          "FecAct": 20230816,
+          "AportesPatronales": {
+            "Empleador": [
+              {
+                "Aporte": [
+                  {
+                    "Periodo": 202208,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202209,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202210,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202211,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202212,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202301,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202302,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202303,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202304,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202305,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202306,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202307,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  }
+                ]
+              },
+              {
+                "Aporte": [
+                  {
+                    "Periodo": 202208,
+                    "InclDeclJurada": "No Declarado",
+                    "AportesSegSocial": "",
+                    "AportesOOSS": "",
+                    "ContribOOSS": ""
+                  },
+                  {
+                    "Periodo": 202209,
+                    "InclDeclJurada": "No Declarado",
+                    "AportesSegSocial": "",
+                    "AportesOOSS": "",
+                    "ContribOOSS": ""
+                  },
+                  {
+                    "Periodo": 202210,
+                    "InclDeclJurada": "No Declarado",
+                    "AportesSegSocial": "",
+                    "AportesOOSS": "",
+                    "ContribOOSS": ""
+                  },
+                  {
+                    "Periodo": 202211,
+                    "InclDeclJurada": "No Declarado",
+                    "AportesSegSocial": "",
+                    "AportesOOSS": "",
+                    "ContribOOSS": ""
+                  },
+                  {
+                    "Periodo": 202212,
+                    "InclDeclJurada": "No Declarado",
+                    "AportesSegSocial": "",
+                    "AportesOOSS": "",
+                    "ContribOOSS": ""
+                  },
+                  {
+                    "Periodo": 202301,
+                    "InclDeclJurada": "No Declarado",
+                    "AportesSegSocial": "",
+                    "AportesOOSS": "",
+                    "ContribOOSS": ""
+                  },
+                  {
+                    "Periodo": 202302,
+                    "InclDeclJurada": "No Declarado",
+                    "AportesSegSocial": "",
+                    "AportesOOSS": "",
+                    "ContribOOSS": ""
+                  },
+                  {
+                    "Periodo": 202303,
+                    "InclDeclJurada": "No Declarado",
+                    "AportesSegSocial": "",
+                    "AportesOOSS": "",
+                    "ContribOOSS": ""
+                  },
+                  {
+                    "Periodo": 202304,
+                    "InclDeclJurada": "No Declarado",
+                    "AportesSegSocial": "",
+                    "AportesOOSS": "",
+                    "ContribOOSS": ""
+                  },
+                  {
+                    "Periodo": 202305,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202306,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  },
+                  {
+                    "Periodo": 202307,
+                    "InclDeclJurada": "Si",
+                    "AportesSegSocial": "Pago",
+                    "AportesOOSS": "Pago",
+                    "ContribOOSS": "Pago"
+                  }
+                ]
+              }
+            ]
+          },
+          "AportesComoEmpleador": "",
+          "AportesServicioDomestico": ""
+        },
+        {
+          "Clave": {
+            "Identificador": "HC20370300241",
+            "Doc": 20370300241,
+            "RZ": "",
+            "Prefijo": "HC",
+            "SubPrefijo": 1,
+            "Estado": 1,
+            "FechaNov": 20230906,
+            "EncPor": 2
+          },
+          "Doc": 20370300241,
+          "TipoDoc": "CUIT",
+          "RZ": "",
+          "Novedad": "No existen Cheques de Cuentas Personales"
+        },
+        {
+          "Clave": {
+            "Identificador": "DC20370300241",
+            "Doc": 20370300241,
+            "RZ": "",
+            "Prefijo": "DC",
+            "SubPrefijo": 0,
+            "Estado": 0,
+            "FechaNov": 20230906,
+            "EncPor": 2
+          },
+          "Novedad": "No existen documentos cuestionados al 06/09/2023"
+        },
+        {
+          "Clave": {
+            "Identificador": "CO20370300241",
+            "Doc": 20370300241,
+            "RZ": "",
+            "Prefijo": "CO",
+            "SubPrefijo": 0,
+            "Estado": 0,
+            "FechaNov": 20230906,
+            "EncPor": 2
+          },
+          "Doc": 20370300241,
+          "Consultas": 3,
+          "Seguimientos_Temp": 0,
+          "Seguimientos_Perm": 0
+        },
+        {
+          "Clave": {
+            "Identificador": "CO37030024",
+            "Doc": 37030024,
+            "RZ": "",
+            "Prefijo": "CO",
+            "SubPrefijo": 0,
+            "Estado": 0,
+            "FechaNov": 20230906,
+            "EncPor": 2
+          },
+          "Doc": 37030024,
+          "Consultas": 0,
+          "Seguimientos_Temp": 0,
+          "Seguimientos_Perm": 0
+        },
+        {
+          "Clave": {
+            "Identificador": "CI111202307X20370300241CASTRO@SANTIAGO@ALBERTOX",
+            "Doc": 20370300241,
+            "RZ": "CASTRO SANTIAGO ALBERTO",
+            "Prefijo": "CI",
+            "SubPrefijo": 0,
+            "Estado": 0,
+            "FechaNov": 20230701,
+            "EncPor": 2
+          },
+          "Doc": 20370300241,
+          "RZ": "CASTRO SANTIAGO ALBERTO",
+          "IncluyeBM": "Si",
+          "UltimoInforme": {
+            "CompromisosMensuales": 161019,
+            "Deudas": {
+              "Deuda": ["", "", "", "", ""]
+            }
+          },
+          "Bancarizado": "SI"
+        },
+        {
+          "Clave": {
+            "Identificador": "MN20370300241",
+            "Doc": 20370300241,
+            "RZ": "",
+            "Prefijo": "MN",
+            "SubPrefijo": 0,
+            "Estado": 0,
+            "FechaNov": 20221122,
+            "EncPor": 2
+          },
+          "Documento": 20370300241,
+          "RZ": "CASTRO SANTIAGO ALBERTO",
+          "InscripcionOS": 202203,
+          "SituacionActual": "No Aportante",
+          "SituacionActual_Motivo": "109 - No Aportante",
+          "CategoriaAutonomo": "C",
+          "Categoria_Actividad": "Locaciones de Servicios",
+          "Categoria_Tipo": "",
+          "Eventual": "No",
+          "Cooperativas": "",
+          "Cooperativas_RazonSocial": "",
+          "FecAct": 20230816,
+          "Padron_GrupoFamiliar": {
+            "Nov": "No se reportan datos para el Documento",
+            "FecAct": 20230816,
+            "EvolucionPadron": {
+              "Registros": ""
+            },
+            "GrupoFamiliar": {
+              "Registros": ""
+            }
+          },
+          "HistorialPagos": {
+            "Nov": "No se reportan datos para el Documento",
+            "FecAct": 20230816,
+            "Registros": ""
+          }
+        },
+        {
+          "Clave": {
+            "Identificador": "SR20370300241",
+            "Doc": 20370300241,
+            "RZ": "",
+            "Prefijo": "SR",
+            "SubPrefijo": 0,
+            "Estado": 0,
+            "FechaNov": 18991230,
+            "EncPor": 2
+          },
+          "RZ": "",
+          "Doc": 20370300241,
+          "Nov": "No se reportan datos para el Documento",
+          "FecAct": 0
+        }
+      ]
+    },
+    "ParteHTML": {
+      "__cdata": ""
+    }
+  }
+}
