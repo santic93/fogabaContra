@@ -6,7 +6,7 @@ export default function UseReducer(state, action) {
   const { payload, type } = action;
   switch (type) {
     case COMPLETE_DEUDA:
-      return { ...state, deuda: payload.orden, sumaTotal: payload.sumaTotal };
+      return { ...state, deuda: payload.orden, sumaTotal: payload.sumaTotal, cendeuUltimoRegistro: payload.cendeuUltimoRegistro };
     case COMPLETE_FOGABA:
       return { ...state, fogaba: payload.fogaba, posicion: payload.posicion, fecha: payload.fecha };
     case COMPLETE_AFIP:

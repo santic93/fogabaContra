@@ -5,10 +5,10 @@ import Espere from '../Espere/Espere';
 import Precalificador from '../Precalificador/Precalificador';
 import './Formulario.css';
 export default function Formulario() {
-  const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha } = useContext(Context);
+  const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha, cendeuUltimoRegistro } = useContext(Context);
   const { actividad, rzs, scoreElementValor, localidad, cp } = afip;
   const [años, setAños] = useState()
-  console.log(años)
+  const [mesDeuda, setMesDeuda] = useState()
   let fechaActual = new Date().toLocaleDateString()
   useEffect(() => {
     let fechaArray = undefined
@@ -31,8 +31,26 @@ export default function Formulario() {
       setAños(Math.abs(anios))
     }
   }, [fogaba])
+  useEffect(() => {
+    if (cendeuUltimoRegistro.length) {
+      const numeroMes = cendeuUltimoRegistro[0].toString(); // Puedes reemplazar esto con el número de mes que desees
+      const mes = numeroMes.slice(4, 6);
+      console.log(mes);
+      const meses = [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+      ];
 
-
+      // Asegurémonos de que el número de mes sea válido
+      const mesIndex = parseInt(mes, 10) - 1; // Restamos 1 porque los arrays comienzan en 0
+      if (mesIndex >= 0 && mesIndex < meses.length) {
+        const nombreMes = meses[mesIndex];
+        console.log(nombreMes);
+        setMesDeuda(nombreMes);
+      }
+    }
+  }, [deuda])
+  console.log(mesDeuda)
 
   return (
     <>
@@ -101,11 +119,17 @@ export default function Formulario() {
                 <hr className='border border-primary border-2 opacity-50' />
                 {Array.isArray(deuda) && deuda.length ? (
                   <>
-                    <div className='text-danger text-start w-50 mb-2 mt-2'>
-                      <b>
-                        <mark>Consulta Cendeu</mark>
-                      </b>
-                      {' '} <b className='text-danger opacity-100'>Deuda Total: $ {sumaTotal}</b>
+                    <div className="d-flex mb-2 mt-2">
+                      <div className='text-start'>
+                        <b>
+                          <mark> Consulta Cendeu </mark>
+                        </b>
+                        <b className='text-danger opacity-100'> Deuda Total: $ {sumaTotal} </b>
+                      </div>
+                      <div className="ms-auto">
+                        <b class="fst-italic text-end"> Actualizado a: {mesDeuda}</b>
+                        {' '}
+                      </div>
                     </div>
 
                     <table className='table text-center table-bordered small'>
@@ -198,7 +222,7 @@ export default function Formulario() {
                 <hr className='border border-primary border-2 opacity-50' />
                 {Array.isArray(fogaba) && fogaba.length ? (
                   <>
-                    <div className="d-flex">
+                    <div className="d-flex mb-2 mt-2">
                       <div className='text-start'>
                         <b><mark>Historia Fogaba</mark></b>{" "}
                         <b className='text-danger opacity-100'>{posicion === "S" && "PYME INHABILITADA"}</b>{" "}
@@ -301,7 +325,8 @@ export default function Formulario() {
             </Link>
           </div> */}
         </>
-      )}
+      )
+      }
     </>
   );
 }

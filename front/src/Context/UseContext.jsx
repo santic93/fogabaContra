@@ -9,16 +9,19 @@ export default function UseContext({ children }) {
     buscar: false,
     sumaTotal: 0,
     posicion: null,
-    fecha: []
+    fecha: [],
+    cendeuUltimoRegistro: ""
+
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
   const completeDeudaBancos = (deuda) => {
-console.log(deuda)
+    console.log(deuda)
     const orden = deuda.sort((a, b) => b[6] - a[6]);
     const sumaTotal = orden.reduce((total, item) => total + item[6], 0);
+    const cendeuUltimoRegistro = deuda.map((item) => (item[4]))
     dispatch({
       type: 'COMPLETE_DEUDA',
-      payload: { orden, sumaTotal },
+      payload: { orden, sumaTotal, cendeuUltimoRegistro },
     });
   };
 
@@ -69,6 +72,7 @@ console.log(deuda)
         sumaTotal: state.sumaTotal,
         posicion: state.posicion,
         fecha: state.fecha,
+        cendeuUltimoRegistro: state.cendeuUltimoRegistro,
         buscando,
         completeAfip,
         completeDeudaBancos,
