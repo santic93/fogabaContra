@@ -291,7 +291,7 @@ export default function Formulario() {
                 </a>
               </button>
             </h1>
-            <span>Sera redirigido a su Pagina</span>
+            <span>Sera redirigido a la Pagina de <b>ARBA</b></span>
           </div>
           {/* <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
             <Link to='/precalificador'>
