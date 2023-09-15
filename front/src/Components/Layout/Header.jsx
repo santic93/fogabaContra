@@ -156,7 +156,7 @@ export default function Header() {
         </h5>
         {domicilio && <p className={`${buscar ? 'placeholder-glow' : 'border border-dark p-3 fs-6'}`}>
           {/* <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b> */}
-          <b className={`${buscar ? 'placeholder' : ''}`}><mark className='bg-info'>Domicilio fiscal</mark><br /> {domicilio}<br />{localidad}<br />{provincia}</b>
+          <b className={`${buscar ? 'placeholder' : ''}`}><mark className={`${buscar ? 'placeholder' : 'bg-info'}`}>Domicilio fiscal</mark><br /> {domicilio}<br />{localidad}<br />{provincia}</b>
         </p>}
 
         {/* <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>

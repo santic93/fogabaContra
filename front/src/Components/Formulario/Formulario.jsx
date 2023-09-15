@@ -151,9 +151,9 @@ export default function Formulario() {
                               {item[3]}
                             </td>
                             <td
-                        
+
                               className={`${item[4] > 2
-                                ? 'fw-bold text-light bg-danger opacity-100' 
+                                ? 'fw-bold text-light bg-danger opacity-100'
                                 : ''
                                 }`}
                             >
