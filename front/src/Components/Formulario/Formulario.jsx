@@ -9,6 +9,7 @@ export default function Formulario() {
   const { actividad, rzs, scoreElementValor, localidad, cp } = afip;
   const [años, setAños] = useState()
   const [mesDeuda, setMesDeuda] = useState()
+  const [añoDeuda, setAñoDeuda] = useState()
   let fechaActual = new Date().toLocaleDateString()
   useEffect(() => {
     let fechaArray = undefined
@@ -35,6 +36,7 @@ export default function Formulario() {
     if (cendeuUltimoRegistro.length) {
       const numeroMes = cendeuUltimoRegistro[0].toString(); // Puedes reemplazar esto con el número de mes que desees
       const mes = numeroMes.slice(4, 6);
+      const añoDeuda = numeroMes.slice(0, 4)
       console.log(mes);
       const meses = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -47,6 +49,7 @@ export default function Formulario() {
         const nombreMes = meses[mesIndex];
         console.log(nombreMes);
         setMesDeuda(nombreMes);
+        setAñoDeuda(añoDeuda)
       }
     }
   }, [deuda])
@@ -127,7 +130,7 @@ export default function Formulario() {
                         <b className='text-danger opacity-100'> Deuda Total: $ {sumaTotal} </b>
                       </div>
                       <div className="ms-auto">
-                        <b class="fst-italic text-end"> Actualizado a: {mesDeuda}</b>
+                        <b class="fst-italic text-end"> Actualizada a: {mesDeuda}/{añoDeuda}</b>
                         {' '}
                       </div>
                     </div>

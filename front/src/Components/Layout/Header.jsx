@@ -163,7 +163,7 @@ export default function Header() {
           <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b>
         </h5> */}
       </div>
-      <hr className='border border-secondary.bg-gradient border-2 opacity-50' />
+      <hr className='border border-dark border-2 opacity-100' />
     </div>
   );
 }
