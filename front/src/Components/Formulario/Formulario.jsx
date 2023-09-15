@@ -105,7 +105,7 @@ export default function Formulario() {
                       <b>
                         <mark>Consulta Cendeu</mark>
                       </b>
-                      {' '} <b className='text-danger'>Deuda Total: $ {sumaTotal}</b>
+                      {' '} <b className='text-danger opacity-100'>Deuda Total: $ {sumaTotal}</b>
                     </div>
 
                     <table className='table text-center table-bordered small'>
@@ -136,7 +136,7 @@ export default function Formulario() {
                             <th
                               scope='row'
                               className={`${item[4] > 2
-                                ? 'fw-bold text-light bg-danger'
+                                ? 'fw-bold text-light bg-danger opacity-100'
                                 : ''
                                 }`}
                             >
@@ -144,15 +144,16 @@ export default function Formulario() {
                             </th>
                             <td
                               className={`${item[4] > 2
-                                ? 'fw-bold text-light bg-danger'
+                                ? 'fw-bold text-light bg-danger opacity-100'
                                 : ''
                                 }`}
                             >
                               {item[3]}
                             </td>
                             <td
+                        
                               className={`${item[4] > 2
-                                ? 'fw-bold text-light bg-danger'
+                                ? 'fw-bold text-light bg-danger opacity-100' 
                                 : ''
                                 }`}
                             >
@@ -160,7 +161,7 @@ export default function Formulario() {
                             </td>
                             <td
                               className={`${item[4] > 2
-                                ? 'fw-bold text-light bg-danger'
+                                ? 'fw-bold text-light bg-danger opacity-100'
                                 : ''
                                 }`}
                             >
@@ -168,7 +169,7 @@ export default function Formulario() {
                             </td>
                             <td
                               className={`${item[4] > 2
-                                ? 'fw-bold text-light bg-danger'
+                                ? 'fw-bold text-light bg-danger opacity-100'
                                 : ''
                                 }`}
                             >
@@ -197,11 +198,15 @@ export default function Formulario() {
                 <hr className='border border-primary border-2 opacity-50' />
                 {Array.isArray(fogaba) && fogaba.length ? (
                   <>
-                    <div className='text-start w-50 mb-2 mt-2'>
-                      <b><mark>Historia Fogaba</mark></b>{" "}
-                      <mark>{años < 2 && <b className='bg-danger'> Riesgo Muy alto </b> || años <= 4 && <b className='bg-danger'> Riesgo Alto </b> || años <= 6 && <b className='bg-warning'> Riesgo Medio </b> || años <= 10 && <b className='bg-success'> Riesgo Bajo </b> || años > 10 && <b className='bg-success'> Riesgo Muy Bajo </b>}</mark>
-                      <b className='text-danger'>{posicion === "S" && "PYME INHABILITADA"}</b>{" "}
-                      <p className='fs-6 fst-italic'>{posicion === "S" && "Preguntar a legales para obtener detalles"}</p>
+                    <div className="d-flex">
+                      <div className='text-start'>
+                        <b><mark>Historia Fogaba</mark></b>{" "}
+                        <b className='text-danger opacity-100'>{posicion === "S" && "PYME INHABILITADA"}</b>{" "}
+                        <p className='fs-6 fst-italic'>{posicion === "S" && "Preguntar a legales para obtener detalles"}</p>
+                      </div>
+                      <div className="ms-auto">
+                        {(años < 2 && posicion !== "S" && <b className='text-danger'> Riesgo Muy alto </b>) || (años <= 4 && posicion !== "S" && <b className='text-danger'> Riesgo Alto </b>) || (años <= 6 && posicion !== "S" && <b className='text-warning'> Riesgo Medio </b>) || (años <= 10 && posicion !== "S" && <b className='text-success'> Riesgo Bajo </b>) || (años > 10 && posicion !== "S" && <b className='text-success' > Riesgo Muy Bajo </b>)}
+                      </div>
                     </div>
 
                     <table className='table text-center table-bordered small'>

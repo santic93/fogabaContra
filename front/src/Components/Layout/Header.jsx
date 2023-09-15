@@ -154,12 +154,13 @@ export default function Header() {
           {' '}
           <b className={`${buscar ? 'placeholder' : ''}`}>{razonSocial}</b>
         </h5>
-        <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>
-          <b className={`${buscar ? 'placeholder' : ''}`}>{localidad}<br/>{provincia}</b>
-        </h5>
-        <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>
+        <p className={`${buscar ? 'placeholder-glow' : 'border border-dark p-3 fs-6'}`}>
+          {/* <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b> */}
+          <b className={`${buscar ? 'placeholder' : ''}`}><mark className='bg-info'>Domicilio fiscal</mark><br /> {domicilio}<br />{localidad}<br />{provincia}</b>
+        </p>
+        {/* <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>
           <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b>
-        </h5>
+        </h5> */}
       </div>
       <hr className='border border-secondary.bg-gradient border-2 opacity-50' />
     </div>
