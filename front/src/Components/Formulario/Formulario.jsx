@@ -24,7 +24,6 @@ export default function Formulario() {
       fechaActualString = fechaArray.map(Number).join('');
       fechaAntiguaString = fechaActualArray.map(Number).join('');
     }
-    console.log(fechaActualString, fechaAntiguaString)
     if (fechaActualString && fechaAntiguaString) {
       const añoActual = parseInt(fechaActualString.slice(3, 8));
       const añoAntiguo = parseInt(fechaAntiguaString.slice(3, 8));
@@ -37,7 +36,6 @@ export default function Formulario() {
       const numeroMes = cendeuUltimoRegistro[0].toString(); // Puedes reemplazar esto con el número de mes que desees
       const mes = numeroMes.slice(4, 6);
       const añoDeuda = numeroMes.slice(0, 4)
-      console.log(mes);
       const meses = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
@@ -47,13 +45,12 @@ export default function Formulario() {
       const mesIndex = parseInt(mes, 10) - 1; // Restamos 1 porque los arrays comienzan en 0
       if (mesIndex >= 0 && mesIndex < meses.length) {
         const nombreMes = meses[mesIndex];
-        console.log(nombreMes);
         setMesDeuda(nombreMes);
         setAñoDeuda(añoDeuda)
       }
     }
   }, [deuda])
-  console.log(mesDeuda)
+  
 
   return (
     <>

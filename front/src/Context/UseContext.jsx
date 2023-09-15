@@ -15,7 +15,6 @@ export default function UseContext({ children }) {
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
   const completeDeudaBancos = (deuda) => {
-    console.log(deuda)
     const orden = deuda.sort((a, b) => b[6] - a[6]);
     const sumaTotal = orden.reduce((total, item) => total + item[6], 0);
     const cendeuUltimoRegistro = deuda.map((item) => (item[4]))
@@ -28,7 +27,6 @@ export default function UseContext({ children }) {
   const completeFogaba = (fogaba) => {
     let posicion = null
     let fecha = []
-    console.log(fogaba)
     fogaba.length ? posicion = fogaba[0][9] : posicion = null;
     if (fogaba.length) {
       // Inicializa la variable fechaMinima con la primera fecha
@@ -50,7 +48,6 @@ export default function UseContext({ children }) {
     });
   };
   const completeAfip = (afip) => {
-    console.log(afip)
     dispatch({
       type: 'COMPLETE_AFIP',
       payload: afip,
