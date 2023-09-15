@@ -17,7 +17,7 @@ export default function Header() {
     buscando,
     buscar,
   } = useContext(Context);
-  const { razonSocial, domicilio, localidad } = afip;
+  const { razonSocial, domicilio, localidad, provincia } = afip;
 
   const [searchQuery, setSearchQuery] = useState('');
   const [url, setUrl] = useState('');
@@ -97,6 +97,7 @@ export default function Header() {
             let domicilio = xmlDoc.querySelector('Dom')?.textContent;
             let localidad = xmlDoc.querySelector('Loc')?.textContent;
             let cp = xmlDoc.querySelector('CP')?.textContent;
+            let provincia = xmlDoc.querySelector('Prov')?.textContent;
             completeAfip({
               razonSocial,
               actividad,
@@ -110,6 +111,7 @@ export default function Header() {
               localidad,
               cp,
               rz,
+              provincia
             });
 
             buscando(false);
@@ -153,7 +155,7 @@ export default function Header() {
           <b className={`${buscar ? 'placeholder' : ''}`}>{razonSocial}</b>
         </h5>
         <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>
-          <b className={`${buscar ? 'placeholder' : ''}`}>{localidad}</b>
+          <b className={`${buscar ? 'placeholder' : ''}`}>{localidad}<br/>{provincia}</b>
         </h5>
         <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>
           <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b>

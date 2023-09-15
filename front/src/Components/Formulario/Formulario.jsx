@@ -1,13 +1,39 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Context from '../../Context/Context';
 import { Link } from 'react-router-dom';
 import Espere from '../Espere/Espere';
 import Precalificador from '../Precalificador/Precalificador';
 import './Formulario.css';
 export default function Formulario() {
-  const { deuda, fogaba, afip, buscar, sumaTotal, posicion } = useContext(Context);
+  const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha } = useContext(Context);
   const { actividad, rzs, scoreElementValor, localidad, cp } = afip;
-  console.log(posicion, fogaba)
+  const [años, setAños] = useState()
+  console.log(años)
+  let fechaActual = new Date().toLocaleDateString()
+  useEffect(() => {
+    let fechaArray = undefined
+    let fechaActualArray = undefined
+    let fechaActualString = undefined
+    let fechaAntiguaString = undefined
+    if (fogaba.length) {
+      ///separo las fechas
+      fechaArray = fecha.split("/")
+      fechaActualArray = fechaActual.split("/")
+      //las transformo en un numero entero, eliminando las comas
+      fechaActualString = fechaArray.map(Number).join('');
+      fechaAntiguaString = fechaActualArray.map(Number).join('');
+    }
+    console.log(fechaActualString, fechaAntiguaString)
+    if (fechaActualString && fechaAntiguaString) {
+      const añoActual = parseInt(fechaActualString.slice(3, 8));
+      const añoAntiguo = parseInt(fechaAntiguaString.slice(3, 8));
+      const anios = añoActual - añoAntiguo
+      setAños(Math.abs(anios))
+    }
+  }, [fogaba])
+
+
+
   return (
     <>
       {buscar ? (
@@ -138,7 +164,7 @@ export default function Formulario() {
                                 : ''
                                 }`}
                             >
-                              {item[4]}
+                              {item[5]}
                             </td>
                             <td
                               className={`${item[4] > 2
@@ -146,7 +172,7 @@ export default function Formulario() {
                                 : ''
                                 }`}
                             >
-                              $ {item[5]}
+                              $ {item[6]}
                             </td>
                           </tr>
                         ))}
@@ -172,12 +198,10 @@ export default function Formulario() {
                 {Array.isArray(fogaba) && fogaba.length ? (
                   <>
                     <div className='text-start w-50 mb-2 mt-2'>
-                      <b>
-                        {' '}
-                        <mark>Historia Fogaba</mark>
-                        {' '} <b className='text-danger'>{posicion === "S" && "PYME INHABILITADA"}</b>
-                        <p className='fs-6 fst-italic'>{posicion === "S" && "Preguntar a legales para obtener detalles"}</p>
-                      </b>
+                      <b><mark>Historia Fogaba</mark></b>{" "}
+                      <mark>{años < 2 && <b className='bg-danger'> Riesgo Muy alto </b> || años <= 4 && <b className='bg-danger'> Riesgo Alto </b> || años <= 6 && <b className='bg-warning'> Riesgo Medio </b> || años <= 10 && <b className='bg-success'> Riesgo Bajo </b> || años > 10 && <b className='bg-success'> Riesgo Muy Bajo </b>}</mark>
+                      <b className='text-danger'>{posicion === "S" && "PYME INHABILITADA"}</b>{" "}
+                      <p className='fs-6 fst-italic'>{posicion === "S" && "Preguntar a legales para obtener detalles"}</p>
                     </div>
 
                     <table className='table text-center table-bordered small'>
