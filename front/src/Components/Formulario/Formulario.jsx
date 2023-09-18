@@ -50,7 +50,7 @@ export default function Formulario() {
       }
     }
   }, [deuda])
-  
+
 
   return (
     <>
@@ -124,7 +124,7 @@ export default function Formulario() {
                         <b>
                           <mark> Consulta Cendeu </mark>
                         </b>
-                        <b className='text-danger opacity-100'> Deuda Total: $ {sumaTotal} </b>
+                        <b> Deuda Total: $ {sumaTotal} </b>
                       </div>
                       <div className="ms-auto">
                         <b class="fst-italic text-end"> Actualizada a: {mesDeuda}/{añoDeuda}</b>
@@ -135,15 +135,11 @@ export default function Formulario() {
                     <table className='table text-center table-bordered small'>
                       <thead>
                         <tr>
-                          <th scope='col' className='bg-primary text-light'>
-                            CUIT
-                          </th>
+
                           <th scope='col' className='bg-primary text-light'>
                             Nombre Entidad
                           </th>
-                          <th scope='col' className='bg-primary text-light'>
-                            Codigo Entidad
-                          </th>
+
                           <th scope='col' className='bg-primary text-light'>
                             Situacion
                           </th>
@@ -157,17 +153,8 @@ export default function Formulario() {
                       <tbody>
                         {deuda.map((item, index) => (
                           <tr key={index}>
-                            <th
-                              scope='row'
-                              className={`${item[4] > 2
-                                ? 'fw-bold text-light bg-danger opacity-100'
-                                : ''
-                                }`}
-                            >
-                              {item[0]}
-                            </th>
                             <td
-                              className={`${item[4] > 2
+                              className={`${item[5] > 2
                                 ? 'fw-bold text-light bg-danger opacity-100'
                                 : ''
                                 }`}
@@ -175,16 +162,7 @@ export default function Formulario() {
                               {item[3]}
                             </td>
                             <td
-
-                              className={`${item[4] > 2
-                                ? 'fw-bold text-light bg-danger opacity-100'
-                                : ''
-                                }`}
-                            >
-                              {item[2]}
-                            </td>
-                            <td
-                              className={`${item[4] > 2
+                              className={`${item[5] > 2
                                 ? 'fw-bold text-light bg-danger opacity-100'
                                 : ''
                                 }`}
@@ -192,7 +170,7 @@ export default function Formulario() {
                               {item[5]}
                             </td>
                             <td
-                              className={`${item[4] > 2
+                              className={`${item[5] > 2
                                 ? 'fw-bold text-light bg-danger opacity-100'
                                 : ''
                                 }`}
