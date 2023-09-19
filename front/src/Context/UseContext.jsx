@@ -10,17 +10,29 @@ export default function UseContext({ children }) {
     sumaTotal: 0,
     posicion: null,
     fecha: [],
-    cendeuUltimoRegistro: ""
-
+    cendeuUltimoRegistro: "",
+    nombreEntidad: [],
+    situacion: [],
+    montoAdeudado: [],
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
   const completeDeudaBancos = (deuda) => {
+    const nombreEntidad = []
+    const situacion = []
+    const montoAdeudado = []
+    {
+      deuda.forEach((item) => (
+        nombreEntidad.push(item[3]),
+        situacion.push(item[5]),
+        montoAdeudado.push(item[6])
+      ))
+    }
     const orden = deuda.sort((a, b) => b[6] - a[6]);
     const sumaTotal = orden.reduce((total, item) => total + item[6], 0);
     const cendeuUltimoRegistro = deuda.map((item) => (item[4]))
     dispatch({
       type: 'COMPLETE_DEUDA',
-      payload: { orden, sumaTotal, cendeuUltimoRegistro },
+      payload: { orden, sumaTotal, cendeuUltimoRegistro, nombreEntidad, situacion, montoAdeudado },
     });
   };
 
@@ -70,6 +82,9 @@ export default function UseContext({ children }) {
         posicion: state.posicion,
         fecha: state.fecha,
         cendeuUltimoRegistro: state.cendeuUltimoRegistro,
+        nombreEntidad: state.nombreEntidad,
+        situacion: state.situacion,
+        montoAdeudado: state.montoAdeudado,
         buscando,
         completeAfip,
         completeDeudaBancos,

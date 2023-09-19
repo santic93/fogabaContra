@@ -5,7 +5,8 @@ import Espere from '../Espere/Espere';
 import Precalificador from '../Precalificador/Precalificador';
 import './Formulario.css';
 export default function Formulario() {
-  const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha, cendeuUltimoRegistro } = useContext(Context);
+  const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha, cendeuUltimoRegistro, nombreEntidad, situacion, montoAdeudado } = useContext(Context);
+  console.log(nombreEntidad, situacion, montoAdeudado)
   const { actividad, rzs, scoreElementValor, localidad, cp } = afip;
   const [años, setAños] = useState()
   const [mesDeuda, setMesDeuda] = useState()
@@ -135,11 +136,9 @@ export default function Formulario() {
                     <table className='table text-center table-bordered small'>
                       <thead>
                         <tr>
-
                           <th scope='col' className='bg-primary text-light'>
                             Nombre Entidad
                           </th>
-
                           <th scope='col' className='bg-primary text-light'>
                             Situacion
                           </th>
@@ -151,7 +150,7 @@ export default function Formulario() {
                         </tr>
                       </thead>
                       <tbody>
-                        {deuda.map((item, index) => (
+      {deuda.map((item, index) => (
                           <tr key={index}>
                             <td
                               className={`${item[5] > 2

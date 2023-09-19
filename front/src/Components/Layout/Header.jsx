@@ -21,8 +21,16 @@ export default function Header() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [url, setUrl] = useState('');
-
+  const [error, setError] = useState('');
   const handleSearch = (event) => {
+    const input = event.target.value;
+    const numericInput = input.replace(/\D/g, ''); // Filtra solo caracteres numéricos
+
+    if (input !== numericInput) {
+      setError('Ingrese solo números');
+    } else {
+      setError('');
+    }
     setSearchQuery(event.target.value);
   };
   const handleFormSubmit = (event) => {
@@ -147,6 +155,7 @@ export default function Header() {
               className='inputttt'
             />
           </form>
+          <small>{error && "Solo caracteres Numéricos"}</small>
         </div>
       </div>
       <div className='personal'>
