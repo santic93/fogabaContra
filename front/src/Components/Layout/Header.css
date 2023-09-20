@@ -16,8 +16,17 @@
   font-weight: bold;
 }
 .personal {
+  text-align: start;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.domicilioFiscal {
+ font-size: 17px;
+  
+
+}
+.dom{
+  width: 500px;
 }

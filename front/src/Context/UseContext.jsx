@@ -3,6 +3,7 @@ import { useReducer } from 'react';
 import UseReducer from './UseReducer.jsx';
 export default function UseContext({ children }) {
   const initialState = {
+    usuarios: [],
     afip: [],
     deuda: [],
     fogaba: [],
@@ -65,6 +66,12 @@ export default function UseContext({ children }) {
       payload: afip,
     });
   };
+  const completeUsuarios = (usuarios) => {
+    dispatch({
+      type: 'COMPLETE_USUARIOS',
+      payload: usuarios,
+    });
+  };
   const buscando = (buscar) => {
     dispatch({
       type: 'ESTOY_BUSCANDO',
@@ -74,6 +81,7 @@ export default function UseContext({ children }) {
   return (
     <Context.Provider
       value={{
+        usuarios: state.usuarios,
         deuda: state.deuda,
         fogaba: state.fogaba,
         afip: state.afip,
@@ -89,6 +97,7 @@ export default function UseContext({ children }) {
         completeAfip,
         completeDeudaBancos,
         completeFogaba,
+        completeUsuarios
       }}
     >
       {children}

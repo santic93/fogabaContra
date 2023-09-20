@@ -54,23 +54,39 @@ export default function Formulario() {
 
 
   return (
-    <>
+    <div>
       {buscar ? (
         <Espere />
       ) : (
         <>
           <div className='p-5'>
-            <h3>Estado de la pyme</h3>
+            {/* <hr class='border border-black mt-0'></hr> */}
+            <h3 class="text-capitalize fst-italic fw-bold text-decoration-underline">Estado de la pyme</h3>
             <>
+            <div className='mt-5 mb-5'>
+            <h1>
+              <button type="button" className='btn btn-primary btn-lg consultaArbaBTN'>
+                <a
+                  href='https://consultas.arba.gov.ar/ConsultasGenerales/inicioEstadoDeudaCategoria.do'
+                  target='_blank'
+                  className='consultaArba'
+                >
+                  Consulta ARBA
+                </a>
+              </button>
+            </h1>
+            <span>Sera redirigido a la Pagina de <b>ARBA</b></span>
+            <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
+          </div>
               <div
                 className='table-container'
               >
                 {' '}
                 {rzs && localidad && scoreElementValor ? (
                   <>
-                    <div className='text-danger text-start w-25 mb-2 mt-2'>
-                      <b>
-                        <mark>Consulta nosis</mark>
+                    <div className=' text-start w-50 mb-2 mt-2'>
+                      <b className='titulo'>
+                        Consulta nosis
                       </b>
                     </div>
                     <table className='table text-center table-bordered small '>
@@ -117,13 +133,13 @@ export default function Formulario() {
                     </div>
                   </>
                 )}
-                <hr className='border border-primary border-2 opacity-50' />
+                <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
                 {Array.isArray(deuda) && deuda.length ? (
                   <>
                     <div className="d-flex mb-2 mt-2">
                       <div className='text-start'>
-                        <b>
-                          <mark> Consulta Cendeu </mark>
+                        <b className='titulo'>
+                          Consulta Cendeu
                         </b>
                         <b> Deuda Total: $ {sumaTotal} </b>
                       </div>
@@ -150,7 +166,7 @@ export default function Formulario() {
                         </tr>
                       </thead>
                       <tbody>
-      {deuda.map((item, index) => (
+                        {deuda.map((item, index) => (
                           <tr key={index}>
                             <td
                               className={`${item[5] > 2
@@ -196,14 +212,14 @@ export default function Formulario() {
                 )}
 
 
-                <hr className='border border-primary border-2 opacity-50' />
+                <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
                 {Array.isArray(fogaba) && fogaba.length ? (
                   <>
                     <div className="d-flex mb-2 mt-2">
                       <div className='text-start'>
-                        <b><mark>Historia Fogaba</mark></b>{" "}
+                        <b className='titulo'>Consulta Fogaba</b>{" "}
                         <b className='text-danger opacity-100'>{posicion === "S" && "PYME INHABILITADA"}</b>{" "}
-                        <p className='fs-6 fst-italic'>{posicion === "S" && "Preguntar a legales para obtener detalles"}</p>
+                        <p className='fs-6 fst-italic'>{posicion === "S" && "Consultar a SubGerencia de Recupero para obtener detalles"}</p>
                       </div>
                       <div className="ms-auto">
                         {(años < 2 && posicion !== "S" && <b className='text-danger'> Riesgo Muy alto </b>) || (años <= 4 && posicion !== "S" && <b className='text-danger'> Riesgo Alto </b>) || (años <= 6 && posicion !== "S" && <b className='text-warning'> Riesgo Medio </b>) || (años <= 10 && posicion !== "S" && <b className='text-success'> Riesgo Bajo </b>) || (años > 10 && posicion !== "S" && <b className='text-success' > Riesgo Muy Bajo </b>)}
@@ -265,7 +281,7 @@ export default function Formulario() {
                       <h4>
                         No existen registros en{' '}
                         <b>
-                          <mark>FoGABA</mark>{' '}
+                          FOGABA{' '}
                         </b>
                         con el CUIT ingresado
                       </h4>
@@ -275,12 +291,12 @@ export default function Formulario() {
               </div>
             </>
           </div>
-          <hr class='border border-primary border-3 opacity-75'></hr>
+          <hr className='border border-primary border-3 opacity-75'></hr>
           <div>
             <Precalificador />
           </div>
-          <hr class='border border-primary border-3 opacity-75'></hr>
-          <div className='mb-3'>
+          {/* <hr className='border border-primary border-3 opacity-75'></hr> */}
+          {/* <div className='mb-3'>
             <h1>
               <button type="button" className='btn btn-primary btn-lg consultaArbaBTN'>
                 <a
@@ -293,7 +309,7 @@ export default function Formulario() {
               </button>
             </h1>
             <span>Sera redirigido a la Pagina de <b>ARBA</b></span>
-          </div>
+          </div> */}
           {/* <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
             <Link to='/precalificador'>
               <button class='btn btn-danger me-md-2 btn-lg' type='button'>
@@ -304,6 +320,6 @@ export default function Formulario() {
         </>
       )
       }
-    </>
+    </div>
   );
 }

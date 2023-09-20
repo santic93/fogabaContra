@@ -133,46 +133,91 @@ export default function Header() {
     }
   }, [url]);
   return (
-    <div className='container'>
-      <div className='header'>
-        <Link
-          to='/'
-          onClick={() => (
-            completeAfip([]), completeDeudaBancos([]), completeFogaba([])
-          )}
-        >
-          <img src={fog} alt='' />
-        </Link>
-        <div>
-          <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
-            <input
-              type='text'
-              placeholder='Ingrese su CUIT'
-              value={searchQuery}
-              onChange={handleSearch}
-              minLength={11}
-              maxLength={11}
-              className='inputttt'
-            />
-          </form>
-          <small>{error && "Solo caracteres Numéricos"}</small>
+    <div>
+      <div className='container'>
+        <div className='header'>
+          <Link
+            to='/'
+            onClick={() => (
+              completeAfip([]), completeDeudaBancos([]), completeFogaba([])
+            )}
+          >
+            <img src={fog} alt='' />
+          </Link>
+          <div>
+            <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
+              <input
+                type='text'
+                placeholder='Ingrese su CUIT'
+                value={searchQuery}
+                onChange={handleSearch}
+                minLength={11}
+                maxLength={11}
+                className='inputttt'
+              />
+            </form>
+            <small>{error && "Solo caracteres Numéricos"}</small>
+          </div>
         </div>
-      </div>
-      <div className='personal'>
-        <h5 className={`${buscar ? 'placeholder-glow' : 'w-25'}`}>
-          {' '}
-          <b className={`${buscar ? 'placeholder' : ''}`}>{razonSocial}</b>
-        </h5>
-        {domicilio && <p className={`${buscar ? 'placeholder-glow' : 'border border-dark p-3 fs-6'}`}>
-          {/* <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b> */}
-          <b className={`${buscar ? 'placeholder' : ''}`}><mark className={`${buscar ? 'placeholder' : 'bg-info'}`}>Domicilio fiscal</mark><br /> {domicilio}<br />{localidad}<br />{provincia}</b>
-        </p>}
+        <div className='personal'>
+          <h4 className={`${buscar ? 'placeholder-glow' : 'w-50'}`}>
+            {' '}
+            <b className={`${buscar ? 'placeholder' : ''}`}>{razonSocial}</b>
+          </h4>
+          {
+            domicilio &&
+            <table className={`${buscar ? 'placeholder' : 'dom border border-dark'}`}>
+              <thead>
+                <tr>
+                  <th scope='col' className={`${buscar ? 'placeholder' : 'bg-primary text-light text-center'}`}>
+                    Domicilio fiscal
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className='domicilioFiscal text-center'>
+                    {domicilio}
+                    <br />
+                    {localidad}
+                    <br />
+                    {provincia}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            // <table className='border border-dark domicilioFiscal'>
+            //   <thead>
+            //     <tr>
+            //       <th scope='col' className='bg-primary text-light '>
+            //         Domicilio fiscal
+            //       </th>
+            //     </tr>
+            //   </thead>
+            //   <tbody >
+            //     <tr >
+            //       <th>{domicilio}
+            //       <br />
+            //         {localidad}
+            //         <br />
+            //         {provincia}
+            //       </th>
+            //     </tr>
+            //   </tbody>
+            // </table>
+            // <p className={`${buscar ? 'placeholder-glow' : 'border border-dark p-4'}`}>
+            //   {/* <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b> */}
+            //   <b className={`${buscar ? 'placeholder' : ''}`}><b className={`${buscar ? 'placeholder' : 'domicilioFiscal p-2 m-5'}`}>Domicilio fiscal</b><br /><br /> {domicilio}<br />{localidad}<br />{provincia}</b>
+            // </p>
+          }
 
-        {/* <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>
+          {/* <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>
           <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b>
         </h5> */}
+        </div>
+        {/* <hr class='border border-primary border-3 opacity-75 w-100'></hr> */}
       </div>
-      <hr className='border border-dark border-2 opacity-100' />
+      <hr class='border border-black border-3 opacity-75'></hr>
     </div>
   );
 }

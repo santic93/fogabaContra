@@ -144,7 +144,7 @@ export default function Precalificador() {
     <div className='container text-center'>
       <div className='probando'>
         <div className='probandoDos'>
-          <input type='date' name='' id='' />
+          <input type='date' name='' id='' required />
 
           <h1>Ejercicios</h1>
         </div>

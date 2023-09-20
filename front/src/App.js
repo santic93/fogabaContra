@@ -6,9 +6,13 @@ import Formulario from './Components/Formulario/Formulario';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Espere from './Components/Espere/Espere';
 import Precalificador from './Components/Precalificador/Precalificador';
+import Popup from './Components/Popup/Popup';
+import { useState } from 'react';
 function App() {
+  const [datos,setDatos] = useState(0)
   return (
     <div className='App'>
+      {/* <Popup datos={datos} setDatos={setDatos}/> */}
       <BrowserRouter>
         <UseContext>
           <Layout>

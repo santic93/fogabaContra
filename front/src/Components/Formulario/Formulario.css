@@ -14,3 +14,14 @@
 .consultaArbaBTN:hover {
   background-color: darkgray;
 }
+.consultaArbaBTN {
+  background-color: #00b3cb !important;
+}
+.bg-primary {
+  background-color: #00b3cb !important;
+}
+.titulo {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: underline;
+}
