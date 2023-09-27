@@ -1,12 +1,13 @@
 import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import './Header.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import fog from './fogaba-resized.png';
 import Context from '../../Context/Context';
 export default function Header() {
   const parser = new DOMParser();
   const history = useNavigate();
+  const navigate = useNavigate()
   const {
     completeDeudaBancos,
     completeFogaba,
@@ -17,7 +18,7 @@ export default function Header() {
     buscando,
     buscar,
   } = useContext(Context);
-  const { razonSocial, domicilio, localidad, provincia } = afip;
+  const { razonSocial, domicilio, localidad, provincia, rzs } = afip;
 
   const [searchQuery, setSearchQuery] = useState('');
   const [url, setUrl] = useState('');
@@ -36,7 +37,7 @@ export default function Header() {
   const handleFormSubmit = (event) => {
     event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
     buscando(true);
-    history('/consulta');
+    history('/formulario');
     setTimeout(() => {
       fetchData();
     }, 2000);
@@ -57,11 +58,13 @@ export default function Header() {
         axios.get(
           `https://sac.nosis.com/SAC_ServicioSF/Consulta.asp?NroConsulta=1&Usuario=468999&Password=844107&ConsXML_RZ=${searchQuery}&ConsXML_Doc=${searchQuery}&Cons_CDA=99052`
         ),
+
       ]);
 
       const deudaBancos = deudaResponse.data;
       const fogabaDeudas = carterasResponse.data;
       const xmlString = urlNosis.data;
+
       const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
       const urlElement = xmlDoc.querySelector('URL');
       if (urlElement !== null) {
@@ -132,12 +135,30 @@ export default function Header() {
       busquedaCuit();
     }
   }, [url]);
+  // Dividir la cadena en función de la coma
+  let partes;
+  let resultado;
+  if (localStorage.getItem("user")) {
+    partes = localStorage?.getItem('user')?.split(',');
+    // Obtener la parte delante de la coma
+    resultado = partes[1];
+  }
   return (
     <div>
       <div className='container'>
+        {localStorage.getItem("user") && <> Comercial: <b>{resultado}</b>
+          <p><Link className="link-danger link-opacity-100" to="/" onClick={(event) => {
+            event.preventDefault()
+            localStorage.removeItem("user");
+            completeAfip([]);
+            completeDeudaBancos([]);
+            completeFogaba([]);
+            history("");
+          }}>Desconectarte</Link></p></>}
+
         <div className='header'>
           <Link
-            to='/'
+            to="/consulta"
             onClick={() => (
               completeAfip([]), completeDeudaBancos([]), completeFogaba([])
             )}
@@ -156,6 +177,7 @@ export default function Header() {
                 className='inputttt'
               />
             </form>
+            <small>{searchQuery && "Presione Enter para consultar"}</small>
             <small>{error && "Solo caracteres Numéricos"}</small>
           </div>
         </div>
@@ -163,6 +185,9 @@ export default function Header() {
           <h4 className={`${buscar ? 'placeholder-glow' : 'w-50'}`}>
             {' '}
             <b className={`${buscar ? 'placeholder' : ''}`}>{razonSocial}</b>
+            <div >
+              <b className={`${buscar ? 'placeholder' : ''}`}>{rzs}</b>
+            </div>
           </h4>
           {
             domicilio &&
@@ -186,38 +211,10 @@ export default function Header() {
                 </tr>
               </tbody>
             </table>
-            // <table className='border border-dark domicilioFiscal'>
-            //   <thead>
-            //     <tr>
-            //       <th scope='col' className='bg-primary text-light '>
-            //         Domicilio fiscal
-            //       </th>
-            //     </tr>
-            //   </thead>
-            //   <tbody >
-            //     <tr >
-            //       <th>{domicilio}
-            //       <br />
-            //         {localidad}
-            //         <br />
-            //         {provincia}
-            //       </th>
-            //     </tr>
-            //   </tbody>
-            // </table>
-            // <p className={`${buscar ? 'placeholder-glow' : 'border border-dark p-4'}`}>
-            //   {/* <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b> */}
-            //   <b className={`${buscar ? 'placeholder' : ''}`}><b className={`${buscar ? 'placeholder' : 'domicilioFiscal p-2 m-5'}`}>Domicilio fiscal</b><br /><br /> {domicilio}<br />{localidad}<br />{provincia}</b>
-            // </p>
           }
-
-          {/* <h5 className={`${buscar ? 'placeholder-glow' : ''}`}>
-          <b className={`${buscar ? 'placeholder' : ''}`}>{domicilio}</b>
-        </h5> */}
         </div>
-        {/* <hr class='border border-primary border-3 opacity-75 w-100'></hr> */}
       </div>
-      <hr class='border border-black border-3 opacity-75'></hr>
-    </div>
+      <hr className='border border-black border-3 opacity-75'></hr>
+    </div >
   );
 }

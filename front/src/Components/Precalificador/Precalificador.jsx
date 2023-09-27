@@ -1,31 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './Precalificador.css';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Context from '../../Context/Context';
 export default function Precalificador() {
-  const [activoCorriente, setActivoCorriente] = useState(0);
-  const [activoNoCorriente, setActivoNoCorriente] = useState(0);
-  const [activoTotal, setActivoTotal] = useState(0);
-  const [pasivoCorriente, setPasivoCorriente] = useState(0);
-  const [pasivoNoCorriente, setPasivoNoCorriente] = useState(0);
-  const [pasivoTotal, setPasivoTotal] = useState(0);
-  const [totalPatrimonioNeto, setTotalPatrimonioNeto] = useState(0);
-  const [totalPasivoPatrimonioNeto, setTotalPasivoPatrimonioNeto] = useState(0);
-  const [comprobacion, setComprobacion] = useState(0);
+  const { afip } = useContext(Context)
+  const { rzs, razonSocial } = afip
+  const [activoCorriente, setActivoCorriente] = useState("");
+  const [activoNoCorriente, setActivoNoCorriente] = useState("");
+  const [activoTotal, setActivoTotal] = useState("");
+  const [pasivoCorriente, setPasivoCorriente] = useState("");
+  const [pasivoNoCorriente, setPasivoNoCorriente] = useState("");
+  const [pasivoTotal, setPasivoTotal] = useState("");
+  const [totalPatrimonioNeto, setTotalPatrimonioNeto] = useState("");
+  const [totalPasivoPatrimonioNeto, setTotalPasivoPatrimonioNeto] = useState("");
+  const [comprobacion, setComprobacion] = useState("");
 
-  const [ventas, setVentas] = useState(0);
-  const [cmv, setCmv] = useState(0);
-  const [gastosAdministrativos, setGastosAdministrativos] = useState(0);
-  const [otrosIngresosEgresos, setOtrosIngresosEgresos] = useState(0);
-  const [otrosIngresos, setOtrosIngresos] = useState(0);
-  const [recpam, setRecpam] = useState(0);
-  const [impuestoGanancias, setImpuestoGanancias] = useState(0);
-  const [resultadoMargenBruto, setResultadoMargenBruto] = useState(0);
-  const [resultadoMargenOperativo, setResultadoMargenOperativo] = useState(0);
-  const [resultadosAntesImpuestos, setResultadosAntesImpuestos] = useState(0);
-  const [resultadoNetoFinal, setResultadoNetoFinal] = useState(0);
-  const [amortizaciones, setAmortizaciones] = useState(0);
-  const [capacidadDeGeneracion, setCapacidadDeGeneracion] = useState(0);
+  const [ventas, setVentas] = useState("");
+  const [cmv, setCmv] = useState("");
+  const [gastosAdministrativos, setGastosAdministrativos] = useState("");
+  const [otrosIngresosEgresos, setOtrosIngresosEgresos] = useState("");
+  const [otrosIngresos, setOtrosIngresos] = useState("");
+  const [recpam, setRecpam] = useState("");
+  const [impuestoGanancias, setImpuestoGanancias] = useState("");
+  const [resultadoMargenBruto, setResultadoMargenBruto] = useState("");
+  const [resultadoMargenOperativo, setResultadoMargenOperativo] = useState("");
+  const [resultadosAntesImpuestos, setResultadosAntesImpuestos] = useState("");
+  const [resultadoNetoFinal, setResultadoNetoFinal] = useState("");
+  const [amortizaciones, setAmortizaciones] = useState("");
+  const [capacidadDeGeneracion, setCapacidadDeGeneracion] = useState("");
   const [otrosIngresosEgresosRecpam, setOtrosIngresosEgresosRecpam] =
-    useState(0);
+    useState("");
+
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///OTROS INGRESOS EGRESOS RECPAM
   useEffect(() => {
@@ -100,52 +106,85 @@ export default function Precalificador() {
     pasivoNoCorriente: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setDatos({
-      ...datos,
-      [name]: value,
-    });
-  };
 
-  const handleSubmit = async (e) => {
+  const navigate = useNavigate();
+
+  const handleClickEnviar = () => {
+    // Verificar si los campos están vacíos o no son números válidos
+    // if (activoTotal <= pasivoTotal) {
+    //   alert("No puede ser menor el Activo Total o Igual, al Pasivo Total")
+    //   return
+    // }
     if (
-      !datos.activoCorriente ||
-      !datos.activoNoCorriente ||
-      !datos.pasivoCorriente ||
-      !datos.pasivoNoCorriente
+      activoCorriente === '' ||
+      activoNoCorriente === '' ||
+      pasivoCorriente === '' ||
+      pasivoNoCorriente === '' ||
+      ventas === '' ||
+      cmv === '' ||
+      gastosAdministrativos === '' ||
+      otrosIngresos === '' ||
+      recpam === '' ||
+      impuestoGanancias === '' ||
+      amortizaciones === ''
     ) {
       alert('Todos los campos son obligatorios');
+      return;
     }
+    // Verificar si los valores son números válidos
+    if (
+      isNaN(activoCorriente) ||
+      isNaN(activoNoCorriente) ||
+      isNaN(pasivoCorriente) ||
+      isNaN(pasivoNoCorriente) ||
+      isNaN(ventas) ||
+      isNaN(cmv) ||
+      isNaN(gastosAdministrativos) ||
+      isNaN(otrosIngresos) ||
+      isNaN(recpam) ||
+      isNaN(impuestoGanancias) ||
+      isNaN(amortizaciones)
+    ) {
+      alert('Ingresa números válidos en todos los campos.');
+      return;
+    } else {
+      // Dividir la cadena en función de la coma
+      var partes = localStorage.getItem('user').split(',');
 
-    e.preventDefault();
-
-    try {
-      const response = await fetch('/insertarDatos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      // Obtener la parte delante de la coma
+      var user = partes[0];
+      // Combina los datos en un solo objeto
+      const requestData = {
+        rzs,
+        razonSocial,
+        activoCorriente,
+        activoNoCorriente,
+        pasivoCorriente,
+        pasivoNoCorriente,
+        ventas,
+        cmv,
+        gastosAdministrativos,
+        otrosIngresos,
+        recpam,
+        impuestoGanancias,
+        amortizaciones,
+        user,
+        fechaIngresada
+      };
+      axios.get('/insertarDatos', {
+        params: {
+          searchQuery: requestData,
         },
-        body: JSON.stringify(datos),
-      });
-
-      if (response.ok) {
-        // Datos insertados correctamente
-        // Puedes realizar acciones adicionales aquí, como limpiar el formulario o mostrar un mensaje de éxito.
-      } else {
-        // Manejar errores de inserción
-        console.error('Error al insertar datos');
-      }
-    } catch (error) {
-      console.error('Error en la solicitud:', error);
+      }).then((res) => res, alert("Sus datos fueron enviadas correctamente")).catch((error) => console.log(error))
+      // navigate("/totales")
     }
-  };
+  }
+  const [fechaIngresada, setFechaIngresada] = useState(null)
+
   return (
     <div className='container text-center'>
       <div className='probando'>
         <div className='probandoDos'>
-          <input type='date' name='' id='' required />
-
           <h1>Ejercicios</h1>
         </div>
       </div>
@@ -169,7 +208,6 @@ export default function Precalificador() {
                     className='text-end'
                     maxLength={15}
                     required
-                    min={-1}
                     type='text'
                     placeholder='corriente'
                     value={activoCorriente}
@@ -189,7 +227,6 @@ export default function Precalificador() {
                     className='text-end'
                     maxLength={15}
                     required
-                    min={-1}
                     type='text'
                     placeholder='no corriente'
                     value={activoNoCorriente}
@@ -201,11 +238,11 @@ export default function Precalificador() {
               </tr>
               <tr>
                 <th scope='row'></th>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-uppercase'>
                   ACTIVO TOTAL
                 </td>
-                <td className='fw-bold text-danger text-uppercase text-end'>
-                  $ {activoTotal.toLocaleString()}
+                <td className='fw-bold text-uppercase text-end'>
+                  $ {activoTotal ? activoTotal.toLocaleString() : 0}
                 </td>
               </tr>
               <tr>
@@ -215,7 +252,6 @@ export default function Precalificador() {
                   <input
                     className='text-end'
                     maxLength={15}
-                    min={-1}
                     required
                     type='text'
                     placeholder='pasivo corriente'
@@ -235,7 +271,6 @@ export default function Precalificador() {
                   <input
                     className='text-end'
                     maxLength={15}
-                    min={-1}
                     required
                     type='text'
                     placeholder='pasivo no corriente'
@@ -248,17 +283,17 @@ export default function Precalificador() {
               </tr>
               <tr>
                 <th scope='row'></th>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-uppercase'>
                   PASIVO TOTAL
                 </td>
-                <td className='fw-bold text-danger text-uppercase text-end'>
-                  $ {pasivoTotal.toLocaleString()}
+                <td className='fw-bold text-uppercase text-end'>
+                  $ {pasivoTotal ? pasivoTotal.toLocaleString() : 0}
                 </td>
               </tr>
               <tr>
                 <th scope='row'></th>
                 <td className='fw-bold'>Total patrimonio neto</td>
-                <td className='fw-bold text-end'>$ {totalPatrimonioNeto}</td>
+                <td className='fw-bold text-end'>$ {totalPatrimonioNeto ? totalPatrimonioNeto.toLocaleString() : 0}</td>
               </tr>
               <tr>
                 <th scope='row'></th>
@@ -266,24 +301,24 @@ export default function Precalificador() {
                   Total pasivo + p.neto
                 </td>
                 <td className='border-bottom border-black fw-bold text-end'>
-                  $ {totalPasivoPatrimonioNeto.toLocaleString()}
+                  $ {totalPasivoPatrimonioNeto ? totalPasivoPatrimonioNeto?.toLocaleString() : 0}
                 </td>
               </tr>
               <tr>
                 <th scope='row'></th>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-uppercase'>
                   Comprobacion
                 </td>
-                <td className='fw-bold text-danger text-uppercase text-end'>
-                  $ {comprobacion.toLocaleString()}
+                <td className='fw-bold text-uppercase text-end'>
+                  $ {comprobacion ? comprobacion.toLocaleString() : 0}
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class='col'>
+        <div classNameass='col'>
           <h3 className='bg-secondary text-light'>Cuadro de resultados</h3>
-          <table class='table'>
+          <table className='table'>
             <thead>
               <tr>
                 <th scope='col'>Categoria</th>
@@ -300,7 +335,6 @@ export default function Precalificador() {
                     type='text'
                     placeholder='ventas'
                     required
-                    min={-1}
                     value={ventas}
                     onChange={(event) => setVentas(Number(event.target.value))}
                   />
@@ -315,18 +349,17 @@ export default function Precalificador() {
                     type='text'
                     placeholder='c.m.v'
                     required
-                    min={-1}
                     value={cmv}
                     onChange={(event) => setCmv(Number(event.target.value))}
                   />
                 </td>
               </tr>
               <tr>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-uppercase'>
                   Resultado / margen bruto
                 </td>
-                <td className='fw-bold text-danger text-uppercase text-end'>
-                  $ {resultadoMargenBruto.toLocaleString()}
+                <td className='fw-bold text-uppercase text-end'>
+                  $ {resultadoMargenBruto ? resultadoMargenBruto.toLocaleString() : 0}
                 </td>
               </tr>
               <tr>
@@ -339,7 +372,6 @@ export default function Precalificador() {
                     maxLength={15}
                     type='text'
                     placeholder=' Gastos Administrativos + Co'
-                    min={-1}
                     value={gastosAdministrativos}
                     onChange={(event) =>
                       setGastosAdministrativos(Number(event.target.value))
@@ -348,11 +380,11 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='fw-bold text-danger text-uppercase'>
+                <td className='fw-bold text-uppercase'>
                   Resultado / margen operativo
                 </td>
-                <td className='fw-bold text-danger text-uppercase text-end'>
-                  $ {resultadoMargenOperativo.toLocaleString()}
+                <td className='fw-bold text-uppercase text-end'>
+                  $ {resultadoMargenOperativo ? resultadoMargenOperativo.toLocaleString() : 0}
                 </td>
               </tr>
               <tr>
@@ -363,7 +395,6 @@ export default function Precalificador() {
                     maxLength={15}
                     type='text'
                     placeholder='Otros Ing'
-                    min={-1}
                     value={otrosIngresos}
                     onChange={(event) =>
                       setOtrosIngresos(Number(event.target.value))
@@ -380,7 +411,6 @@ export default function Precalificador() {
                     type='text'
                     placeholder='RECPAM'
                     required
-                    min={-1}
                     value={recpam}
                     onChange={(event) => setRecpam(Number(event.target.value))}
                   />
@@ -388,14 +418,14 @@ export default function Precalificador() {
               </tr>
               <tr>
                 <td className='fw-bold'>Otros Ing/Egresos + RECPAM</td>
-                <td className='fw-bold text-end'>$ {otrosIngresosEgresosRecpam}</td>
+                <td className='fw-bold text-end'>$ {otrosIngresosEgresosRecpam ? otrosIngresosEgresosRecpam.toLocaleString() : 0}</td>
               </tr>
               <tr>
-                <td className='fw-bold text-danger text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-end'>
                   Resultado antes de impuestos
                 </td>
-                <td className='fw-bold text-danger text-uppercase text-end'>
-                  $ {resultadosAntesImpuestos.toLocaleString()}
+                <td className='fw-bold text-uppercase text-end'>
+                  $ {resultadosAntesImpuestos ? resultadosAntesImpuestos.toLocaleString() : 0}
                 </td>
               </tr>
               <tr className='border-bottom border-black'>
@@ -404,7 +434,6 @@ export default function Precalificador() {
                   <input
                     className='text-end'
                     maxLength={15}
-                    min={-1}
                     type='text'
                     placeholder='Impuesto Ganancias'
                     required
@@ -416,11 +445,11 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='fw-bold text-danger text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-end'>
                   Resultado neto / final
                 </td>
-                <td className='fw-bold text-danger text-uppercase text-end'>
-                  $ {resultadoNetoFinal.toLocaleString()}
+                <td className='fw-bold text-uppercase text-end'>
+                  $ {resultadoNetoFinal ? resultadoNetoFinal.toLocaleString() : 0}
                 </td>
               </tr>
               <tr className='border-bottom border-black'>
@@ -429,7 +458,6 @@ export default function Precalificador() {
                   <input
                     className='text-end'
                     maxLength={15}
-                    min={-1}
                     type='text'
                     placeholder='Amortizaciones'
                     required
@@ -441,16 +469,21 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='fw-bold text-danger text-uppercase '>
+                <td className='fw-bold text-uppercase '>
                   Capacidad de Generacion
                 </td>
-                <td className='fw-bold text-danger text-uppercase text-end'>
-                  $ {capacidadDeGeneracion.toLocaleString()}
+                <td className='fw-bold text-uppercase text-end'>
+                  $ {capacidadDeGeneracion ? capacidadDeGeneracion.toLocaleString() : 0}
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
+      </div>
+      <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+        <button className="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
+        <button className="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Enviar</button>
+
       </div>
     </div>
   );

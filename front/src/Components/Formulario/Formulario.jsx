@@ -2,36 +2,13 @@ import { useContext, useEffect, useState } from 'react';
 import Context from '../../Context/Context';
 import { Link } from 'react-router-dom';
 import Espere from '../Espere/Espere';
-import Precalificador from '../Precalificador/Precalificador';
 import './Formulario.css';
+
 export default function Formulario() {
-  const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha, cendeuUltimoRegistro, nombreEntidad, situacion, montoAdeudado } = useContext(Context);
-  console.log(nombreEntidad, situacion, montoAdeudado)
+  const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha, cendeuUltimoRegistro } = useContext(Context);
   const { actividad, rzs, scoreElementValor, localidad, cp } = afip;
-  const [años, setAños] = useState()
   const [mesDeuda, setMesDeuda] = useState()
   const [añoDeuda, setAñoDeuda] = useState()
-  let fechaActual = new Date().toLocaleDateString()
-  useEffect(() => {
-    let fechaArray = undefined
-    let fechaActualArray = undefined
-    let fechaActualString = undefined
-    let fechaAntiguaString = undefined
-    if (fogaba.length) {
-      ///separo las fechas
-      fechaArray = fecha.split("/")
-      fechaActualArray = fechaActual.split("/")
-      //las transformo en un numero entero, eliminando las comas
-      fechaActualString = fechaArray.map(Number).join('');
-      fechaAntiguaString = fechaActualArray.map(Number).join('');
-    }
-    if (fechaActualString && fechaAntiguaString) {
-      const añoActual = parseInt(fechaActualString.slice(3, 8));
-      const añoAntiguo = parseInt(fechaAntiguaString.slice(3, 8));
-      const anios = añoActual - añoAntiguo
-      setAños(Math.abs(anios))
-    }
-  }, [fogaba])
   useEffect(() => {
     if (cendeuUltimoRegistro.length) {
       const numeroMes = cendeuUltimoRegistro[0].toString(); // Puedes reemplazar esto con el número de mes que desees
@@ -41,7 +18,6 @@ export default function Formulario() {
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
       ];
-
       // Asegurémonos de que el número de mes sea válido
       const mesIndex = parseInt(mes, 10) - 1; // Restamos 1 porque los arrays comienzan en 0
       if (mesIndex >= 0 && mesIndex < meses.length) {
@@ -51,8 +27,10 @@ export default function Formulario() {
       }
     }
   }, [deuda])
-
-
+  const handleButtonClick = () => {
+    // Desplaza la página hacia la parte superior
+    window.scrollTo(0, 0);
+  };
   return (
     <div>
       {buscar ? (
@@ -60,24 +38,23 @@ export default function Formulario() {
       ) : (
         <>
           <div className='p-5'>
-            {/* <hr class='border border-black mt-0'></hr> */}
             <h3 class="text-capitalize fst-italic fw-bold text-decoration-underline">Estado de la pyme</h3>
             <>
-            <div className='mt-5 mb-5'>
-            <h1>
-              <button type="button" className='btn btn-primary btn-lg consultaArbaBTN'>
-                <a
-                  href='https://consultas.arba.gov.ar/ConsultasGenerales/inicioEstadoDeudaCategoria.do'
-                  target='_blank'
-                  className='consultaArba'
-                >
-                  Consulta ARBA
-                </a>
-              </button>
-            </h1>
-            <span>Sera redirigido a la Pagina de <b>ARBA</b></span>
-            <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
-          </div>
+              <div className='mt-5 mb-5'>
+                <h1>
+                  <button type="button" className='btn btn-primary btn-lg consultaArbaBTN'>
+                    <a
+                      href={`http://consultas.arba.gov.ar/ConsultasGenerales/recuperarEstadoDeuda.do?action=recuperarEstadoDeuda&cuit=${rzs}`}
+                      target='_blank'
+                      className='consultaArba '
+                    >
+                      Consulta ARBA
+                    </a>
+                  </button>
+                </h1>
+                <span>Sera redirigido a la Pagina de <b>ARBA</b></span>
+                <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
+              </div>
               <div
                 className='table-container'
               >
@@ -85,7 +62,7 @@ export default function Formulario() {
                 {rzs && localidad && scoreElementValor ? (
                   <>
                     <div className=' text-start w-50 mb-2 mt-2'>
-                      <b className='titulo'>
+                      <b className='titulo fst-italic fw-bold'>
                         Consulta nosis
                       </b>
                     </div>
@@ -107,6 +84,9 @@ export default function Formulario() {
                           <th scope='col' className='bg-primary text-light'>
                             Score
                           </th>
+                          <th scope='col' className='bg-primary text-light'>
+                            Riesgo Score
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -116,6 +96,7 @@ export default function Formulario() {
                           <td>{cp}</td>
                           <td>{actividad}</td>
                           <td>{scoreElementValor}</td>
+                          <td className='fw-bold'>{scoreElementValor < 400 && "Muy Alto" || scoreElementValor >= 400 && scoreElementValor < 500 && "Alto" || scoreElementValor >= 500 && scoreElementValor < 600 && "Medio" || scoreElementValor >= 600 && scoreElementValor < 700 && "Bajo" || scoreElementValor >= 700 && "Muy Bajo"}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -126,7 +107,7 @@ export default function Formulario() {
                       <h4>
                         No existen registros en{' '}
                         <b>
-                          <mark>NOSIS</mark>
+                          NOSIS
                         </b>{' '}
                         con el CUIT ingresado
                       </h4>
@@ -138,7 +119,7 @@ export default function Formulario() {
                   <>
                     <div className="d-flex mb-2 mt-2">
                       <div className='text-start'>
-                        <b className='titulo'>
+                        <b className='titulo fst-italic fw-bold'>
                           Consulta Cendeu
                         </b>
                         <b> Deuda Total: $ {sumaTotal} </b>
@@ -203,7 +184,7 @@ export default function Formulario() {
                       <h4>
                         No existen registros en{' '}
                         <b>
-                          <mark>CENDEU</mark>
+                          CENDEU
                         </b>{' '}
                         con el CUIT ingresado
                       </h4>
@@ -214,18 +195,18 @@ export default function Formulario() {
 
                 <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
                 {Array.isArray(fogaba) && fogaba.length ? (
+
                   <>
                     <div className="d-flex mb-2 mt-2">
                       <div className='text-start'>
-                        <b className='titulo'>Consulta Fogaba</b>{" "}
+                        <b className='titulo fst-italic fw-bold'>Consulta Fogaba</b>{" "}
                         <b className='text-danger opacity-100'>{posicion === "S" && "PYME INHABILITADA"}</b>{" "}
                         <p className='fs-6 fst-italic'>{posicion === "S" && "Consultar a SubGerencia de Recupero para obtener detalles"}</p>
                       </div>
                       <div className="ms-auto">
-                        {(años < 2 && posicion !== "S" && <b className='text-danger'> Riesgo Muy alto </b>) || (años <= 4 && posicion !== "S" && <b className='text-danger'> Riesgo Alto </b>) || (años <= 6 && posicion !== "S" && <b className='text-warning'> Riesgo Medio </b>) || (años <= 10 && posicion !== "S" && <b className='text-success'> Riesgo Bajo </b>) || (años > 10 && posicion !== "S" && <b className='text-success' > Riesgo Muy Bajo </b>)}
+                        {(posicion !== "S" && fecha < 2 && <b className='text-danger'> Riesgo Muy alto </b>) || (posicion !== "S" && fecha >= 2 && fecha < 4 && <b className='text-danger'> Riesgo Alto </b>) || (posicion !== "S" && fecha >= 4 && fecha < 6 && <b className='text-warning'> Riesgo Medio </b>) || (posicion !== "S" && fecha >= 6 && fecha < 10 && <b className='text-success'> Riesgo Bajo </b>) || (posicion !== "S" && fecha >= 10 && <b className='text-success' > Riesgo Muy Bajo </b>)}
                       </div>
                     </div>
-
                     <table className='table text-center table-bordered small'>
                       <thead>
                         <tr>
@@ -290,33 +271,15 @@ export default function Formulario() {
                 )}
               </div>
             </>
+            <hr className='border border-primary border-2 opacity-50 mt-5 mb-5'></hr>
           </div>
-          <hr className='border border-primary border-3 opacity-75'></hr>
-          <div>
-            <Precalificador />
-          </div>
-          {/* <hr className='border border-primary border-3 opacity-75'></hr> */}
-          {/* <div className='mb-3'>
-            <h1>
-              <button type="button" className='btn btn-primary btn-lg consultaArbaBTN'>
-                <a
-                  href='https://consultas.arba.gov.ar/ConsultasGenerales/inicioEstadoDeudaCategoria.do'
-                  target='_blank'
-                  className='consultaArba'
-                >
-                  Consulta ARBA
-                </a>
-              </button>
-            </h1>
-            <span>Sera redirigido a la Pagina de <b>ARBA</b></span>
-          </div> */}
-          {/* <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+          <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
             <Link to='/precalificador'>
-              <button class='btn btn-danger me-md-2 btn-lg' type='button'>
-                Precalifique
+              <button className='btn btn-primary btn-lg me-md-2 btn-lg' type='button' onClick={handleButtonClick} >
+                Cargar ultimo ejercicio
               </button>
             </Link>
-          </div> */}
+          </div>
         </>
       )
       }

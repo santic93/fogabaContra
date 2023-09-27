@@ -39,22 +39,22 @@ export default function UseContext({ children }) {
 
   const completeFogaba = (fogaba) => {
     let posicion = null
-    let fecha = []
+    let fecha = ''
     fogaba.length ? posicion = fogaba[0][9] : posicion = null;
-    if (fogaba.length) {
-      // Inicializa la variable fechaMinima con la primera fecha
-      let fechaMinima = new Date(fogaba[0][2]);
-      fogaba.forEach((item) => {
-        const fechaActual = new Date(item[2]);
-        fecha.push(fechaActual.toLocaleDateString());
-        // Compara con la fecha mínima actual y actualiza si es menor
-        if (fechaActual < fechaMinima) {
-          fechaMinima = fechaActual;
-        }
-      });
-      // Convierte la fecha mínima a formato de cadena y guárdala en fecha
-      fecha = fechaMinima.toLocaleDateString();
-    }
+    // if (fogaba.length) {
+    // Inicializa la variable fechaMinima con la primera fecha
+    // let fechaMinima = new Date(fogaba[0][2]);
+    // fogaba.forEach((item) => {
+    //   const fechaActual = new Date(item[2]);
+    //   fecha.push(fechaActual.toLocaleDateString());
+    // Compara con la fecha mínima actual y actualiza si es menor
+    // if (fechaActual < fechaMinima) {
+    //   fechaMinima = fechaActual;
+    // }
+    // });
+    // Convierte la fecha mínima a formato de cadena y guárdala en fecha
+    fogaba.length ? fecha = Math.floor(fogaba[0][10]) : fecha = ""
+    // }
     dispatch({
       type: 'COMPLETE_FOGABA',
       payload: { fogaba, posicion, fecha },
