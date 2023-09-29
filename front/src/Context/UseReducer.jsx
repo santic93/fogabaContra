@@ -3,6 +3,7 @@ const COMPLETE_FOGABA = 'COMPLETE_FOGABA';
 const COMPLETE_AFIP = 'COMPLETE_AFIP';
 const ESTOY_BUSCANDO = 'ESTOY_BUSCANDO';
 const COMPLETE_USUARIOS = 'COMPLETE_USUARIOS';
+const COMPLETE_INDICADORES = 'COMPLETE_INDICADORES';
 export default function UseReducer(state, action) {
   const { payload, type } = action;
   switch (type) {
@@ -16,5 +17,7 @@ export default function UseReducer(state, action) {
       return { ...state, buscar: payload };
     case COMPLETE_USUARIOS:
       return { ...state, usuarios: payload };
+    case COMPLETE_INDICADORES:
+      return { ...state, indicadores: payload };
   }
 }

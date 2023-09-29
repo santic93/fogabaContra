@@ -17,7 +17,7 @@ function App() {
     if (!isAuthenticated) {
       navigate('/');
     }
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <div className='App'>
@@ -29,7 +29,6 @@ function App() {
                 <Route path='/consulta' element={<Consulta />} />
                 <Route path='/formulario' element={<Formulario />} />
                 <Route path='/precalificador' element={<Precalificador />} />
-                <Route path='/totales' element={<Totales />} />
                 <Route path='/indicadores' element={<Indicadores />} />
               </>
             ) : (
@@ -76,7 +75,7 @@ export default App;
 //     <div className='App'>
 //       <UseContext>
 //         <Layout>
-        
+
 //             <PrivateRoute
 //               path='/consulta'
 //               element={<Consulta />}

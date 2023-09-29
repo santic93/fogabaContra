@@ -15,6 +15,7 @@ export default function UseContext({ children }) {
     nombreEntidad: [],
     situacion: [],
     montoAdeudado: [],
+    indicadores: [],
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
   const completeDeudaBancos = (deuda) => {
@@ -78,6 +79,12 @@ export default function UseContext({ children }) {
       payload: buscar,
     });
   };
+  const completeIndicadores = (indicadores) => {
+    dispatch({
+      type: 'COMPLETE_INDICADORES',
+      payload: indicadores,
+    });
+  };
   return (
     <Context.Provider
       value={{
@@ -93,11 +100,13 @@ export default function UseContext({ children }) {
         nombreEntidad: state.nombreEntidad,
         situacion: state.situacion,
         montoAdeudado: state.montoAdeudado,
+        indicadores: state.indicadores,
         buscando,
         completeAfip,
         completeDeudaBancos,
         completeFogaba,
-        completeUsuarios
+        completeUsuarios,
+        completeIndicadores
       }}
     >
       {children}
