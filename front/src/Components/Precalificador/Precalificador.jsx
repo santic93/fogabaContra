@@ -78,7 +78,7 @@ export default function Precalificador() {
     const sumaTotal = resultadoMargenOperativo + otrosIngresos;
     const final = sumaTotal + recpam
     setResultadosAntesImpuestos(final);
-  }, [recpam, otrosIngresosEgresos, otrosIngresos,resultadoMargenOperativo]);
+  }, [recpam, otrosIngresosEgresos, otrosIngresos, resultadoMargenOperativo]);
   //ACTIVO TOTAL
   useEffect(() => {
     const sumaTotal = activoCorriente + activoNoCorriente;
