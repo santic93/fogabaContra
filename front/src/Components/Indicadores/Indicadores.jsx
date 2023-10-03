@@ -19,9 +19,9 @@ export default function Indicadores() {
                 </th>
                 <th scope='col' className='bg-primary text-light'>
                   Periodo   </th>
-                <th scope='col' className='bg-primary text-light'>
+                {/* <th scope='col' className='bg-primary text-light'>
                   Observaciones
-                </th>
+                </th> */}
                 {/* <th scope='col' className='bg-light p-5'>
                 </th> */}
                 <th scope='col' className='bg-primary text-light text-center'>
@@ -38,8 +38,8 @@ export default function Indicadores() {
               <tr>
                 <td >Endeudamiento</td>
                 <td>{indicadores.length ? indicadores[0][0] : ""}</td>
-                <td></td>
-                <td></td>
+                <td>{indicadores.length ? indicadores[0][1] : ""}</td>
+                {/* <td></td> */}
                 {/* <td>{indicadores.length ? indicadores[0][1] : ""}</td> */}
                 {/* <td></td> */}
               </tr>
@@ -47,61 +47,61 @@ export default function Indicadores() {
                 <td>Meses de deuda</td>
 
                 <td>{indicadores.length ? Math.round(indicadores[0][2]) : ""}</td>
-                <td></td>
-                <td></td>
+                <td>{indicadores.length ? (indicadores[0][3]) : ""}</td>
+                {/* <td></td> */}
                 {/* <td></td> */}
               </tr>
 
               <tr>
                 <td>Meses de deuda bancaria (CENDEU)</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{indicadores.length ? Math.round(indicadores[0][4]) : ""}</td>
+                <td>{indicadores.length ? (indicadores[0][5]) : ""}</td>
+                {/* <td></td> */}
               </tr>
               <tr>
                 <td>Liquidez</td>
                 <td>{indicadores.length ? Math.round(indicadores[0][6]) : ""}</td>
-                <td></td>
-                <td></td>
+                <td>{indicadores.length ? (indicadores[0][7]) : ""}</td>
+                {/* <td></td> */}
               </tr>
               <tr className="border-end">
                 <th className='text-decoration-underline'>Economicos</th>
               </tr>
               <tr>
                 <td>RV/Vtas mensuales</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{indicadores.length ? Math.round(indicadores[0][8]) : ""}</td>
+                <td>{indicadores.length ? (indicadores[0][9]) : ""}</td>
+                {/* <td></td> */}
               </tr>
               <tr>
                 <td>Rdo Bruto/Vent</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{indicadores.length ? Math.round(indicadores[0][12]) : ""}</td>
+                <td>{indicadores.length ? (indicadores[0][12]) : ""}</td>
+                {/* <td></td> */}
               </tr>
               <tr>
                 <td>Rdo Oper/Vent</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{indicadores.length ? Math.round(indicadores[0][14]) : ""}</td>
+                <td>{indicadores.length ? (indicadores[0][15]) : ""}</td>
+                {/* <td></td> */}
               </tr>
               <tr>
                 <td>Req anual/Generacion</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{indicadores.length ? Math.round(indicadores[0][16]) : ""}</td>
+                <td>{indicadores.length ? (indicadores[0][17]) : ""}</td>
+                {/* <td></td> */}
               </tr>
               <tr>
                 <td>Solicitud/Generacion</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{indicadores.length ? Math.round(indicadores[0][18]) : ""}</td>
+                <td>{indicadores.length ? (indicadores[0][19]) : ""}</td>
+                {/* <td></td> */}
               </tr>
               <tr>
                 <td>RV/Generacion</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{indicadores.length ? Math.round(indicadores[0][20]) : ""}</td>
+                <td>{indicadores.length ? (indicadores[0][21]) : ""}</td>
+                {/* <td></td> */}
               </tr>
 
             </tbody>

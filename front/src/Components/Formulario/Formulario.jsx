@@ -38,7 +38,7 @@ export default function Formulario() {
       ) : (
         <>
           <div className='p-5'>
-            <h3 class="text-capitalize fst-italic fw-bold text-decoration-underline">Estado de la pyme</h3>
+            <h3 className="text-capitalize fst-italic fw-bold text-decoration-underline">Estado de la pyme</h3>
             <>
               <div className='mt-5 mb-5'>
                 <h1>
@@ -125,7 +125,7 @@ export default function Formulario() {
                         <b> Deuda Total: $ {sumaTotal} </b>
                       </div>
                       <div className="ms-auto">
-                        <b class="fst-italic text-end"> Actualizada a: {mesDeuda}/{añoDeuda}</b>
+                        <b className="fst-italic text-end"> Actualizada a: {mesDeuda}/{añoDeuda}</b>
                         {' '}
                       </div>
                     </div>
