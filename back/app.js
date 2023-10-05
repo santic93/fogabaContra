@@ -78,7 +78,7 @@ app.get('/insertarDatos', async (req, res) => {
       amortizaciones,
       user,
       fechaIngresada,
-      impSolicitado
+      impSolicitado,
     } = searchQuery;
     console.log(rzs, razonSocial);
     console.log(searchQuery);
@@ -120,12 +120,14 @@ app.get('/insertarDatos', async (req, res) => {
       amortizaciones: amortizaciones,
       user: user,
       fechaIngresada: fechaIngresada,
-      impSolicitado:impSolicitado,
+      impSolicitado: impSolicitado,
       data: { dir: oracledb.BIND_OUT, type: oracledb.NUMBER },
     });
     const outputValue = result.outBinds;
     const dataNumber = outputValue.data;
-    const queryIndicadores = `SELECT ENDEUDAMIENTO, INDIC_ENDEUDAMIENTO, MESES_DE_DEUDA,INDIC_MESES_DE_DEUDA,MESES_DEUDA_BANCARIA, INDIC_MESES_DEUDA_BANCARIA, LIQUIDEZ, INDIC_LIQUIDEZ, SOLICITUD_VENTASMENSUALES, INDIC_SOLICITUD_VENTASMENS, RV_VENTASMENSUALES, INDIC_RV_VENTASMENSUALES, RDOBRUTO_VENT, INDIC_RDOBRUTO_VENT, RDOOPER_VENT, INDIC_RDOOPER_VENT, REQANUAL_GENERACION, INDIC_REQANUAL_GENERACION, SOLICITUD_GENERACION, INDIC_SOLICITUD_GENERACION, RV_GENERACION, INDIC_RV_GENERACION FROM FOGABASIS.VINDICADORES WHERE IDPRECAL='${dataNumber}'`;
+    const queryIndicadores = `SELECT ENDEUDAMIENTO, ENDEUDAMIENTO_DESEABLE, ENDEUDAMIENTO_CRITICO, MESES_DE_DEUDA,MESES_DE_DEUDA_DESEABLE,
+    MESES_DE_DEUDA_CRITICO, MESES_DEUDA_BANCARIA, MESES_DEUDA_BANCARIA_DESEABLE, MESES_DEUDA_BANCARIA_CRITICO, LIQUIDEZ, LIQUIDEZ_DESEABLE,
+    LIQUIDEZ_CRITICO, SOLICITUD_VENTASMENSUALES, INDIC_SOLICITUD_VENTASMENS, RV_VENTASMENSUALES, INDIC_RV_VENTASMENSUALES, RDOBRUTO_VENT, INDIC_RDOBRUTO_VENT, RDOOPER_VENT, INDIC_RDOOPER_VENT, REQANUAL_GENERACION, INDIC_REQANUAL_GENERACION, SOLICITUD_GENERACION, INDIC_SOLICITUD_GENERACION, RV_GENERACION, INDIC_RV_GENERACION FROM FOGABASIS.VINDICADORES WHERE IDPRECAL='${dataNumber}'`;
     const resultIndicadores = await connection.execute(queryIndicadores);
     const dataIndicadores = resultIndicadores.rows;
     // res.json(dataIndicadores);

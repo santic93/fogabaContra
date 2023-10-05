@@ -3,6 +3,8 @@ import './Precalificador.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Context from '../../Context/Context';
+import Totales from '../Totales/Totales';
+import Indicadores from '../Indicadores/Indicadores';
 export default function Precalificador() {
   const { afip, completeIndicadores } = useContext(Context)
   const { rzs, razonSocial } = afip
@@ -554,12 +556,23 @@ export default function Precalificador() {
             </tbody>
           </table>
         </div>
+      {/* <Indicadores/> */}
       </div>
       <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
         {/* <Link to='/precalificador'> */}
         <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
 
-        <button class="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Enviar</button>
+        <button class="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Llenar indicadores</button>
+
+        {/* </Link> */}
+      </div>
+      <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
+      <Indicadores/>
+      <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+        {/* <Link to='/precalificador'> */}
+        {/* <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
+
+        <button class="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Enviar</button> */}
 
         {/* </Link> */}
       </div>

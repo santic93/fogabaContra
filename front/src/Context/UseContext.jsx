@@ -80,6 +80,7 @@ export default function UseContext({ children }) {
     });
   };
   const completeIndicadores = (indicadores) => {
+    console.log(indicadores)
     dispatch({
       type: 'COMPLETE_INDICADORES',
       payload: indicadores,
