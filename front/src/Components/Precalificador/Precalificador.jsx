@@ -556,7 +556,7 @@ export default function Precalificador() {
             </tbody>
           </table>
         </div>
-      {/* <Indicadores/> */}
+        {/* <Indicadores/> */}
       </div>
       <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
         {/* <Link to='/precalificador'> */}
@@ -567,7 +567,7 @@ export default function Precalificador() {
         {/* </Link> */}
       </div>
       <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
-      <Indicadores/>
+      <Indicadores />
       <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
         {/* <Link to='/precalificador'> */}
         {/* <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
