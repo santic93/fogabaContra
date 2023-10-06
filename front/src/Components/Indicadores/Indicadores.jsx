@@ -8,6 +8,11 @@ export default function Indicadores() {
 
   return (
     <div>
+           <div className='probandoDos'>
+          {/* <input type='date' name='' id='' required value={fechaIngresada} onChange={(event) =>
+            setFechaIngresada((event.target.value))} /> */}
+          <h1>Indicadores</h1>
+        </div>
       <div className='container d-flex justify-content-center align-items-center '>
         <div className='table-container'>
           <table className='table text-center table-bordered small'>
