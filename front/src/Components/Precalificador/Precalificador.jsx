@@ -562,7 +562,7 @@ export default function Precalificador() {
         {/* <Link to='/precalificador'> */}
         <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
 
-        <button class="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Llenar indicadores</button>
+        <button class="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Cargar indicadores</button>
 
         {/* </Link> */}
       </div>
