@@ -76,6 +76,7 @@ app.get('/insertarDatos', async (req, res) => {
       fechaIngresada,
       impSolicitado,
     } = searchQuery;
+    console.log(searchQuery, '-----------------------------');
     const connection = await oracledb.getConnection(dbConfig);
     const data = '';
     // Consulta SQL para insertar datos en la base de datos
@@ -96,6 +97,7 @@ app.get('/insertarDatos', async (req, res) => {
       :fechaIngresada,
       :impSolicitado,
       :data); END;`;
+    console.log(query, 'query');
     // Ejecutar el procedimiento almacenado
     const result = await connection.execute(query, {
       rzs: rzs,
@@ -116,8 +118,10 @@ app.get('/insertarDatos', async (req, res) => {
       impSolicitado: impSolicitado,
       data: { dir: oracledb.BIND_OUT, type: oracledb.NUMBER },
     });
+    console.log('result', result);
     const outputValue = result.outBinds;
     const dataNumber = outputValue.data;
+    console.log(outputValue, dataNumber);
     const queryIndicadores = `SELECT ENDEUDAMIENTO, ENDEUDAMIENTO_DESEABLE, ENDEUDAMIENTO_CRITICO, MESES_DE_DEUDA,MESES_DE_DEUDA_DESEABLE,
     MESES_DE_DEUDA_CRITICO, MESES_DEUDA_BANCARIA, MESES_DEUDA_BANCARIA_DESEABLE, MESES_DEUDA_BANCARIA_CRITICO, LIQUIDEZ, LIQUIDEZ_DESEABLE,
     LIQUIDEZ_CRITICO, SOLICITUD_VENTASMENSUALES, INDIC_SOLICITUD_VENTASMENS, RV_VENTASMENSUALES, INDIC_RV_VENTASMENSUALES, RDOBRUTO_VENT, INDIC_RDOBRUTO_VENT, RDOOPER_VENT, INDIC_RDOOPER_VENT, REQANUAL_GENERACION, INDIC_REQANUAL_GENERACION, SOLICITUD_GENERACION, INDIC_SOLICITUD_GENERACION, RV_GENERACION, INDIC_RV_GENERACION FROM FOGABASIS.VINDICADORES WHERE IDPRECAL='${dataNumber}'`;
@@ -126,6 +130,7 @@ app.get('/insertarDatos', async (req, res) => {
     // res.json(dataIndicadores);
     // console.log(outputValue, '***********************');
     // console.log(dataNumber, '{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{');
+    console.log(dataIndicadores, resultIndicadores);
     res.json({ dataIndicadores, message: 'Datos insertados correctamente' });
     connection.close();
   } catch (error) {

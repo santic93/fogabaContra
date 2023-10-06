@@ -33,7 +33,7 @@ export default function Precalificador() {
   const [capacidadDeGeneracion, setCapacidadDeGeneracion] = useState("");
   const [otrosIngresosEgresosRecpam, setOtrosIngresosEgresosRecpam] =
     useState("");
-
+  const [impSolicitado, setImporteSolicitado] = useState("")
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///OTROS INGRESOS EGRESOS RECPAM
   useEffect(() => {
@@ -159,6 +159,7 @@ export default function Precalificador() {
     }
     if (
       // fechaIngresada === '' ||
+      impSolicitado === '' ||
       activoCorriente === '' ||
       activoNoCorriente === '' ||
       pasivoCorriente === '' ||
@@ -212,14 +213,15 @@ export default function Precalificador() {
         impuestoGanancias,
         amortizaciones,
         user,
-        fechaIngresada
+        fechaIngresada,
+        impSolicitado
       };
       const encodedData = encodeURIComponent(JSON.stringify(requestData));
       axios.get('/insertarDatos', {
         params: {
           searchQuery: requestData,
         },
-      }).then((res) => completeIndicadores(res.data.dataIndicadores), alert("Sus datos fueron enviadas correctamente"), navigate("/indicadores")).catch((error) => console.log(error))
+      }).then((res) => completeIndicadores(res.data.dataIndicadores), alert("Sus datos fueron enviadas correctamente")).catch((error) => console.log(error))
 
     }
   }
@@ -558,8 +560,25 @@ export default function Precalificador() {
         </div>
         {/* <Indicadores/> */}
       </div>
+      <label htmlFor="" className='fw-bold text-uppercase'>Monto Solicitado</label>
+      <br />
+      <input className='text-end'
+        maxLength={15}
+        // min={-1}
+        type='text'
+        placeholder='Monto Solicitado'
+        required
+        value={impSolicitado}
+        onChange={(event) =>
+          setImporteSolicitado(Number(event.target.value))
+        }
+      />
+      <br />
       <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
         {/* <Link to='/precalificador'> */}
+
+
+
         <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
 
         <button class="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Cargar indicadores</button>
