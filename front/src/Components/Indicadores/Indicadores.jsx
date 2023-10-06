@@ -4,7 +4,6 @@ import React, { useContext, useEffect } from 'react'
 import Context from '../../Context/Context';
 export default function Indicadores() {
   const { indicadores } = useContext(Context)
-  console.log(indicadores)
   const navigate = useNavigate();
 
   return (

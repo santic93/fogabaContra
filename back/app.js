@@ -48,7 +48,6 @@ app.get('/carteras', async (req, res) => {
     const data = result.rows;
     res.json(data);
     connection.close();
-    console.log(data);
   } catch (error) {
     console.error('Error en la consulta:', error);
     res.status(500).json({ error: 'Error en el servidor' });
@@ -57,9 +56,6 @@ app.get('/carteras', async (req, res) => {
 
 app.get('/insertarDatos', async (req, res) => {
   try {
-    console.log('---------------------------------------------------------');
-
-    console.log('entre');
     // Obtener los datos del cuerpo de la solicitud POST
     const searchQuery = req.query.searchQuery;
     const {
@@ -80,8 +76,6 @@ app.get('/insertarDatos', async (req, res) => {
       fechaIngresada,
       impSolicitado,
     } = searchQuery;
-    console.log(rzs, razonSocial);
-    console.log(searchQuery);
     const connection = await oracledb.getConnection(dbConfig);
     const data = '';
     // Consulta SQL para insertar datos en la base de datos
@@ -102,7 +96,6 @@ app.get('/insertarDatos', async (req, res) => {
       :fechaIngresada,
       :impSolicitado,
       :data); END;`;
-    console.log(data);
     // Ejecutar el procedimiento almacenado
     const result = await connection.execute(query, {
       rzs: rzs,

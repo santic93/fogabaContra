@@ -6,7 +6,6 @@ import './Formulario.css';
 
 export default function Formulario() {
   const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha, cendeuUltimoRegistro } = useContext(Context);
-  console.log(fecha)
   const { actividad, rzs, scoreElementValor, localidad, cp } = afip;
   const [mesDeuda, setMesDeuda] = useState()
   const [añoDeuda, setAñoDeuda] = useState()
@@ -198,7 +197,6 @@ export default function Formulario() {
                 {Array.isArray(fogaba) && fogaba.length ? (
 
                   <>
-                    {console.log(fogaba)}
                     <div className="d-flex mb-2 mt-2">
                       <div className='text-start'>
                         <b className='titulo fst-italic fw-bold'>Consulta Fogaba</b>{" "}
