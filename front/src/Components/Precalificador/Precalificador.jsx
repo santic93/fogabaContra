@@ -599,7 +599,7 @@ export default function Precalificador() {
 
 
 
-        <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
+        {/* <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button> */}
 
         <button class="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Cargar indicadores</button>
 
@@ -608,6 +608,7 @@ export default function Precalificador() {
       <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
       <Indicadores />
       <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+      <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
         {/* <Link to='/precalificador'> */}
         {/* <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
 
