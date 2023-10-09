@@ -169,7 +169,7 @@ export default function Header() {
             <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
               <input
                 type='text'
-                placeholder='Ingrese su CUIT'
+                placeholder='CUIT a Consultar'
                 value={searchQuery}
                 onChange={handleSearch}
                 minLength={11}
