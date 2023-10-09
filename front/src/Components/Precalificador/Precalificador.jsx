@@ -387,6 +387,26 @@ export default function Precalificador() {
               </tr>
             </tbody>
           </table>
+          <div>
+            <table className='dom border border-dark'>
+              <thead>
+                <tr>
+                  <th scope='col' className='bg-primary text-light text-center'>
+                    Destino Capital de Trabajo
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className='domicilioFiscal text-center fw-bold'>
+                    Equivalente a Dos Meses
+                    <br />
+                    {ventas / 12 * 2}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class='col'>
           <h3 className='bg-secondary text-light'>Cuadro de resultados</h3>
