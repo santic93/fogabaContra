@@ -408,9 +408,9 @@ export default function Precalificador() {
             </table>
           </div>
         </div>
-        <div class='col'>
+        <div className='col'>
           <h3 className='bg-secondary text-light'>Cuadro de resultados</h3>
-          <table class='table'>
+          <table className='table'>
             <thead>
               <tr>
                 <th scope='col'>Categoria</th>
@@ -594,21 +594,21 @@ export default function Precalificador() {
         }
       />
       <br />
-      <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+      <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
         {/* <Link to='/precalificador'> */}
 
 
 
         {/* <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button> */}
 
-        <button class="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Cargar indicadores</button>
+        <button className="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Cargar indicadores</button>
 
         {/* </Link> */}
       </div>
       <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
       <Indicadores />
-      <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
-      <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
+      <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+      <button className="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
         {/* <Link to='/precalificador'> */}
         {/* <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
 

@@ -28,7 +28,7 @@ export default function Popup({ datos, setDatos }) {
             alert('Debes seleccionar un usuario antes de continuar.');
         }
     };
- 
+
     return (
         <div className="modal">
             <div className="modal-content">
@@ -40,7 +40,7 @@ export default function Popup({ datos, setDatos }) {
                     onChange={handleUserSelection} // Maneja el cambio de selección
                     value={selectedUser} // Establece el valor seleccionado
                 >
-                    <option value="" >Selecciona un usuario</option>
+                    <option value={""} >Selecciona un usuario</option>
                     {usuarios.map((user) => (
                         <option key={user[0]} value={user}>
                             {user[1]}
