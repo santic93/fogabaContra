@@ -41,6 +41,7 @@ export default function UseContext({ children }) {
   const completeFogaba = (fogaba) => {
     let posicion = null
     let fecha = ''
+    let saldoVivo = 0
     fogaba.length ? posicion = fogaba[0][9] : posicion = null;
     // if (fogaba.length) {
     // Inicializa la variable fechaMinima con la primera fecha
@@ -53,12 +54,18 @@ export default function UseContext({ children }) {
     //   fechaMinima = fechaActual;
     // }
     // });
+    console.log(fecha)
     // Convierte la fecha mínima a formato de cadena y guárdala en fecha
-    fogaba.length ? fecha = Math.floor(fogaba[0][10]) : fecha = ""
+    fogaba.length ? fecha = Math.ceil(fogaba[0][10]) : fecha = ""
+    if (fogaba.length) { for (let i = 0; i < fogaba.length; i++) { saldoVivo += fogaba[i][6] } } else { saldoVivo = 0 };
+
+
+
+    console.log(saldoVivo)
     // }
     dispatch({
       type: 'COMPLETE_FOGABA',
-      payload: { fogaba, posicion, fecha },
+      payload: { fogaba, posicion, fecha, saldoVivo },
     });
   };
   const completeAfip = (afip) => {
@@ -96,6 +103,7 @@ export default function UseContext({ children }) {
         sumaTotal: state.sumaTotal,
         posicion: state.posicion,
         fecha: state.fecha,
+        saldoVivo: state.saldoVivo,
         cendeuUltimoRegistro: state.cendeuUltimoRegistro,
         nombreEntidad: state.nombreEntidad,
         situacion: state.situacion,

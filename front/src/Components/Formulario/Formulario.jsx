@@ -5,7 +5,8 @@ import Espere from '../Espere/Espere';
 import './Formulario.css';
 
 export default function Formulario() {
-  const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha, cendeuUltimoRegistro } = useContext(Context);
+  const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha, cendeuUltimoRegistro, saldoVivo } = useContext(Context);
+  console.log(saldoVivo)
   const { actividad, rzs, scoreElementValor, localidad, cp } = afip;
   const [mesDeuda, setMesDeuda] = useState()
   const [añoDeuda, setAñoDeuda] = useState()
@@ -197,15 +198,28 @@ export default function Formulario() {
                 {Array.isArray(fogaba) && fogaba.length ? (
 
                   <>
+                    {/*    <div className="d-flex mb-2 mt-2">
+                      <div className='text-start'>
+                        <b className='titulo fst-italic fw-bold'>
+                          Consulta Cendeu
+                        </b>
+                        <b> Deuda Total: $ {sumaTotal} </b>
+                      </div>
+                      <div className="ms-auto">
+                        <b className="fst-italic text-end"> Actualizada a: {mesDeuda}/{añoDeuda}</b>
+                        {' '}
+                      </div>
+                    </div> */}
                     <div className="d-flex mb-2 mt-2">
                       <div className='text-start'>
                         <b className='titulo fst-italic fw-bold'>Consulta Fogaba</b>{" "}
+                        <b> Saldo Vivo Total:  {saldoVivo} </b>
                         <b className='text-danger opacity-100'>{posicion === "S" && "PYME INHABILITADA"}</b>{" "}
                         <p className='fs-6 fst-italic'>{posicion === "S" && "Consultar a SubGerencia de Recupero para obtener detalles"}</p>
 
                       </div>
                       <div className="ms-auto">
-
+                        {console.log(fecha)}
                         {(posicion !== "S" && fecha < 2 && <b className='text-danger'> {fecha <= 1 ? `Antiguedad: ${fecha} año` : `Antiguedad: ${fecha} años`} - Riesgo Muy alto </b>) || (posicion !== "S" && fecha >= 2 && fecha < 4 && <b className='text-danger'>  {fecha <= 1 ? `Antiguedad: ${fecha} año` : `Antiguedad: ${fecha} años`} - Riesgo Alto </b>) || (posicion !== "S" && fecha >= 4 && fecha < 6 && <b className='text-warning'>  {fecha <= 1 ? `Antiguedad: ${fecha} año` : `Antiguedad: ${fecha} años`} - Riesgo Medio </b>) || (posicion !== "S" && fecha >= 6 && fecha < 10 && <b className='text-success'> {fecha <= 1 ? `Antiguedad: ${fecha} año` : `Antiguedad: ${fecha} años`} -Riesgo Bajo </b>) || (posicion !== "S" && fecha >= 10 && <b className='text-success' > {fecha <= 1 ? `Antiguedad: ${fecha} año` : `Antiguedad: ${fecha} años`} - Riesgo Muy Bajo </b>)}
                       </div>
                     </div>
