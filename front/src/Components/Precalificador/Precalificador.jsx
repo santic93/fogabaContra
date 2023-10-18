@@ -246,6 +246,9 @@ export default function Precalificador() {
 
   const [fechaIngresada, setFechaIngresada] = useState(null)
 
+  function formatNumber(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(".", ".");
+  }
 
   return (
     <div className='container text-center'>
@@ -312,7 +315,7 @@ export default function Precalificador() {
                   ACTIVO TOTAL
                 </td>
                 <td className='fw-bold text-uppercase text-end'>
-                  $ {activoTotal ? Math.round(activoTotal.toLocaleString() * 100) / 100 : 0}
+                  $ {formatNumber(activoTotal || 0)}
                 </td>
               </tr>
               <tr>
@@ -359,13 +362,16 @@ export default function Precalificador() {
                   PASIVO TOTAL
                 </td>
                 <td className='fw-bold text-uppercase text-end'>
-                  $ {pasivoTotal ? Math.round(pasivoTotal.toLocaleString() * 100) / 100 : 0}
+                  $ {formatNumber(pasivoTotal || 0)}
+
                 </td>
               </tr>
               <tr>
                 <th scope='row'></th>
                 <td className='fw-bold'>Total patrimonio neto</td>
-                <td className='fw-bold text-end'>$ {totalPatrimonioNeto ? Math.round(totalPatrimonioNeto.toLocaleString() * 100) / 100 : 0}</td>
+                <td className='fw-bold text-end'>
+                  $ {formatNumber(totalPatrimonioNeto || 0)}
+                </td>
               </tr>
               <tr>
                 <th scope='row'></th>
@@ -373,7 +379,8 @@ export default function Precalificador() {
                   Total pasivo + p.neto
                 </td>
                 <td className='border-bottom border-black fw-bold text-end'>
-                  $ {totalPasivoPatrimonioNeto ? Math.round(totalPasivoPatrimonioNeto?.toLocaleString() * 100) / 100 : 0}
+                  $ {formatNumber(totalPasivoPatrimonioNeto || 0)}
+
                 </td>
               </tr>
               <tr>
@@ -382,7 +389,8 @@ export default function Precalificador() {
                   Comprobacion
                 </td>
                 <td className='fw-bold text-uppercase text-end'>
-                  $ {comprobacion ? Math.round(comprobacion.toLocaleString() * 100) / 100 : 0}
+                  $ {formatNumber(comprobacion || 0)}
+
                 </td>
               </tr>
             </tbody>
@@ -453,7 +461,8 @@ export default function Precalificador() {
                   Resultado / margen bruto
                 </td>
                 <td className='fw-bold text-uppercase text-end'>
-                  $ {resultadoMargenBruto ? Math.round(resultadoMargenBruto.toLocaleString() * 100) / 100 : 0}
+                  $ {formatNumber(resultadoMargenBruto || 0)}
+
                 </td>
               </tr>
               <tr>
@@ -479,7 +488,8 @@ export default function Precalificador() {
                   Resultado / margen operativo
                 </td>
                 <td className='fw-bold text-uppercase text-end'>
-                  $ {resultadoMargenOperativo ? Math.round(resultadoMargenOperativo.toLocaleString() * 100) / 100 : 0}
+                  $ {formatNumber(resultadoMargenOperativo || 0)}
+
                 </td>
               </tr>
               <tr>
@@ -515,14 +525,17 @@ export default function Precalificador() {
               </tr>
               <tr>
                 <td className='fw-bold'>Otros Ing/Egresos + RECPAM</td>
-                <td className='fw-bold text-end'>$ {otrosIngresosEgresosRecpam ? Math.round(otrosIngresosEgresosRecpam.toLocaleString() * 100) / 100 : 0}</td>
+                <td className='fw-bold text-end'>
+
+                  $ {formatNumber(otrosIngresosEgresosRecpam || 0)}</td>
               </tr>
               <tr>
                 <td className='fw-bold text-uppercase text-end'>
                   Resultado antes de impuestos
                 </td>
                 <td className='fw-bold text-uppercase text-end'>
-                  $ {resultadosAntesImpuestos ? Math.round(resultadosAntesImpuestos.toLocaleString() * 100) / 100 : 0}
+                  $ {formatNumber(resultadosAntesImpuestos || 0)}
+
                 </td>
               </tr>
               <tr className='border-bottom border-black'>
@@ -547,7 +560,8 @@ export default function Precalificador() {
                   Resultado neto / final
                 </td>
                 <td className='fw-bold text-uppercase text-end'>
-                  $ {resultadoNetoFinal ? Math.round(resultadoNetoFinal.toLocaleString() * 100) / 100 : 0}
+                  $ {formatNumber(resultadoNetoFinal || 0)}
+
                 </td>
               </tr>
               <tr className='border-bottom border-black'>
@@ -572,7 +586,8 @@ export default function Precalificador() {
                   Capacidad de Generacion
                 </td>
                 <td className='fw-bold text-uppercase text-end'>
-                  $ {capacidadDeGeneracion ? Math.round(capacidadDeGeneracion.toLocaleString() * 100) / 100 : 0}
+                  $ {formatNumber(capacidadDeGeneracion || 0)}
+
                 </td>
               </tr>
             </tbody>
