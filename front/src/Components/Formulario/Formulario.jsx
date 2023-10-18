@@ -6,7 +6,7 @@ import './Formulario.css';
 
 export default function Formulario() {
   const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha, cendeuUltimoRegistro, saldoVivo } = useContext(Context);
-  console.log(saldoVivo)
+ 
   const { actividad, rzs, scoreElementValor, localidad, cp } = afip;
   const [mesDeuda, setMesDeuda] = useState()
   const [añoDeuda, setAñoDeuda] = useState()
@@ -219,7 +219,6 @@ export default function Formulario() {
 
                       </div>
                       <div className="ms-auto">
-                        {console.log(fecha)}
                         {(posicion !== "S" && fecha < 2 && <b className='text-danger'> {fecha <= 1 ? `Antiguedad: ${fecha} año` : `Antiguedad: ${fecha} años`} - Riesgo Muy alto </b>) || (posicion !== "S" && fecha >= 2 && fecha < 4 && <b className='text-danger'>  {fecha <= 1 ? `Antiguedad: ${fecha} año` : `Antiguedad: ${fecha} años`} - Riesgo Alto </b>) || (posicion !== "S" && fecha >= 4 && fecha < 6 && <b className='text-warning'>  {fecha <= 1 ? `Antiguedad: ${fecha} año` : `Antiguedad: ${fecha} años`} - Riesgo Medio </b>) || (posicion !== "S" && fecha >= 6 && fecha < 10 && <b className='text-success'> {fecha <= 1 ? `Antiguedad: ${fecha} año` : `Antiguedad: ${fecha} años`} -Riesgo Bajo </b>) || (posicion !== "S" && fecha >= 10 && <b className='text-success' > {fecha <= 1 ? `Antiguedad: ${fecha} año` : `Antiguedad: ${fecha} años`} - Riesgo Muy Bajo </b>)}
                       </div>
                     </div>

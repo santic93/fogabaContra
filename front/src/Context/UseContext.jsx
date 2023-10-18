@@ -54,14 +54,14 @@ export default function UseContext({ children }) {
     //   fechaMinima = fechaActual;
     // }
     // });
-    console.log(fecha)
+
     // Convierte la fecha mínima a formato de cadena y guárdala en fecha
     fogaba.length ? fecha = Math.ceil(fogaba[0][10]) : fecha = ""
     if (fogaba.length) { for (let i = 0; i < fogaba.length; i++) { saldoVivo += fogaba[i][6] } } else { saldoVivo = 0 };
 
 
 
-    console.log(saldoVivo)
+
     // }
     dispatch({
       type: 'COMPLETE_FOGABA',
