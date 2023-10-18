@@ -116,39 +116,6 @@ export default function Precalificador() {
       [name]: value,
     });
   };
-
-  // const handleSubmit = async (e) => {
-  //   if (
-  //     !datos.activoCorriente ||
-  //     !datos.activoNoCorriente ||
-  //     !datos.pasivoCorriente ||
-  //     !datos.pasivoNoCorriente
-  //   ) {
-  //     alert('Todos los campos son obligatorios');
-  //   }
-
-  //   e.preventDefault();
-
-  //   try {
-  //     const response = await fetch('/insertarDatos', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(datos),
-  //     });
-
-  //     if (response.ok) {
-  //       // Datos insertados correctamente
-  //       // Puedes realizar acciones adicionales aquí, como limpiar el formulario o mostrar un mensaje de éxito.
-  //     } else {
-  //       // Manejar errores de inserción
-  //       console.error('Error al insertar datos');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error en la solicitud:', error);
-  //   }
-  // };
   const navigate = useNavigate();
 
   const handleClickEnviar = () => {
@@ -225,25 +192,6 @@ export default function Precalificador() {
 
     }
   }
-  // const handleClickEnviar = () => {
-  //   if (isNaN(activoCorriente) ||
-  //     isNaN(activoNoCorriente) ||
-  //     isNaN(pasivoCorriente) ||
-  //     isNaN(pasivoNoCorriente) ||
-  //     isNaN(ventas) ||
-  //     isNaN(cmv) ||
-  //     isNaN(gastosAdministrativos) ||
-  //     isNaN(otrosIngresos) ||
-  //     isNaN(recpam) ||
-  //     isNaN(impuestoGanancias) ||
-  //     isNaN(amortizaciones)) {
-  //     alert("TODOS LOS CAMPOS SON OBLIGATORIOS");
-  //     return
-  //   } else {
-  //     navigate("/totales")
-  //   }
-  // }
-
   const [fechaIngresada, setFechaIngresada] = useState(null)
 
   function formatNumber(number) {
@@ -593,7 +541,6 @@ export default function Precalificador() {
             </tbody>
           </table>
         </div>
-        {/* <Indicadores/> */}
       </div>
       <label htmlFor="" className='fw-bold text-uppercase'>Monto Solicitado</label>
       <br />
@@ -610,26 +557,12 @@ export default function Precalificador() {
       />
       <br />
       <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
-        {/* <Link to='/precalificador'> */}
-
-
-
-        {/* <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button> */}
-
         <button className="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Cargar indicadores</button>
-
-        {/* </Link> */}
       </div>
       <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
       <Indicadores />
       <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
         <button className="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
-        {/* <Link to='/precalificador'> */}
-        {/* <button class="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
-
-        <button class="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Enviar</button> */}
-
-        {/* </Link> */}
       </div>
     </div>
   );
