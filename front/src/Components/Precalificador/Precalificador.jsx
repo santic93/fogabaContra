@@ -195,7 +195,22 @@ export default function Precalificador() {
   const [fechaIngresada, setFechaIngresada] = useState(null)
 
   function formatNumber(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(".", ".");
+    // return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(".", ".");
+    // if (typeof number !== "number" || isNaN(number)) {
+    //   return "0.00"; // Valor predeterminado si el número no es válido
+    // }
+
+    // const formattedNumber = number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // return formattedNumber;
+    if (typeof number !== "number" || isNaN(number)) {
+      return "0.00";
+    }
+
+    // Reemplaza comas por puntos antes de formatear
+    const numberString = number.toString().replace(',', '.');
+
+    const formattedNumber = parseFloat(numberString).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return formattedNumber;
   }
 
   return (
@@ -228,7 +243,8 @@ export default function Precalificador() {
                     maxLength={15}
                     required
                     // min={-1}
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder='corriente'
                     value={activoCorriente}
                     onChange={(event) =>
@@ -248,7 +264,8 @@ export default function Precalificador() {
                     maxLength={15}
                     required
                     // min={-1}
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder='no corriente'
                     value={activoNoCorriente}
                     onChange={(event) =>
@@ -275,7 +292,8 @@ export default function Precalificador() {
                     maxLength={15}
                     // min={-1}
                     required
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder='pasivo corriente'
                     value={pasivoCorriente}
                     onChange={(event) =>
@@ -295,7 +313,8 @@ export default function Precalificador() {
                     maxLength={15}
                     // min={-1}
                     required
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder='pasivo no corriente'
                     value={pasivoNoCorriente}
                     onChange={(event) =>
@@ -380,7 +399,8 @@ export default function Precalificador() {
                   <input
                     className='text-end'
                     maxLength={15}
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder='ventas'
                     required
                     // min={-1}
@@ -395,7 +415,8 @@ export default function Precalificador() {
                   <input
                     className='text-end'
                     maxLength={15}
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder='c.m.v'
                     required
                     // min={-1}
@@ -421,7 +442,8 @@ export default function Precalificador() {
                   <input
                     className='text-end'
                     maxLength={15}
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder=' Gastos Administrativos + Co'
                     // min={-1}
                     value={gastosAdministrativos}
@@ -446,7 +468,8 @@ export default function Precalificador() {
                   <input
                     className='text-end'
                     maxLength={15}
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder='Otros Ing'
                     // min={-1}
                     value={otrosIngresos}
@@ -462,7 +485,8 @@ export default function Precalificador() {
                   <input
                     className='text-end'
                     maxLength={15}
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder='RECPAM'
                     required
                     // min={-1}
@@ -493,7 +517,8 @@ export default function Precalificador() {
                     className='text-end'
                     maxLength={15}
                     // min={-1}
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder='Impuesto Ganancias'
                     required
                     value={impuestoGanancias}
@@ -519,7 +544,8 @@ export default function Precalificador() {
                     className='text-end'
                     maxLength={15}
                     // min={-1}
-                    type='text'
+                    type='number'
+                    step='0.01' // Permitir comas como separadores decimales
                     placeholder='Amortizaciones'
                     required
                     value={amortizaciones}
@@ -547,7 +573,8 @@ export default function Precalificador() {
       <input className='text-end'
         maxLength={15}
         // min={-1}
-        type='text'
+        type='number'
+        step='0.01' // Permitir comas como separadores decimales
         placeholder='Monto Solicitado'
         required
         value={impSolicitado}
@@ -792,7 +819,8 @@ export default function Precalificador() {
 //                     className='text-end'
 //                     maxLength={15}
 //                     required
-//                     type='text'
+//                     type='number'
+//               step='0.01' // Permitir comas como separadores decimales
 //                     placeholder='corriente'
 //                     value={activoCorriente}
 //                     onChange={(event) =>
