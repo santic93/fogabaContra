@@ -8,6 +8,7 @@ export default function UseContext({ children }) {
     deuda: [],
     fogaba: [],
     buscar: false,
+    precalificar: true,
     sumaTotal: 0,
     posicion: null,
     fecha: [],
@@ -86,6 +87,12 @@ export default function UseContext({ children }) {
       payload: buscar,
     });
   };
+  const precalificador = (precalificar) => {
+    dispatch({
+      type: 'IR_PRECALIFICADOR',
+      payload: precalificar,
+    });
+  };
   const completeIndicadores = (indicadores) => {
     dispatch({
       type: 'COMPLETE_INDICADORES',
@@ -95,6 +102,7 @@ export default function UseContext({ children }) {
   return (
     <Context.Provider
       value={{
+        precalificar: state.precalificar,
         usuarios: state.usuarios,
         deuda: state.deuda,
         fogaba: state.fogaba,
@@ -109,6 +117,7 @@ export default function UseContext({ children }) {
         situacion: state.situacion,
         montoAdeudado: state.montoAdeudado,
         indicadores: state.indicadores,
+        precalificador,
         buscando,
         completeAfip,
         completeDeudaBancos,

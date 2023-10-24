@@ -17,9 +17,10 @@ export default function Header() {
     deuda,
     buscando,
     buscar,
+    precalificar,
   } = useContext(Context);
   const { razonSocial, domicilio, localidad, provincia, rzs } = afip;
-
+  console.log(precalificar)
   const [searchQuery, setSearchQuery] = useState('');
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
@@ -175,6 +176,7 @@ export default function Header() {
                 minLength={11}
                 maxLength={11}
                 className='inputttt'
+                // disabled={precalificar}
               />
             </form>
             <small>{searchQuery && "Presione Enter para consultar"}</small>

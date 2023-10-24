@@ -3,6 +3,7 @@ const COMPLETE_FOGABA = 'COMPLETE_FOGABA';
 const COMPLETE_AFIP = 'COMPLETE_AFIP';
 const ESTOY_BUSCANDO = 'ESTOY_BUSCANDO';
 const COMPLETE_USUARIOS = 'COMPLETE_USUARIOS';
+const IR_PRECALIFICADOR = 'IR_PRECALIFICADOR';
 const COMPLETE_INDICADORES = 'COMPLETE_INDICADORES';
 export default function UseReducer(state, action) {
   const { payload, type } = action;
@@ -15,6 +16,8 @@ export default function UseReducer(state, action) {
       return { ...state, afip: payload };
     case ESTOY_BUSCANDO:
       return { ...state, buscar: payload };
+    case IR_PRECALIFICADOR:
+      return { ...state, precalificar: payload };
     case COMPLETE_USUARIOS:
       return { ...state, usuarios: payload };
     case COMPLETE_INDICADORES:

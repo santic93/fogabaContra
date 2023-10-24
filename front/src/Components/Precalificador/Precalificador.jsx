@@ -240,7 +240,7 @@ export default function Precalificador() {
                     maxLength={15}
                     required
                     // min={-1}
-                    type='number'
+                    type='text  '
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder='corriente'
                     value={activoCorriente}

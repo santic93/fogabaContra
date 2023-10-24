@@ -6,7 +6,7 @@ import './Formulario.css';
 
 export default function Formulario() {
   const { deuda, fogaba, afip, buscar, sumaTotal, posicion, fecha, cendeuUltimoRegistro, saldoVivo } = useContext(Context);
- 
+
   const { actividad, rzs, scoreElementValor, localidad, cp } = afip;
   const [mesDeuda, setMesDeuda] = useState()
   const [añoDeuda, setAñoDeuda] = useState()

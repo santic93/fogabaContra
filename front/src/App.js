@@ -9,6 +9,7 @@ import Popup from './Components/Popup/Popup';
 import { useEffect, useState } from 'react';
 import Totales from './Components/Totales/Totales';
 import Indicadores from './Components/Indicadores/Indicadores';
+import Portal from './Components/Portal/Portal';
 
 function App() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function App() {
                 <Route path='/formulario' element={<Formulario />} />
                 <Route path='/precalificador' element={<Precalificador />} />
                 <Route path='/indicadores' element={<Indicadores />} />
+                <Route path='/portal' element={<Portal />} />
               </>
             ) : (
               <Route index path='/' element={<Popup />} />

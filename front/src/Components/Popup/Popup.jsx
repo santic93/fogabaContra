@@ -23,7 +23,7 @@ export default function Popup({ datos, setDatos }) {
         if (selectedUser) {
 
             localStorage.setItem('user', selectedUser)
-            history('/consulta');
+            history('/portal');
         } else {
             alert('Debes seleccionar un usuario antes de continuar.');
         }
