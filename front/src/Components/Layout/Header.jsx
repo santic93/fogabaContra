@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import './Header.css';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, Route, Routes, redirect, useNavigate } from 'react-router-dom';
 import fog from './fogaba-resized.png';
 import Context from '../../Context/Context';
 export default function Header() {
@@ -167,7 +167,59 @@ export default function Header() {
             <img src={fog} alt='' />
           </Link>
           <div>
-            <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
+          <Routes>
+          <Route path="/precalificador" element={(
+                <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
+                  <input
+                    type='text'
+                    placeholder='CUIT a Consultar'
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    minLength={11}
+                    maxLength={11}
+                    className='inputttt'
+                    // disabled={precalificar}
+                  />
+                </form>
+              )} />
+              <Route path="/consulta" element={(
+                <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
+                  <input
+                    type='text'
+                    placeholder='CUIT a Consultar'
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    minLength={11}
+                    maxLength={11}
+                    className='inputttt'
+                    // disabled={precalificar}
+                  />
+                </form>
+              )} />
+              <Route path="/formulario" element={(
+                <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
+                  <input
+                    type='text'
+                    placeholder='CUIT a Consultar'
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    minLength={11}
+                    maxLength={11}
+                    className='inputttt'
+                    // disabled={precalificar}
+                  />
+                </form>
+              )} />
+              <Route
+                path="/"
+                element={null}
+              />
+              <Route
+                path="/portal"
+                element={null}
+              />
+            </Routes>
+            {/* <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
               <input
                 type='text'
                 placeholder='CUIT a Consultar'
@@ -178,7 +230,7 @@ export default function Header() {
                 className='inputttt'
                 // disabled={precalificar}
               />
-            </form>
+            </form> */}
             <small>{searchQuery && "Presione Enter para consultar"}</small>
             <small>{error && "Solo caracteres Numéricos"}</small>
           </div>
