@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import Totales from './Components/Totales/Totales';
 import Indicadores from './Components/Indicadores/Indicadores';
 import Portal from './Components/Portal/Portal';
+import Operaciones from './Components/Operaciones/Operaciones';
 
 function App() {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ function App() {
                 <Route path='/precalificador' element={<Precalificador />} />
                 <Route path='/indicadores' element={<Indicadores />} />
                 <Route path='/portal' element={<Portal />} />
+                <Route path='/operaciones' element={<Operaciones />} />
               </>
             ) : (
               <Route index path='/' element={<Popup />} />
