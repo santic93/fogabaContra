@@ -3,6 +3,7 @@ import { useReducer } from 'react';
 import UseReducer from './UseReducer.jsx';
 export default function UseContext({ children }) {
   const initialState = {
+    tradicionalesYTradicionalesExpress: [],
     usuarios: [],
     afip: [],
     deuda: [],
@@ -19,6 +20,12 @@ export default function UseContext({ children }) {
     indicadores: [],
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
+  const completeTradicionalesYTradicionalesExpress = (tradicionalesYTradicionalesExpress) => {
+    dispatch({
+      type: 'COMPLETE_TRADICIONALES_EXPRESS',
+      payload: tradicionalesYTradicionalesExpress,
+    });
+  };
   const completeDeudaBancos = (deuda) => {
     const nombreEntidad = []
     const situacion = []
@@ -44,26 +51,9 @@ export default function UseContext({ children }) {
     let fecha = ''
     let saldoVivo = 0
     fogaba.length ? posicion = fogaba[0][9] : posicion = null;
-    // if (fogaba.length) {
-    // Inicializa la variable fechaMinima con la primera fecha
-    // let fechaMinima = new Date(fogaba[0][2]);
-    // fogaba.forEach((item) => {
-    //   const fechaActual = new Date(item[2]);
-    //   fecha.push(fechaActual.toLocaleDateString());
-    // Compara con la fecha mínima actual y actualiza si es menor
-    // if (fechaActual < fechaMinima) {
-    //   fechaMinima = fechaActual;
-    // }
-    // });
-
     // Convierte la fecha mínima a formato de cadena y guárdala en fecha
     fogaba.length ? fecha = Math.ceil(fogaba[0][10]) : fecha = ""
     if (fogaba.length) { for (let i = 0; i < fogaba.length; i++) { saldoVivo += fogaba[i][6] } } else { saldoVivo = 0 };
-
-
-
-
-    // }
     dispatch({
       type: 'COMPLETE_FOGABA',
       payload: { fogaba, posicion, fecha, saldoVivo },
@@ -117,13 +107,15 @@ export default function UseContext({ children }) {
         situacion: state.situacion,
         montoAdeudado: state.montoAdeudado,
         indicadores: state.indicadores,
+        tradicionalesYTradicionalesExpress: state.tradicionalesYTradicionalesExpress,
         precalificador,
         buscando,
         completeAfip,
         completeDeudaBancos,
         completeFogaba,
         completeUsuarios,
-        completeIndicadores
+        completeIndicadores,
+        completeTradicionalesYTradicionalesExpress
       }}
     >
       {children}

@@ -9,7 +9,7 @@ export default function Portal() {
     const websites = [
         { name: "Operaciones en Analisis", url: "/operaciones", img: fogaba },
         { name: "Precalificador", url: "/consulta", img: git },
-       
+
     ];
     return (
         <div> <div className="containerrrrr">
@@ -17,7 +17,7 @@ export default function Portal() {
                 <img src="../../" alt="" />
                 <ul className="website-list">
                     {websites.map((site, index) => (
-                        <div>
+                        <div key={index}>
                             <li key={index}>
                                 <Link to={site.url} rel="noopener noreferrer" >
                                     <img src={site.img} alt={site.name} />

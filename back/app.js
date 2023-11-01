@@ -53,6 +53,29 @@ app.get('/carteras', async (req, res) => {
     res.status(500).json({ error: 'Error en el servidor' });
   }
 });
+app.get('/operaciones', async (req, res) => {
+  try {
+    const primeraPalabra = req.query.primeraPalabra;
+    const connection = await oracledb.getConnection(dbConfig);
+    //CONSULTA 1
+    const query = `SELECT IDCARPETA, FECOPER, NROCUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, IMPGARANTUM, ORIGEN, OPERADOR FROM FOGABASIS.VOPVIG_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
+    const result = await connection.execute(query);
+    const data = result.rows;
+    // Consulta 2 (Ejemplo de consulta adicional)
+    const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP FROM FOGABASIS.VOPVIGCPD_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
+    const result2 = await connection.execute(query2);
+    const data2 = result2.rows;
+    //CONSULTA 2
+    const query3 = `SELECT SOLICITUD, FECHAALTA, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ETAPA, GARANTIA FROM FOGABASIS.VOPTREX_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
+    const result3 = await connection.execute(query3);
+    const data3 = result3.rows;
+    res.json({ data, data2, data3 });
+    connection.close();
+  } catch (error) {
+    console.error('Error en la consulta:', error);
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+});
 
 app.get('/insertarDatos', async (req, res) => {
   try {

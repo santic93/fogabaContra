@@ -5,6 +5,7 @@ const ESTOY_BUSCANDO = 'ESTOY_BUSCANDO';
 const COMPLETE_USUARIOS = 'COMPLETE_USUARIOS';
 const IR_PRECALIFICADOR = 'IR_PRECALIFICADOR';
 const COMPLETE_INDICADORES = 'COMPLETE_INDICADORES';
+const COMPLETE_TRADICIONALES_EXPRESS = "COMPLETE_TRADICIONALES_EXPRESS"
 export default function UseReducer(state, action) {
   const { payload, type } = action;
   switch (type) {
@@ -22,5 +23,7 @@ export default function UseReducer(state, action) {
       return { ...state, usuarios: payload };
     case COMPLETE_INDICADORES:
       return { ...state, indicadores: payload };
+    case COMPLETE_TRADICIONALES_EXPRESS:
+      return { ...state, tradicionalesYTradicionalesExpress: payload };
   }
 }
