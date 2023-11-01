@@ -215,7 +215,7 @@ export default function Precalificador() {
         fechaIngresada,
         impSolicitado
       };
-      console.log(requestData)
+
       const encodedData = encodeURIComponent(JSON.stringify(requestData));
       axios.get('/insertarDatos', {
         params: {
