@@ -7,7 +7,6 @@ import Context from '../../Context/Context'
 import { Link } from 'react-router-dom'
 export default function Portal() {
     const { precalificador, precalificar } = useContext(Context)
-    console.log(precalificar)
     const websites = [
         // { name: "Google", url: "https://www.google.com", img: goog },
         // { name: "Facebook", url: "https://www.facebook.com", img: face },

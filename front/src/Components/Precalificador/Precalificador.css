@@ -33,16 +33,21 @@
 /* Estilo específico para el input */
 .probandoDos input {
   margin-right: 350px; /* Añade un margen derecho para separar el input del título */
-  
 }
 
 /* Añade cualquier otro estilo necesario para los elementos */
-.bg-secondary{
-  background-color: #00b3cb !important
+.bg-secondary {
+  background-color: #00b3cb !important;
 }
-.btn-primary{
-  background-color: #00b3cb !important
+.btn-primary {
+  background-color: #00b3cb !important;
 }
-h1{
+h1 {
   color: #818281;
+}
+
+.text-end::-webkit-inner-spin-button,
+.text-end::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

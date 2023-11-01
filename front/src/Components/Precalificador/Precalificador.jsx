@@ -6,6 +6,7 @@ import Context from '../../Context/Context';
 import Totales from '../Totales/Totales';
 import Indicadores from '../Indicadores/Indicadores';
 export default function Precalificador() {
+  const [listoParaCargar, setListoParaCargar] = useState(false)
   const { afip, completeIndicadores } = useContext(Context)
   const { rzs, razonSocial } = afip
   const [activoCorriente, setActivoCorriente] = useState("");
@@ -101,7 +102,37 @@ export default function Precalificador() {
     const sumaTotal = resultadoMargenBruto - gastosAdministrativos;
     setResultadoMargenOperativo(sumaTotal);
   }, [resultadoMargenBruto, gastosAdministrativos]);
-
+  useEffect(() => {
+    if (
+      // fechaIngresada === '' ||
+      impSolicitado !== '' &&
+      activoCorriente !== '' &&
+      activoNoCorriente !== '' &&
+      pasivoCorriente !== '' &&
+      pasivoNoCorriente !== '' &&
+      ventas !== '' &&
+      cmv !== '' &&
+      gastosAdministrativos !== '' &&
+      otrosIngresos !== '' &&
+      recpam !== '' &&
+      impuestoGanancias !== '' &&
+      amortizaciones !== ''
+    ) {
+      setListoParaCargar(true)
+      return;
+    }
+  }, [impSolicitado,
+    activoCorriente,
+    activoNoCorriente,
+    pasivoCorriente,
+    pasivoNoCorriente,
+    ventas,
+    cmv,
+    gastosAdministrativos,
+    otrosIngresos,
+    recpam,
+    impuestoGanancias,
+    amortizaciones])
   const [datos, setDatos] = useState({
     activoCorriente: '',
     activoNoCorriente: '',
@@ -159,6 +190,7 @@ export default function Precalificador() {
       alert('Ingresa números válidos en todos los campos.');
       return;
     } else {
+
       // Dividir la cadena en función de la coma
       var partes = localStorage.getItem('user').split(',');
 
@@ -183,6 +215,7 @@ export default function Precalificador() {
         fechaIngresada,
         impSolicitado
       };
+      console.log(requestData)
       const encodedData = encodeURIComponent(JSON.stringify(requestData));
       axios.get('/insertarDatos', {
         params: {
@@ -225,22 +258,22 @@ export default function Precalificador() {
           <table className='table'>
             <thead>
               <tr>
-                <th scope='col'>Rubro</th>
-                <th scope='col'>Subrubro</th>
+                <th scope='col' className='text-start'>Rubro</th>
+                <th scope='col' className='text-start'>Subrubro</th>
                 <th scope='col'></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope='row'></th>
-                <td>Activo Corriente</td>
+                <td className='text-start'>Activo Corriente</td>
                 <td>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     required
                     // min={-1}
-                    type='text  '
+                    type='number'
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder='corriente'
                     value={activoCorriente}
@@ -251,13 +284,13 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <th scope='row'></th>
-                <td className='border-bottom border-black'>
+                <th scope='row' className='border-bottom border-black'></th>
+                <td className='border-bottom border-black text-start'>
                   Activo No Corriente
                 </td>
                 <td className='border-bottom border-black'>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     required
                     // min={-1}
@@ -271,21 +304,22 @@ export default function Precalificador() {
                   />
                 </td>
               </tr>
-              <tr>
-                <th scope='row'></th>
+              <tr className=''>
+                <th scope='row ' className='fw-bold text-uppercase ' > ACTIVO TOTAL</th>
+
                 <td className='fw-bold text-uppercase'>
-                  ACTIVO TOTAL
+                  {/* ACTIVO TOTAL */}
                 </td>
-                <td className='fw-bold text-uppercase text-end'>
-                  $ {formatNumber(activoTotal || 0)}
+                <td className='fw-bold text-uppercase text-end probandoDDDDD'>
+                  $ {formatNumber(activoTotal || 0)}{" "}
                 </td>
               </tr>
               <tr>
-                <th scope='row'></th>
-                <td>Pasivo Corriente</td>
+                <th scope='row'  ></th>
+                <td className='text-start'>Pasivo Corriente</td>
                 <td>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     // min={-1}
                     required
@@ -300,13 +334,13 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <th scope='row'></th>
+                <th scope='row' className='border-bottom border-black'></th>
                 <td className='border-bottom border-black'>
                   Pasivo no Corriente
                 </td>
                 <td className='border-bottom border-black'>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     // min={-1}
                     required
@@ -321,38 +355,38 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <th scope='row'></th>
+                <th scope='row'>PASIVO TOTAL</th>
                 <td className='fw-bold text-uppercase'>
-                  PASIVO TOTAL
+                  {/* PASIVO TOTAL */}
                 </td>
-                <td className='fw-bold text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-end totales'>
                   $ {formatNumber(pasivoTotal || 0)}
 
                 </td>
               </tr>
               <tr>
                 <th scope='row'></th>
-                <td className='fw-bold'>Total patrimonio neto</td>
-                <td className='fw-bold text-end'>
+                <td className='fw-bold text-start'>Total patrimonio neto</td>
+                <td className='fw-bold text-end totales'>
                   $ {formatNumber(totalPatrimonioNeto || 0)}
                 </td>
               </tr>
               <tr>
-                <th scope='row'></th>
-                <td className='border-bottom border-black fw-bold'>
+                <th scope=' ' className='border-bottom border-black'></th>
+                <td className='border-bottom border-black fw-bold text-start'>
                   Total pasivo + p.neto
                 </td>
-                <td className='border-bottom border-black fw-bold text-end'>
+                <td className='border-bottom border-black fw-bold text-end totales'>
                   $ {formatNumber(totalPasivoPatrimonioNeto || 0)}
 
                 </td>
               </tr>
               <tr>
-                <th scope='row'></th>
-                <td className='fw-bold text-uppercase'>
-                  Comprobacion
+                <th scope='row' className='fw-bold text-uppercase '> Comprobacion</th>
+                <td className='fw-bold text-uppercase '>
+                  {/* Comprobacion */}
                 </td>
-                <td className='fw-bold text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-end totales'>
                   $ {formatNumber(comprobacion || 0)}
 
                 </td>
@@ -385,16 +419,16 @@ export default function Precalificador() {
           <table className='table'>
             <thead>
               <tr>
-                <th scope='col'>Categoria</th>
-                <th scope='col'>Original</th>
+                <th scope='col ' className='text-start'>Categoria</th>
+                <th scope='col'></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Ventas</td>
+                <td className='text-start'>Ventas</td>
                 <td>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
@@ -407,10 +441,10 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='border-bottom border-black'>C.M.V</td>
+                <td className='border-bottom border-black text-start'>C.M.V</td>
                 <td className='border-bottom border-black'>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
@@ -423,21 +457,21 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='fw-bold text-uppercase'>
+                <td className='fw-bold text-uppercase text-start'>
                   Resultado / margen bruto
                 </td>
-                <td className='fw-bold text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-end totales'>
                   $ {formatNumber(resultadoMargenBruto || 0)}
 
                 </td>
               </tr>
               <tr>
-                <td className='border-bottom border-black'>
+                <td className='border-bottom border-black text-start'>
                   Gastos Administrativos + Co
                 </td>
                 <td className='border-bottom border-black'>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
@@ -451,19 +485,19 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='fw-bold text-uppercase'>
+                <td className='fw-bold text-uppercase text-start'>
                   Resultado / margen operativo
                 </td>
-                <td className='fw-bold text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-end totales'>
                   $ {formatNumber(resultadoMargenOperativo || 0)}
 
                 </td>
               </tr>
               <tr>
-                <td>Otros Ingresos / egresos</td>
+                <td className='text-start'>Otros Ingresos / egresos</td>
                 <td>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
@@ -477,10 +511,10 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='border-bottom border-black'>RECPAM</td>
+                <td className='border-bottom border-black text-start'>RECPAM</td>
                 <td className='border-bottom border-black'>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
@@ -493,25 +527,25 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='fw-bold'>Otros Ing/Egresos + RECPAM</td>
-                <td className='fw-bold text-end'>
+                <td className='fw-bold text-start'>Otros Ing/Egresos + RECPAM</td>
+                <td className='fw-bold text-end totales'>
 
                   $ {formatNumber(otrosIngresosEgresosRecpam || 0)}</td>
               </tr>
               <tr>
-                <td className='fw-bold text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-start'>
                   Resultado antes de impuestos
                 </td>
-                <td className='fw-bold text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-end totales'>
                   $ {formatNumber(resultadosAntesImpuestos || 0)}
 
                 </td>
               </tr>
-              <tr className='border-bottom border-black'>
+              <tr className='border-bottom border-black text-start'>
                 <td>Impuesto Ganancias</td>
                 <td>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     // min={-1}
                     type='number'
@@ -526,19 +560,19 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='fw-bold text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-start'>
                   Resultado neto / final
                 </td>
-                <td className='fw-bold text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-end totales'>
                   $ {formatNumber(resultadoNetoFinal || 0)}
 
                 </td>
               </tr>
-              <tr className='border-bottom border-black'>
+              <tr className='border-bottom border-black text-start'>
                 <td>Amortizaciones</td>
                 <td>
                   <input
-                    className='text-end'
+                    className='form-control text-end'
                     maxLength={15}
                     // min={-1}
                     type='number'
@@ -553,10 +587,10 @@ export default function Precalificador() {
                 </td>
               </tr>
               <tr>
-                <td className='fw-bold text-uppercase '>
+                <td className='fw-bold text-uppercase text-start'>
                   Capacidad de Generacion
                 </td>
-                <td className='fw-bold text-uppercase text-end'>
+                <td className='fw-bold text-uppercase text-end totales'>
                   $ {formatNumber(capacidadDeGeneracion || 0)}
 
                 </td>
@@ -565,9 +599,10 @@ export default function Precalificador() {
           </table>
         </div>
       </div>
-      <label htmlFor="" className='fw-bold text-uppercase'>Monto Solicitado</label>
-      <br />
-      <input className='text-end'
+      <label htmlFor="" className='fw-bold text-uppercase me-2'>Monto Solicitado</label>
+
+      <input
+        className='text-end'
         maxLength={15}
         // min={-1}
         type='number'
@@ -580,11 +615,16 @@ export default function Precalificador() {
         }
       />
       <br />
-      <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+      {listoParaCargar && <> <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+        <button className="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Cargar indicadores</button>
+      </div>
+        <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
+        <Indicadores /></>}
+      {/* <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
         <button className="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Cargar indicadores</button>
       </div>
       <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
-      <Indicadores />
+      <Indicadores /> */}
       <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
         <button className="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
       </div>

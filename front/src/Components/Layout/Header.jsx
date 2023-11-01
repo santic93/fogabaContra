@@ -20,7 +20,7 @@ export default function Header() {
     precalificar,
   } = useContext(Context);
   const { razonSocial, domicilio, localidad, provincia, rzs } = afip;
-  console.log(precalificar)
+
   const [searchQuery, setSearchQuery] = useState('');
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
@@ -167,8 +167,8 @@ export default function Header() {
             <img src={fog} alt='' />
           </Link>
           <div>
-          <Routes>
-          <Route path="/precalificador" element={(
+            <Routes>
+              <Route path="/precalificador" element={(
                 <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
                   <input
                     type='text'
@@ -178,7 +178,7 @@ export default function Header() {
                     minLength={11}
                     maxLength={11}
                     className='inputttt'
-                    // disabled={precalificar}
+                  // disabled={precalificar}
                   />
                 </form>
               )} />
@@ -192,7 +192,7 @@ export default function Header() {
                     minLength={11}
                     maxLength={11}
                     className='inputttt'
-                    // disabled={precalificar}
+                  // disabled={precalificar}
                   />
                 </form>
               )} />
@@ -206,14 +206,25 @@ export default function Header() {
                     minLength={11}
                     maxLength={11}
                     className='inputttt'
-                    // disabled={precalificar}
+                  // disabled={precalificar}
                   />
                 </form>
               )} />
-              <Route
-                path="/"
-                element={null}
-              />
+              {localStorage.getItem("user") &&
+                <Route path="/" element={(
+                  <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
+                    <input
+                      type='text'
+                      placeholder='CUIT a Consultar'
+                      value={searchQuery}
+                      onChange={handleSearch}
+                      minLength={11}
+                      maxLength={11}
+                      className='inputttt'
+                    // disabled={precalificar}
+                    />
+                  </form>
+                )} />}
               <Route
                 path="/portal"
                 element={null}
