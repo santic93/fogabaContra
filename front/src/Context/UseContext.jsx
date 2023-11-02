@@ -4,6 +4,8 @@ import UseReducer from './UseReducer.jsx';
 export default function UseContext({ children }) {
   const initialState = {
     tradicionalesYTradicionalesExpress: [],
+    operacionesDeCheques: [],
+    operacionesWag: [],
     usuarios: [],
     afip: [],
     deuda: [],
@@ -20,7 +22,46 @@ export default function UseContext({ children }) {
     indicadores: [],
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
+  const completeOperacionesDeCheques = (operacionesDeCheques) => {
+    //     const fechaOriginal = '2024-10-23T03:00:00.000Z';
+    // const partes = fechaOriginal.split('T')[0].split('-');
+    // const dia = partes[2];
+    // const mes = partes[1];
+    // const año = partes[0];
+    // const fechaFormateada = `${dia}-${mes}-${año}`;
+
+    // console.log(fechaFormateada); // Esto mostrará '23-10-2024'
+
+    dispatch({
+      type: 'COMPLETE_OPERACIONES_CHEQUES',
+      payload: operacionesDeCheques,
+    });
+  };
+  const completeOperacionesWag = (operacionesWag) => {
+
+    // const partes = fechaOriginal.split('T')[0].split('-');
+    // const dia = partes[2];
+    // const mes = partes[1];
+    // const año = partes[0];
+    // const fechaFormateada = `${dia}-${mes}-${año}`;
+
+    // console.log(fechaFormateada); // Esto mostrará '23-10-2024'
+
+    dispatch({
+      type: 'COMPLETE_OPERACIONES_WAG',
+      payload: operacionesWag,
+    });
+  };
   const completeTradicionalesYTradicionalesExpress = (tradicionalesYTradicionalesExpress) => {
+
+    // const partes = fechaOriginal.split('T')[0].split('-');
+    // const dia = partes[2];
+    // const mes = partes[1];
+    // const año = partes[0];
+    // const fechaFormateada = `${dia}-${mes}-${año}`;
+
+    // console.log(fechaFormateada); // Esto mostrará '23-10-2024'
+
     dispatch({
       type: 'COMPLETE_TRADICIONALES_EXPRESS',
       payload: tradicionalesYTradicionalesExpress,
@@ -108,6 +149,8 @@ export default function UseContext({ children }) {
         montoAdeudado: state.montoAdeudado,
         indicadores: state.indicadores,
         tradicionalesYTradicionalesExpress: state.tradicionalesYTradicionalesExpress,
+        operacionesDeCheques: state.operacionesDeCheques,
+        operacionesWag: state.operacionesWag,
         precalificador,
         buscando,
         completeAfip,
@@ -115,7 +158,9 @@ export default function UseContext({ children }) {
         completeFogaba,
         completeUsuarios,
         completeIndicadores,
-        completeTradicionalesYTradicionalesExpress
+        completeTradicionalesYTradicionalesExpress,
+        completeOperacionesDeCheques,
+        completeOperacionesWag
       }}
     >
       {children}
