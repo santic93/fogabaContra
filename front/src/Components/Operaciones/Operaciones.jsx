@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios"
 import { useContext } from 'react';
 import Context from '../../Context/Context';
+import Espere from '../Espere/Espere';
 
 export default function Operaciones() {
   const navigate = useNavigate();
@@ -14,8 +15,11 @@ export default function Operaciones() {
     tradicionalesYTradicionalesExpress,
     operacionesDeCheques,
     operacionesWag,
+    buscando,
+    buscar,
   } = useContext(Context)
   useEffect(() => {
+    buscando(true)
     const fetchData = async () => {
       try {
         const res = await axios.get('/operaciones', {
@@ -27,16 +31,20 @@ export default function Operaciones() {
         if (res.status === 200) {
           if (Array.isArray(res.data.data) && res.data.data.length) {
             completeTradicionalesYTradicionalesExpress(res.data.data);
+            buscando(false)
           }
           if (Array.isArray(res.data.data2) && res.data.data2.length) {
             completeOperacionesDeCheques(res.data.data2);
+            buscando(false)
           }
           if (Array.isArray(res.data.data3) && res.data.data3.length) {
             completeOperacionesWag(res.data.data3);
+            buscando(false)
           }
         }
       } catch (error) {
         console.log(error)
+        buscando(false)
       }
     }
     fetchData()
@@ -45,7 +53,7 @@ export default function Operaciones() {
   console.log("wag", operacionesWag)
   return (
     <div>
-      <div className='p-5'>
+      {buscar ? (<Espere />) : (<><div className='p-5'>
         <h3 className="text-capitalize fst-italic fw-bold text-decoration-underline">Operaciones en Analisis</h3>
         <>
           <div
@@ -102,13 +110,13 @@ export default function Operaciones() {
                         <td>{item[1]?.match(/^.*?(?=T)/)[0]}</td>
 
                         <td >{item[2].replace("/", "").replace("-", "")}</td>
-                        <td className='fw-bold'>{item[3]}</td>
+                        <td >{item[3]}</td>
                         <td>{item[4]}</td>
                         <td>{item[5]}</td>
                         <td>{item[6]}</td>
-                        <td>${item[7]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                        <td className='text-end'>${item[7]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                         <td>{item[8]}</td>
-                        <td>{item[9]}</td>
+                        <td >{item[9]}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -173,12 +181,12 @@ export default function Operaciones() {
                         <td>{item[1]}</td>
 
                         <td >{item[2]}</td>
-                        <td className='fw-bold'>{item[3].replace("/", "").replace("-", "")}</td>
+                        <td >{item[3].replace("/", "").replace("-", "")}</td>
                         <td>{item[4]}</td>
-                        <td>${item[5]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                        <td className='text-end'>${item[5]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                         <td>{item[6]?.match(/^.*?(?=T)/)[0]}</td>
-                        <td>{item[7]}</td>
-                        <td>{item[8]?.match(/^.*?(?=T)/)[0]}</td>
+                        <td className='fw-bold'>{item[7]}</td>
+                        <td className='fw-bold'>{item[8] ? item[8]?.match(/^.*?(?=T)/)[0] : "No Registra"}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -241,11 +249,11 @@ export default function Operaciones() {
                         <td>{item[1]?.match(/^.*?(?=T)/)[0]}</td>
 
                         <td >{item[2]}</td>
-                        <td className='fw-bold'>{item[3]}</td>
+                        <td >{item[3]}</td>
                         <td>{item[4]}</td>
                         <td>{item[5]}</td>
                         <td>{item[6]}</td>
-                        <td>${item[7]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                        <td className='text-end'>${item[7]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
 
                       </tr>
                     ))}
@@ -267,9 +275,10 @@ export default function Operaciones() {
           </div>
         </>
       </div>
-      <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
-        <button className="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
-      </div>
+        <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+          <button className="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
+        </div></>)}
+
     </div>
   )
 }
