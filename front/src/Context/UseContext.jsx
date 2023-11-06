@@ -20,6 +20,7 @@ export default function UseContext({ children }) {
     situacion: [],
     montoAdeudado: [],
     indicadores: [],
+    sumaTradicionales: 0,
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
   const completeOperacionesDeCheques = (operacionesDeCheques) => {
@@ -53,7 +54,9 @@ export default function UseContext({ children }) {
     });
   };
   const completeTradicionalesYTradicionalesExpress = (tradicionalesYTradicionalesExpress) => {
-
+    const orden = tradicionalesYTradicionalesExpress.sort((a, b) => b[7] - a[7]);
+    const sumaTradicionales = orden.reduce((total, item) => total + item[7], 0);
+    
     // const partes = fechaOriginal.split('T')[0].split('-');
     // const dia = partes[2];
     // const mes = partes[1];
@@ -64,7 +67,7 @@ export default function UseContext({ children }) {
 
     dispatch({
       type: 'COMPLETE_TRADICIONALES_EXPRESS',
-      payload: tradicionalesYTradicionalesExpress,
+      payload: { tradicionalesYTradicionalesExpress, sumaTradicionales },
     });
   };
   const completeDeudaBancos = (deuda) => {
@@ -140,6 +143,7 @@ export default function UseContext({ children }) {
         afip: state.afip,
         buscar: state.buscar,
         sumaTotal: state.sumaTotal,
+        sumaTradicionales: state.sumaTradicionales,
         posicion: state.posicion,
         fecha: state.fecha,
         saldoVivo: state.saldoVivo,

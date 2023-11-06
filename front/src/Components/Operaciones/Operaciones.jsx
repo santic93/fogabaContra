@@ -4,7 +4,7 @@ import axios from "axios"
 import { useContext } from 'react';
 import Context from '../../Context/Context';
 import Espere from '../Espere/Espere';
-
+import { format } from "date-fns";
 export default function Operaciones() {
   const navigate = useNavigate();
   const user = localStorage.getItem("user")
@@ -17,6 +17,7 @@ export default function Operaciones() {
     operacionesWag,
     buscando,
     buscar,
+    sumaTradicionales,
   } = useContext(Context)
   useEffect(() => {
     buscando(true)
@@ -27,7 +28,7 @@ export default function Operaciones() {
             primeraPalabra: encodeURIComponent(primeraPalabra),
           }
         })
-        console.log(res.data)
+
         if (res.status === 200) {
           if (Array.isArray(res.data.data) && res.data.data.length) {
             completeTradicionalesYTradicionalesExpress(res.data.data);
@@ -50,7 +51,8 @@ export default function Operaciones() {
     fetchData()
   }, [])
 
-  console.log("wag", operacionesWag)
+  const ordentradicionalesYTradicionalesExpress = tradicionalesYTradicionalesExpress.sort((a, b) => a[10] - b[10])
+  
   return (
     <div>
       {buscar ? (<Espere />) : (<><div className='p-5'>
@@ -59,15 +61,25 @@ export default function Operaciones() {
           <div
             className='table-container'
           >
-
+            <br />
             {' '}
             {Array.isArray(tradicionalesYTradicionalesExpress) && tradicionalesYTradicionalesExpress.length ? (
               <>
-                <div className=' text-start w-50 mb-2 mt-2'>
+                <div className="d-flex mb-2 mt-2">
+                  <div className='text-start'>
+                    <b className='titulo fst-italic fw-bold'>
+                      Tradicionales y tradicionales Express
+                    </b>
+                    <b> Monto: $ {sumaTradicionales?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </b>
+                    <b>Cantidad: {tradicionalesYTradicionalesExpress?.length} operaciones</b>
+
+                  </div>
+                </div>
+                {/* <div className=' text-start w-50 mb-2 mt-2'>
                   <b className='titulo fst-italic fw-bold'>
                     Tradicionales y tradicionales Express
                   </b>
-                </div>
+                </div> */}
                 <table className='table text-center table-bordered small '>
                   <thead>
                     <tr>
@@ -101,14 +113,18 @@ export default function Operaciones() {
                       <th scope='col' className='bg-primary text-light'>
                         Operador
                       </th>
+                      <th scope='col' className='bg-primary text-light'>
+                        Dif Dias
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {tradicionalesYTradicionalesExpress?.map((item, index) => (
+                    {/* {console.log(tradicionalesYTradicionalesExpress)} */}
+                    {ordentradicionalesYTradicionalesExpress?.map((item, index) => (
                       <tr key={index}>
                         <th >{item[0]}</th>
-                        <td>{item[1]?.match(/^.*?(?=T)/)[0]}</td>
-
+                        <td>{format(new Date(item[1].match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</td>
+                        {/* <td>{item[1]?.match(/^.*?(?=T)/)[0]}</td> */}
                         <td >{item[2].replace("/", "").replace("-", "")}</td>
                         <td >{item[3]}</td>
                         <td>{item[4]}</td>
@@ -117,6 +133,7 @@ export default function Operaciones() {
                         <td className='text-end'>${item[7]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                         <td>{item[8]}</td>
                         <td >{item[9]}</td>
+                        <td >{item[10]}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -239,14 +256,17 @@ export default function Operaciones() {
                       <th scope='col' className='bg-primary text-light'>
                         Garantia
                       </th>
-
+                      <th scope='col' className='bg-primary text-light'>
+                        Dif Dias
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {operacionesWag?.map((item, index) => (
                       <tr key={index}>
                         <th >{item[0]}</th>
-                        <td>{item[1]?.match(/^.*?(?=T)/)[0]}</td>
+                        <td>{format(new Date(item[1].match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</td>
+                        {/* <td>{item[1]?.match(/^.*?(?=T)/)[0]}</td> */}
 
                         <td >{item[2]}</td>
                         <td >{item[3]}</td>
@@ -254,7 +274,7 @@ export default function Operaciones() {
                         <td>{item[5]}</td>
                         <td>{item[6]}</td>
                         <td className='text-end'>${item[7]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-
+                        <td>{item[8]}</td>
                       </tr>
                     ))}
                   </tbody>
