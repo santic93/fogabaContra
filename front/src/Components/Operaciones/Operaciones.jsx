@@ -203,6 +203,7 @@ export default function Operaciones() {
                         <td className='text-end'>${item[5]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                         <td>{item[6]?.match(/^.*?(?=T)/)[0]}</td>
                         <td className='fw-bold'>{item[7]}</td>
+                        {/* {format(new Date(item[8].match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")} */}
                         <td className='fw-bold'>{item[8] ? item[8]?.match(/^.*?(?=T)/)[0] : "No Registra"}</td>
                       </tr>
                     ))}

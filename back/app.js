@@ -58,18 +58,38 @@ app.get('/operaciones', async (req, res) => {
     const primeraPalabra = req.query.primeraPalabra;
     const connection = await oracledb.getConnection(dbConfig);
     //CONSULTA 1
-    const query = `SELECT IDCARPETA, FECOPER, NROCUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, IMPGARANTUM, ORIGEN, OPERADOR, TIEMPO_DIAS FROM FOGABASIS.VOPVIG_PORTAL WHERE COMERCIAL='${primeraPalabra}' order by tiempo_dias desc`;
-    const result = await connection.execute(query);
-    const data = result.rows;
-    // Consulta 2 (Ejemplo de consulta adicional)
-    const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP FROM FOGABASIS.VOPVIGCPD_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
-    const result2 = await connection.execute(query2);
-    const data2 = result2.rows;
-    //CONSULTA 2
-    const query3 = `SELECT SOLICITUD, FECHAALTA, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ETAPA, GARANTIA, TIEMPO_DIAS FROM FOGABASIS.VOPTREX_PORTAL WHERE COMERCIAL='${primeraPalabra}' order by fechaalta desc`;
-    const result3 = await connection.execute(query3);
+    console.log(primeraPalabra, '------------------------');
+    if (primeraPalabra === 'PALMA') {
+      const query = `SELECT IDCARPETA, FECOPER, NROCUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, IMPGARANTUM, ORIGEN, OPERADOR, TIEMPO_DIAS FROM FOGABASIS.VOPVIG_PORTAL  order by tiempo_dias desc`;
+      const result = await connection.execute(query);
+      const data = result.rows;
+      // Consulta 2 (Ejemplo de consulta adicional)
+      const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP FROM FOGABASIS.VOPVIGCPD_PORTAL `;
+      const result2 = await connection.execute(query2);
+      const data2 = result2.rows;
+      //CONSULTA 2
+      const query3 = `SELECT SOLICITUD, FECHAALTA, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ETAPA, GARANTIA, TIEMPO_DIAS FROM FOGABASIS.VOPTREX_PORTAL  order by fechaalta desc`;
+      const result3 = await connection.execute(query3);
     const data3 = result3.rows;
     res.json({ data, data2, data3 });
+    } else {
+      const query = `SELECT IDCARPETA, FECOPER, NROCUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, IMPGARANTUM, ORIGEN, OPERADOR, TIEMPO_DIAS FROM FOGABASIS.VOPVIG_PORTAL WHERE COMERCIAL='${primeraPalabra}' order by tiempo_dias desc`;
+      const result = await connection.execute(query);
+      const data = result.rows;
+      // Consulta 2 (Ejemplo de consulta adicional)
+      const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP FROM FOGABASIS.VOPVIGCPD_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
+      const result2 = await connection.execute(query2);
+      const data2 = result2.rows;
+      //CONSULTA 2
+      const query3 = `SELECT SOLICITUD, FECHAALTA, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ETAPA, GARANTIA, TIEMPO_DIAS FROM FOGABASIS.VOPTREX_PORTAL WHERE COMERCIAL='${primeraPalabra}' order by fechaalta desc`;
+      const result3 = await connection.execute(query3);
+    const data3 = result3.rows;
+    res.json({ data, data2, data3 });
+    }
+
+    // const result3 = await connection.execute(query3);
+    // const data3 = result3.rows;
+    // res.json({ data, data2, data3 });
     console.log(
       '.....................................',
       data,
