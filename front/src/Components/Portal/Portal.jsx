@@ -1,5 +1,5 @@
 import git from "./provincia.svg"
-import fogaba from "./fogaba-acerca.png"
+import fogaba from "./pesos.jpg"
 import "./Portal.css"
 import { useContext } from 'react'
 import Context from '../../Context/Context'
@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 
 export default function Portal() {
     const websites = [
-        { name: "Operaciones en Analisis", url: "/operaciones", img: fogaba },
-        { name: "Precalificador", url: "/consulta", img: git },
+        { name: "Operaciones en Analisis", url: "/operaciones", img: git },
+        { name: "Precalificador", url: "/consulta", img: fogaba },
 
     ];
     return (

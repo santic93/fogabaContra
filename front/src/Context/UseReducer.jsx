@@ -7,7 +7,7 @@ const IR_PRECALIFICADOR = 'IR_PRECALIFICADOR';
 const COMPLETE_INDICADORES = 'COMPLETE_INDICADORES';
 const COMPLETE_TRADICIONALES_EXPRESS = "COMPLETE_TRADICIONALES_EXPRESS";
 const COMPLETE_OPERACIONES_CHEQUES = "COMPLETE_OPERACIONES_CHEQUES";
-const COMPLETE_OPERACIONES_WAG = "COMPLETE_OPERACIONES_WAG";
+// const COMPLETE_OPERACIONES_WAG = "COMPLETE_OPERACIONES_WAG";
 export default function UseReducer(state, action) {
   const { payload, type } = action;
   switch (type) {
@@ -29,7 +29,7 @@ export default function UseReducer(state, action) {
       return { ...state, tradicionalesYTradicionalesExpress: payload.tradicionalesYTradicionalesExpress, sumaTradicionales: payload.sumaTradicionales };
     case COMPLETE_OPERACIONES_CHEQUES:
       return { ...state, operacionesDeCheques: payload };
-    case COMPLETE_OPERACIONES_WAG:
-      return { ...state, operacionesWag: payload };
+    // case COMPLETE_OPERACIONES_WAG:
+    //   return { ...state, operacionesWag: payload };
   }
 }

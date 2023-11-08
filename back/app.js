@@ -60,44 +60,45 @@ app.get('/operaciones', async (req, res) => {
     //CONSULTA 1
     console.log(primeraPalabra, '------------------------');
     if (primeraPalabra === 'PALMA') {
-      const query = `SELECT IDCARPETA, FECOPER, NROCUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, IMPGARANTUM, ORIGEN, OPERADOR, TIEMPO_DIAS FROM FOGABASIS.VOPVIG_PORTAL  order by tiempo_dias desc`;
+      //tradicionales express
+      const query = `SELECT FECHA, OPERACION_SOLICITUD, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, GARANTIA,
+      OFICIAL, ORIGEN, OPERADOR, COMERCIAL, TIPO, TIEMPO_DIAS from FOGABASIS.VOPTRTREX_PORTAL`;
+      // const query = `SELECT IDCARPETA, FECOPER, NROCUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, IMPGARANTUM, ORIGEN, OPERADOR, TIEMPO_DIAS FROM FOGABASIS.VOPVIG_PORTAL  order by tiempo_dias desc`;
       const result = await connection.execute(query);
       const data = result.rows;
-      // Consulta 2 (Ejemplo de consulta adicional)
+      // operaciones de cheques
       const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP FROM FOGABASIS.VOPVIGCPD_PORTAL `;
       const result2 = await connection.execute(query2);
       const data2 = result2.rows;
       //CONSULTA 2
-      const query3 = `SELECT SOLICITUD, FECHAALTA, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ETAPA, GARANTIA, TIEMPO_DIAS FROM FOGABASIS.VOPTREX_PORTAL  order by fechaalta desc`;
-      const result3 = await connection.execute(query3);
-    const data3 = result3.rows;
-    res.json({ data, data2, data3 });
+      // const query3 = `SELECT SOLICITUD, FECHAALTA, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ETAPA, GARANTIA, TIEMPO_DIAS FROM FOGABASIS.VOPTREX_PORTAL  order by fechaalta desc`;
+      // const result3 = await connection.execute(query3);
+      // const data3 = result3.rows;
+      res.json({ data, data2 });
+      // res.json({ data, data2, data3 });
     } else {
-      const query = `SELECT IDCARPETA, FECOPER, NROCUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, IMPGARANTUM, ORIGEN, OPERADOR, TIEMPO_DIAS FROM FOGABASIS.VOPVIG_PORTAL WHERE COMERCIAL='${primeraPalabra}' order by tiempo_dias desc`;
+      //tradicionales express
+      const query = `SELECT FECHA, OPERACION_SOLICITUD, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, GARANTIA,
+      OFICIAL, ORIGEN, OPERADOR, COMERCIAL, TIPO, TIEMPO_DIAS from FOGABASIS.VOPTRTREX_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
+      // const query = `SELECT IDCARPETA, FECOPER, NROCUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, IMPGARANTUM, ORIGEN, OPERADOR, TIEMPO_DIAS FROM FOGABASIS.VOPVIG_PORTAL WHERE COMERCIAL='${primeraPalabra}' order by tiempo_dias desc`;
       const result = await connection.execute(query);
       const data = result.rows;
-      // Consulta 2 (Ejemplo de consulta adicional)
+      // operaciones de cheques
       const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP FROM FOGABASIS.VOPVIGCPD_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
       const result2 = await connection.execute(query2);
       const data2 = result2.rows;
       //CONSULTA 2
-      const query3 = `SELECT SOLICITUD, FECHAALTA, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ETAPA, GARANTIA, TIEMPO_DIAS FROM FOGABASIS.VOPTREX_PORTAL WHERE COMERCIAL='${primeraPalabra}' order by fechaalta desc`;
-      const result3 = await connection.execute(query3);
-    const data3 = result3.rows;
-    res.json({ data, data2, data3 });
+      // const query3 = `SELECT SOLICITUD, FECHAALTA, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ETAPA, GARANTIA, TIEMPO_DIAS FROM FOGABASIS.VOPTREX_PORTAL WHERE COMERCIAL='${primeraPalabra}' order by fechaalta desc`;
+      // const result3 = await connection.execute(query3);
+      // const data3 = result3.rows;
+      // res.json({ data, data2, data3 });
+      res.json({ data, data2 });
     }
 
     // const result3 = await connection.execute(query3);
     // const data3 = result3.rows;
     // res.json({ data, data2, data3 });
-    console.log(
-      '.....................................',
-      data,
-      '--------------------------------------',
-      data2,
-      '*************************************',
-      data3
-    );
+
     connection.close();
   } catch (error) {
     console.error('Error en la consulta:', error);
