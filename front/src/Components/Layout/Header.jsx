@@ -1,10 +1,12 @@
 import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import './Header.css';
-import { Link, Route, Routes, redirect, useNavigate } from 'react-router-dom';
+import { Link, Route, Routes, redirect, useLocation, useNavigate } from 'react-router-dom';
 import fog from './fogaba-resized.png';
 import Context from '../../Context/Context';
 export default function Header() {
+  let location = useLocation();
+  console.log(location.pathname)
   const parser = new DOMParser();
   const history = useNavigate();
   const navigate = useNavigate()
@@ -166,6 +168,17 @@ export default function Header() {
           >
             <img src={fog} alt='' />
           </Link>
+          { location.pathname !== "/portal" && location.pathname !== "/operaciones" && localStorage.getItem("user") &&
+            <Link to="/operaciones"
+              className='text-center'
+              onClick={() => (
+                completeAfip([]), completeDeudaBancos([]), completeFogaba([])
+              )}>Operaciones en Analisis</Link>}
+          {location.pathname !== "/precalificador" && location.pathname !== "/formulario" && location.pathname !== "/consulta" && location.pathname !== "/portal" && localStorage.getItem("user") && <Link className='text-center' to="/consulta"
+            onClick={() => (
+              completeAfip([]), completeDeudaBancos([]), completeFogaba([])
+            )}>Precalificador</Link>}
+
           <div>
             <Routes>
               <Route path="/precalificador" element={(

@@ -59,7 +59,7 @@ app.get('/operaciones', async (req, res) => {
     const connection = await oracledb.getConnection(dbConfig);
     //CONSULTA 1
     console.log(primeraPalabra, '------------------------');
-    if (primeraPalabra === 'PALMA') {
+    if (primeraPalabra === 'PALMA' ) {
       //tradicionales express
       const query = `SELECT FECHA, OPERACION_SOLICITUD, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, GARANTIA,
       OFICIAL, ORIGEN, OPERADOR, COMERCIAL, TIPO, TIEMPO_DIAS from FOGABASIS.VOPTRTREX_PORTAL`;
