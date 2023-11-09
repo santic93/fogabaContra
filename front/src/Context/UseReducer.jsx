@@ -26,7 +26,7 @@ export default function UseReducer(state, action) {
     case COMPLETE_INDICADORES:
       return { ...state, indicadores: payload };
     case COMPLETE_TRADICIONALES_EXPRESS:
-      return { ...state, tradicionalesYTradicionalesExpress: payload.tradicionalesYTradicionalesExpress, sumaTradicionales: payload.sumaTradicionales };
+      return { ...state, tradicionalesYTradicionalesExpress: payload.tradicionalesYTradicionalesExpress, sumaTradicionales: payload.sumaTradicionales, promedioDias: payload.promedioDias };
     case COMPLETE_OPERACIONES_CHEQUES:
       return { ...state, operacionesDeCheques: payload };
     // case COMPLETE_OPERACIONES_WAG:

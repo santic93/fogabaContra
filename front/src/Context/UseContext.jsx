@@ -21,6 +21,7 @@ export default function UseContext({ children }) {
     montoAdeudado: [],
     indicadores: [],
     sumaTradicionales: 0,
+    promedioDias: 0
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
   const completeOperacionesDeCheques = (operacionesDeCheques) => {
@@ -41,13 +42,16 @@ export default function UseContext({ children }) {
   // };
   const completeTradicionalesYTradicionalesExpress = (tradicionalesYTradicionalesExpress) => {
     console.log(tradicionalesYTradicionalesExpress)
-     const orden = tradicionalesYTradicionalesExpress.sort((a, b) => b[7] - a[7]);
-     const sumaTradicionales = orden.reduce((total, item) => total + item[7], 0);
+    const orden = tradicionalesYTradicionalesExpress.sort((a, b) => b[7] - a[7]);
+    const sumaTradicionales = orden.reduce((total, item) => total + item[7], 0);
+    const ordenDias = tradicionalesYTradicionalesExpress.sort((a, b) => b[12] - a[12]);
+    const promedioDias = ordenDias.reduce((total, item) => total + item[12], 0);
+
 
 
     dispatch({
       type: 'COMPLETE_TRADICIONALES_EXPRESS',
-      payload: { tradicionalesYTradicionalesExpress,sumaTradicionales },
+      payload: { tradicionalesYTradicionalesExpress, sumaTradicionales, promedioDias },
     });
   };
   const completeDeudaBancos = (deuda) => {
@@ -134,6 +138,7 @@ export default function UseContext({ children }) {
         indicadores: state.indicadores,
         tradicionalesYTradicionalesExpress: state.tradicionalesYTradicionalesExpress,
         operacionesDeCheques: state.operacionesDeCheques,
+        promedioDias: state.promedioDias,
         // operacionesWag: state.operacionesWag,
         precalificador,
         buscando,

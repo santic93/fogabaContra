@@ -161,23 +161,23 @@ export default function Header() {
 
         <div className='header'>
           <Link
-            to="/consulta"
+            to="/portal"
             onClick={() => (
               completeAfip([]), completeDeudaBancos([]), completeFogaba([])
             )}
           >
             <img src={fog} alt='' />
           </Link>
-          { location.pathname !== "/portal" && location.pathname !== "/operaciones" && localStorage.getItem("user") &&
-            <Link to="/operaciones"
+          {location.pathname !== "/portal" && localStorage.getItem("user") &&
+            <Link to="/portal"
               className='text-center'
               onClick={() => (
                 completeAfip([]), completeDeudaBancos([]), completeFogaba([])
-              )}>Operaciones en Analisis</Link>}
-          {location.pathname !== "/precalificador" && location.pathname !== "/formulario" && location.pathname !== "/consulta" && location.pathname !== "/portal" && localStorage.getItem("user") && <Link className='text-center' to="/consulta"
+              )}>Home</Link>}
+          {/* {location.pathname !== "/precalificador" && location.pathname !== "/formulario" && location.pathname !== "/consulta" && location.pathname !== "/portal" && localStorage.getItem("user") && <Link className='text-center' to="/consulta"
             onClick={() => (
               completeAfip([]), completeDeudaBancos([]), completeFogaba([])
-            )}>Precalificador</Link>}
+            )}>Precalificador</Link>} */}
 
           <div>
             <Routes>
