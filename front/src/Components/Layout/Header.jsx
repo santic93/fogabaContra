@@ -6,7 +6,7 @@ import fog from './fogaba-resized.png';
 import Context from '../../Context/Context';
 export default function Header() {
   let location = useLocation();
-  console.log(location.pathname)
+ 
   const parser = new DOMParser();
   const history = useNavigate();
   const navigate = useNavigate()

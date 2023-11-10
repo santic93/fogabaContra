@@ -54,7 +54,7 @@ export default function Operaciones() {
   }, [])
 
   const ordentradicionalesYTradicionalesExpress = tradicionalesYTradicionalesExpress.sort((a, b) => b[12] - a[12])
-  console.log(promedioDias)
+ 
   return (
     <div>
       {buscar ? (<Espere />) : (<><div className='p-5'>
