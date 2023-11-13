@@ -174,11 +174,6 @@ export default function Header() {
               onClick={() => (
                 completeAfip([]), completeDeudaBancos([]), completeFogaba([])
               )}>Home</Link>}
-          {/* {location.pathname !== "/precalificador" && location.pathname !== "/formulario" && location.pathname !== "/consulta" && location.pathname !== "/portal" && localStorage.getItem("user") && <Link className='text-center' to="/consulta"
-            onClick={() => (
-              completeAfip([]), completeDeudaBancos([]), completeFogaba([])
-            )}>Precalificador</Link>} */}
-
           <div>
             <Routes>
               <Route path="/precalificador" element={(
@@ -191,7 +186,7 @@ export default function Header() {
                     minLength={11}
                     maxLength={11}
                     className='inputttt'
-                  // disabled={precalificar}
+                  
                   />
                 </form>
               )} />
@@ -205,7 +200,7 @@ export default function Header() {
                     minLength={11}
                     maxLength={11}
                     className='inputttt'
-                  // disabled={precalificar}
+                 
                   />
                 </form>
               )} />
@@ -219,7 +214,7 @@ export default function Header() {
                     minLength={11}
                     maxLength={11}
                     className='inputttt'
-                  // disabled={precalificar}
+                 
                   />
                 </form>
               )} />
@@ -234,7 +229,7 @@ export default function Header() {
                       minLength={11}
                       maxLength={11}
                       className='inputttt'
-                    // disabled={precalificar}
+                   
                     />
                   </form>
                 )} />}
@@ -243,18 +238,7 @@ export default function Header() {
                 element={null}
               />
             </Routes>
-            {/* <form className='d-flex ' role='search' onSubmit={handleFormSubmit}>
-              <input
-                type='text'
-                placeholder='CUIT a Consultar'
-                value={searchQuery}
-                onChange={handleSearch}
-                minLength={11}
-                maxLength={11}
-                className='inputttt'
-                // disabled={precalificar}
-              />
-            </form> */}
+
             <small>{searchQuery && "Presione Enter para consultar"}</small>
             <small>{error && "Solo caracteres Numéricos"}</small>
           </div>

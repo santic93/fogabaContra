@@ -11,11 +11,9 @@ export default function Operaciones() {
   const parts = user.split(",");
   const primeraPalabra = parts[0];
   const { completeOperacionesDeCheques,
-    // completeOperacionesWag, 
     completeTradicionalesYTradicionalesExpress,
     tradicionalesYTradicionalesExpress,
     operacionesDeCheques,
-    // operacionesWag,
     buscando,
     buscar,
     sumaTradicionales,
@@ -40,10 +38,6 @@ export default function Operaciones() {
             completeOperacionesDeCheques(res.data.data2);
             buscando(false)
           }
-          // if (Array.isArray(res.data.data3) && res.data.data3.length) {
-          //   completeOperacionesWag(res.data.data3);
-          //   buscando(false)
-          // }
         }
       } catch (error) {
         console.log(error)
@@ -114,9 +108,6 @@ export default function Operaciones() {
                         <th scope='col' className='bg-primary text-light'>
                           Operador
                         </th>
-                        {/* <th scope='col' className='bg-primary text-light'>
-                          Comercial
-                        </th> */}
                         <th scope='col' className='bg-primary text-light'>
                           Tipo
                         </th>
@@ -126,14 +117,9 @@ export default function Operaciones() {
                       </tr>
                     </thead>
                     <tbody>
-
-                      {/* {console.log(tradicionalesYTradicionalesExpress)} */}
                       {ordentradicionalesYTradicionalesExpress?.map((item, index) => (
                         <tr key={index}>
                           <th >{format(new Date(item[0].match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</th>
-                          {/* <td>{format(new Date(item[1].match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</td>
-                        {/* <td>{item[1]?.match(/^.*?(?=T)/)[0]}</td> */}
-
                           <td >{item[1]}</td>
                           <td>{item[2].replace("-", "").replace("/", "")}</td>
                           <td>{item[3]}</td>
@@ -145,16 +131,12 @@ export default function Operaciones() {
                           <td>{item[9]}</td>
                           <td >{item[10]}</td>
                           <td >{item[11]}</td>
-                          {/* <td >{item[12]}</td> */}
                           <td>{item[12] >= 30 && item[12] < 60 && <td className='p-2 text-center bg-warning fw-bold rounded-circle' >{item[12]}</td>} {item[12] >= 60 && <td className='p-2 text-center  bg-danger fw-bold rounded-circle text-white'>{item[12]}</td>}  {item[12] < 30 && <td className='p-2 text-center  fw-bold'>{item[12]}</td>}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
-                {/* </div>
-                  </div>
-                </div> */}
               </>
             ) : (
               <>
@@ -220,8 +202,6 @@ export default function Operaciones() {
                         <td className='text-end'>${item[5]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                         <td>{format(new Date(item[6]?.match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</td>
                         <td className='fw-bold'>{item[7]}</td>
-                        {/* {format(new Date(item[8].match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")} */}
-                        {/* <td className='fw-bold'>{format(new Date(item[1].match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</td> */}
                         <td className='fw-bold'>{item[8] ? format(new Date(item[8]?.match(/^.*?(?=T)/)[0]), "dd/MM/yyyy") : "No Registra"}</td>
                       </tr>
                     ))}
@@ -240,77 +220,6 @@ export default function Operaciones() {
                 </div>
               </>
             )}
-            {/* <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
-            {Array.isArray(operacionesWag) && operacionesWag.length ? (
-              <>
-                <div className=' text-start w-50 mb-2 mt-2'>
-                  <b className='titulo fst-italic fw-bold'>
-                    Operaciones WAG
-                  </b>
-                </div>
-                <table className='table text-center table-bordered small '>
-                  <thead>
-                    <tr>
-                      <th scope='col' className='bg-primary text-light '>
-                        Solicitud
-                      </th>
-                      <th scope='col' className='bg-primary text-light'>
-                        Fecha
-                      </th>
-                      <th scope='col' className='bg-primary text-light'>
-                        CUIT
-                      </th>
-                      <th scope='col' className='bg-primary text-light'>
-                        Razon Social
-                      </th>
-                      <th scope='col' className='bg-primary text-light'>
-                        Banco
-                      </th>
-                      <th scope='col' className='bg-primary text-light'>
-                        Sucursal
-                      </th>
-                      <th scope='col' className='bg-primary text-light'>
-                        Etapa
-                      </th>
-                      <th scope='col' className='bg-primary text-light'>
-                        Garantia
-                      </th>
-                      <th scope='col' className='bg-primary text-light'>
-                        Dif Dias
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {operacionesWag?.map((item, index) => (
-                      <tr key={index}>
-                        <th >{item[0]}</th>
-                        <td>{format(new Date(item[1].match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</td>
-                        {/* <td>{item[1]?.match(/^.*?(?=T)/)[0]}</td> */}
-
-            {/* <td >{item[2]}</td>
-                        <td >{item[3]}</td>
-                        <td>{item[4]}</td>
-                        <td>{item[5]}</td>
-                        <td>{item[6]}</td>
-                        <td className='text-end'>${item[7]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-                        <td>{item[8]}</td>
-                      </tr>
-                    ))} */}
-            {/* </tbody> */}
-            {/* </table>
-              </>
-            ) : (
-              <>
-                <div>
-                  <h4>
-                    No existen operaciones{' '}
-                    <b>
-                      WAG
-                    </b>{' '}
-                    con el Comercial seleccionado                   </h4>
-                </div>
-              </>
-            )} */}
           </div>
         </>
       </div>

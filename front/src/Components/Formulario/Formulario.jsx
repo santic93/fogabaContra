@@ -198,18 +198,6 @@ export default function Formulario() {
                 {Array.isArray(fogaba) && fogaba.length ? (
 
                   <>
-                    {/*    <div className="d-flex mb-2 mt-2">
-                      <div className='text-start'>
-                        <b className='titulo fst-italic fw-bold'>
-                          Consulta Cendeu
-                        </b>
-                        <b> Deuda Total: $ {sumaTotal} </b>
-                      </div>
-                      <div className="ms-auto">
-                        <b className="fst-italic text-end"> Actualizada a: {mesDeuda}/{añoDeuda}</b>
-                        {' '}
-                      </div>
-                    </div> */}
                     <div className="d-flex mb-2 mt-2">
                       <div className='text-start'>
                         <b className='titulo fst-italic fw-bold'>Consulta Fogaba</b>{" "}

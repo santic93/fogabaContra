@@ -31,15 +31,7 @@ export default function UseContext({ children }) {
       payload: operacionesDeCheques,
     });
   };
-  // const completeOperacionesWag = (operacionesWag) => {
 
-
-
-  //   dispatch({
-  //     type: 'COMPLETE_OPERACIONES_WAG',
-  //     payload: operacionesWag,
-  //   });
-  // };
   const completeTradicionalesYTradicionalesExpress = (tradicionalesYTradicionalesExpress) => {
     
     const orden = tradicionalesYTradicionalesExpress.sort((a, b) => b[7] - a[7]);
@@ -139,7 +131,6 @@ export default function UseContext({ children }) {
         tradicionalesYTradicionalesExpress: state.tradicionalesYTradicionalesExpress,
         operacionesDeCheques: state.operacionesDeCheques,
         promedioDias: state.promedioDias,
-        // operacionesWag: state.operacionesWag,
         precalificador,
         buscando,
         completeAfip,
@@ -149,7 +140,6 @@ export default function UseContext({ children }) {
         completeIndicadores,
         completeTradicionalesYTradicionalesExpress,
         completeOperacionesDeCheques,
-        // completeOperacionesWag
       }}
     >
       {children}

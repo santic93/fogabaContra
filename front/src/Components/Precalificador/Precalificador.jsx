@@ -156,7 +156,6 @@ export default function Precalificador() {
       return
     }
     if (
-      // fechaIngresada === '' ||
       impSolicitado === '' ||
       activoCorriente === '' ||
       activoNoCorriente === '' ||
@@ -228,12 +227,6 @@ export default function Precalificador() {
   const [fechaIngresada, setFechaIngresada] = useState(null)
 
   function formatNumber(number) {
-    // return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(".", ".");
-    // if (typeof number !== "number" || isNaN(number)) {
-    //   return "0.00"; // Valor predeterminado si el número no es válido
-    // }
-    // const formattedNumber = number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    // return formattedNumber;
     if (typeof number !== "number" || isNaN(number)) {
       return "0.00";
     }
@@ -247,8 +240,6 @@ export default function Precalificador() {
     <div className='container text-center'>
       <div className='probando'>
         <div className='probandoDos'>
-          {/* <input type='date' name='' id='' required value={fechaIngresada} onChange={(event) =>
-            setFechaIngresada((event.target.value))} /> */}
           <h1>Ejercicios</h1>
         </div>
       </div>
@@ -272,7 +263,6 @@ export default function Precalificador() {
                     className='form-control text-end'
                     maxLength={15}
                     required
-                    // min={-1}
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder='corriente'
@@ -293,7 +283,6 @@ export default function Precalificador() {
                     className='form-control text-end'
                     maxLength={15}
                     required
-                    // min={-1}
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder='no corriente'
@@ -321,7 +310,6 @@ export default function Precalificador() {
                   <input
                     className='form-control text-end'
                     maxLength={15}
-                    // min={-1}
                     required
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
@@ -342,7 +330,6 @@ export default function Precalificador() {
                   <input
                     className='form-control text-end'
                     maxLength={15}
-                    // min={-1}
                     required
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
@@ -434,7 +421,6 @@ export default function Precalificador() {
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder='ventas'
                     required
-                    // min={-1}
                     value={ventas}
                     onChange={(event) => setVentas(Number(event.target.value))}
                   />
@@ -450,7 +436,6 @@ export default function Precalificador() {
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder='c.m.v'
                     required
-                    // min={-1}
                     value={cmv}
                     onChange={(event) => setCmv(Number(event.target.value))}
                   />
@@ -476,7 +461,6 @@ export default function Precalificador() {
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder=' Gastos Administrativos + Co'
-                    // min={-1}
                     value={gastosAdministrativos}
                     onChange={(event) =>
                       setGastosAdministrativos(Number(event.target.value))
@@ -502,7 +486,6 @@ export default function Precalificador() {
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder='Otros Ing'
-                    // min={-1}
                     value={otrosIngresos}
                     onChange={(event) =>
                       setOtrosIngresos(Number(event.target.value))
@@ -520,7 +503,6 @@ export default function Precalificador() {
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder='RECPAM'
                     required
-                    // min={-1}
                     value={recpam}
                     onChange={(event) => setRecpam(Number(event.target.value))}
                   />
@@ -547,7 +529,6 @@ export default function Precalificador() {
                   <input
                     className='form-control text-end'
                     maxLength={15}
-                    // min={-1}
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder='Impuesto Ganancias'
@@ -574,7 +555,6 @@ export default function Precalificador() {
                   <input
                     className='form-control text-end'
                     maxLength={15}
-                    // min={-1}
                     type='number'
                     step='0.01' // Permitir comas como separadores decimales
                     placeholder='Amortizaciones'
@@ -604,7 +584,6 @@ export default function Precalificador() {
       <input
         className='text-end'
         maxLength={15}
-        // min={-1}
         type='number'
         step='0.01' // Permitir comas como separadores decimales
         placeholder='Monto Solicitado'
@@ -620,11 +599,6 @@ export default function Precalificador() {
       </div>
         <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
         <Indicadores /></>}
-      {/* <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
-        <button className="btn btn-primary" type="button" onClick={(handleClickEnviar)}>Cargar indicadores</button>
-      </div>
-      <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
-      <Indicadores /> */}
       <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
         <button className="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
       </div>
