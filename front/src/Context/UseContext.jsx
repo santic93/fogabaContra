@@ -25,7 +25,7 @@ export default function UseContext({ children }) {
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
   const completeOperacionesDeCheques = (operacionesDeCheques) => {
-
+    console.log(operacionesDeCheques, "-------------------")
     dispatch({
       type: 'COMPLETE_OPERACIONES_CHEQUES',
       payload: operacionesDeCheques,
@@ -33,7 +33,7 @@ export default function UseContext({ children }) {
   };
 
   const completeTradicionalesYTradicionalesExpress = (tradicionalesYTradicionalesExpress) => {
-    
+
     const orden = tradicionalesYTradicionalesExpress.sort((a, b) => b[7] - a[7]);
     const sumaTradicionales = orden.reduce((total, item) => total + item[7], 0);
     const ordenDias = tradicionalesYTradicionalesExpress.sort((a, b) => b[12] - a[12]);

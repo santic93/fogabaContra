@@ -19,6 +19,7 @@ export default function Operaciones() {
     sumaTradicionales,
     promedioDias
   } = useContext(Context)
+  console.log(operacionesDeCheques, "*******************************")
   useEffect(() => {
     buscando(true)
     const fetchData = async () => {
@@ -48,7 +49,7 @@ export default function Operaciones() {
   }, [])
 
   const ordentradicionalesYTradicionalesExpress = tradicionalesYTradicionalesExpress.sort((a, b) => b[12] - a[12])
- 
+
   return (
     <div>
       {buscar ? (<Espere />) : (<><div className='p-5'>
@@ -63,9 +64,9 @@ export default function Operaciones() {
               <>
                 <div className="d-flex mb-2 mt-2">
                   <div className='text-start'>
-                    <b className='titulo fst-italic fw-bold'>
+                    {/* <b className='titulo fst-italic fw-bold'>
                       Tradicionales y tradicionales Express
-                    </b>
+                    </b> */}
                     <b> Monto Total: $ {sumaTradicionales?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} |</b>{" "}
                     <b>Cantidad de garantias: {tradicionalesYTradicionalesExpress?.length} |</b>{" "}
                     <b>Promedio Dias: {Math.round(promedioDias / tradicionalesYTradicionalesExpress?.length)} </b>
