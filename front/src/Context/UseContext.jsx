@@ -21,11 +21,18 @@ export default function UseContext({ children }) {
     montoAdeudado: [],
     indicadores: [],
     sumaTradicionales: 0,
-    promedioDias: 0
+    promedioDias: 0,
+    comentariosComercial: []
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
+  const completeComentarios = (comentariosComercial) => {
+    dispatch({
+      type: 'COMPLETE_COMENTARIOS',
+      payload: comentariosComercial,
+    });
+  };
+
   const completeOperacionesDeCheques = (operacionesDeCheques) => {
-    console.log(operacionesDeCheques, "-------------------")
     dispatch({
       type: 'COMPLETE_OPERACIONES_CHEQUES',
       payload: operacionesDeCheques,
@@ -131,6 +138,7 @@ export default function UseContext({ children }) {
         tradicionalesYTradicionalesExpress: state.tradicionalesYTradicionalesExpress,
         operacionesDeCheques: state.operacionesDeCheques,
         promedioDias: state.promedioDias,
+        comentariosComercial: state.comentariosComercial,
         precalificador,
         buscando,
         completeAfip,
@@ -140,6 +148,7 @@ export default function UseContext({ children }) {
         completeIndicadores,
         completeTradicionalesYTradicionalesExpress,
         completeOperacionesDeCheques,
+        completeComentarios
       }}
     >
       {children}

@@ -11,6 +11,7 @@ import Totales from './Components/Totales/Totales';
 import Indicadores from './Components/Indicadores/Indicadores';
 import Portal from './Components/Portal/Portal';
 import Operaciones from './Components/Operaciones/Operaciones';
+import PopupOperaciones from './Components/Popup/PopupOperaciones';
 
 function App() {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ function App() {
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/');
+    } else {
+      navigate('/portal');
     }
   }, [isAuthenticated]);
 
@@ -34,6 +37,10 @@ function App() {
                 <Route path='/indicadores' element={<Indicadores />} />
                 <Route path='/portal' element={<Portal />} />
                 <Route path='/operaciones' element={<Operaciones />} />
+                <Route
+                  path='/comentarios/:idComentario'
+                  element={<PopupOperaciones />}
+                />
               </>
             ) : (
               <Route index path='/' element={<Popup />} />

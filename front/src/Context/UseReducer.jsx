@@ -7,6 +7,7 @@ const IR_PRECALIFICADOR = 'IR_PRECALIFICADOR';
 const COMPLETE_INDICADORES = 'COMPLETE_INDICADORES';
 const COMPLETE_TRADICIONALES_EXPRESS = "COMPLETE_TRADICIONALES_EXPRESS";
 const COMPLETE_OPERACIONES_CHEQUES = "COMPLETE_OPERACIONES_CHEQUES";
+const COMPLETE_COMENTARIOS = "COMPLETE_COMENTARIOS"
 
 export default function UseReducer(state, action) {
   const { payload, type } = action;
@@ -29,6 +30,8 @@ export default function UseReducer(state, action) {
       return { ...state, tradicionalesYTradicionalesExpress: payload.tradicionalesYTradicionalesExpress, sumaTradicionales: payload.sumaTradicionales, promedioDias: payload.promedioDias };
     case COMPLETE_OPERACIONES_CHEQUES:
       return { ...state, operacionesDeCheques: payload };
+    case COMPLETE_COMENTARIOS:
+      return { ...state, comentariosComercial: payload }
 
   }
 }

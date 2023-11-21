@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios"
 import { useContext } from 'react';
 import Context from '../../Context/Context';
 import Espere from '../Espere/Espere';
 import { format } from "date-fns";
+import PopupOperaciones from '../Popup/PopupOperaciones';
 export default function Operaciones() {
   const navigate = useNavigate();
   const user = localStorage.getItem("user")
@@ -19,7 +20,7 @@ export default function Operaciones() {
     sumaTradicionales,
     promedioDias
   } = useContext(Context)
-  console.log(operacionesDeCheques, "*******************************")
+
   useEffect(() => {
     buscando(true)
     const fetchData = async () => {
@@ -49,7 +50,7 @@ export default function Operaciones() {
   }, [])
 
   const ordentradicionalesYTradicionalesExpress = tradicionalesYTradicionalesExpress.sort((a, b) => b[12] - a[12])
-
+  const [popUpOperaciones, setPopUpOperaciones] = useState(false)
   return (
     <div>
       {buscar ? (<Espere />) : (<><div className='p-5'>
@@ -120,8 +121,9 @@ export default function Operaciones() {
                     <tbody>
                       {ordentradicionalesYTradicionalesExpress?.map((item, index) => (
                         <tr key={index}>
-                          <th >{format(new Date(item[0].match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</th>
-                          <td >{item[1]}</td>
+                          <th >{format(new Date(item[0].match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</th><td >
+                            <Link to={`/comentarios/${item[1]}`} title='Ver Comentarios' style={{ "textDecoration": "none", "color": "black", "fontWeight": "bold" }}> {item[1]}</Link></td>
+
                           <td>{item[2].replace("-", "").replace("/", "")}</td>
                           <td>{item[3]}</td>
                           <td>{item[4]}</td>
@@ -227,7 +229,6 @@ export default function Operaciones() {
         <div className='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
           <button className="btn btn-primary me-md-2" type="button" onClick={() => navigate(-1)}>Volver</button>
         </div></>)}
-
     </div>
   )
 }

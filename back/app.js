@@ -39,6 +39,21 @@ app.get('/deuda', async (req, res) => {
     res.status(500).json({ error: 'Error en el servidor' });
   }
 });
+app.get('/comentarios', async (req, res) => {
+  try {
+    const idComentario = req.query.idComentario; // Usar req.params para obtener el valor del parámetro de ruta
+    const connection = await oracledb.getConnection(dbConfig);
+    const query = `SELECT COMERCIAL, RIESGO, FORMALIZACIONES, PREFORMALIZACIONES FROM FOGABASIS.VSEGUIMIENTO_OP_PORTAL WHERE IDCARPETA=${idComentario}`;
+    const result = await connection.execute(query);
+    const data = result.rows;
+    res.json(data);
+    connection.close();
+  } catch (error) {
+    console.error('Error en la consulta:', error);
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+});
+
 app.get('/carteras', async (req, res) => {
   try {
     const searchQuery = req.query.searchQuery;
@@ -58,7 +73,11 @@ app.get('/operaciones', async (req, res) => {
     const primeraPalabra = req.query.primeraPalabra;
     const connection = await oracledb.getConnection(dbConfig);
     //CONSULTA 1
-    if (primeraPalabra === 'PALMA') {
+    if (
+      primeraPalabra === 'PALMA' ||
+      primeraPalabra === 'SERVIE' ||
+      primeraPalabra === 'ANGCOS'
+    ) {
       //tradicionales express
       const query = `SELECT FECHA, OPERACION_SOLICITUD, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, GARANTIA,
       OFICIAL, ORIGEN, OPERADOR, COMERCIAL, TIPO, TIEMPO_DIAS from FOGABASIS.VOPTRTREX_PORTAL`;
@@ -103,7 +122,7 @@ app.get('/operaciones', async (req, res) => {
       const data2 = result2.rows;
       res.json({ data, data2 });
     }
-  connection.close();
+    connection.close();
   } catch (error) {
     console.error('Error en la consulta:', error);
     res.status(500).json({ error: 'Error en el servidor' });
