@@ -29,7 +29,7 @@ export default function UseReducer(state, action) {
     case COMPLETE_TRADICIONALES_EXPRESS:
       return { ...state, tradicionalesYTradicionalesExpress: payload.tradicionalesYTradicionalesExpress, sumaTradicionales: payload.sumaTradicionales, promedioDias: payload.promedioDias };
     case COMPLETE_OPERACIONES_CHEQUES:
-      return { ...state, operacionesDeCheques: payload };
+      return { ...state, operacionesDeCheques: payload.operacionesDeCheques, sumaCheques: payload.sumaCheques, sumaGarantias: payload.sumaGarantias, cantidadChequesConFecha: payload.cantidadChequesConFecha };
     case COMPLETE_COMENTARIOS:
       return { ...state, comentariosComercial: payload }
 

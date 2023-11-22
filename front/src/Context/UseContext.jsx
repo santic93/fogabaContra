@@ -22,7 +22,10 @@ export default function UseContext({ children }) {
     indicadores: [],
     sumaTradicionales: 0,
     promedioDias: 0,
-    comentariosComercial: []
+    comentariosComercial: [],
+    sumaCheques: 0,
+    sumaGarantias: 0,
+    cantidadChequesConFecha: 0
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
   const completeComentarios = (comentariosComercial) => {
@@ -33,21 +36,24 @@ export default function UseContext({ children }) {
   };
 
   const completeOperacionesDeCheques = (operacionesDeCheques) => {
+    const orden = operacionesDeCheques.sort((a, b) => b[7] - a[7]);
+    const sumaCheques = orden.reduce((total, item) => total + item[7], 0);
+    const ordenGarantias = operacionesDeCheques.sort((a, b) => b[5] - a[5]);
+    const sumaGarantias = ordenGarantias.reduce((total, item) => total + item[5], 0);
+    const tienenFechaCheques = operacionesDeCheques.filter((item) => item[8]);
+    const cantidadChequesConFecha = tienenFechaCheques.length;
+
     dispatch({
       type: 'COMPLETE_OPERACIONES_CHEQUES',
-      payload: operacionesDeCheques,
+      payload: { operacionesDeCheques, sumaCheques, sumaGarantias, cantidadChequesConFecha },
     });
   };
 
   const completeTradicionalesYTradicionalesExpress = (tradicionalesYTradicionalesExpress) => {
-
     const orden = tradicionalesYTradicionalesExpress.sort((a, b) => b[7] - a[7]);
     const sumaTradicionales = orden.reduce((total, item) => total + item[7], 0);
     const ordenDias = tradicionalesYTradicionalesExpress.sort((a, b) => b[12] - a[12]);
-    const promedioDias = ordenDias.reduce((total, item) => total + item[12], 0);
-
-
-
+    const promedioDias = ordenDias.reduce((total, item) => total + item[13], 0);
     dispatch({
       type: 'COMPLETE_TRADICIONALES_EXPRESS',
       payload: { tradicionalesYTradicionalesExpress, sumaTradicionales, promedioDias },
@@ -127,8 +133,11 @@ export default function UseContext({ children }) {
         buscar: state.buscar,
         sumaTotal: state.sumaTotal,
         sumaTradicionales: state.sumaTradicionales,
+        sumaCheques: state.sumaCheques,
+        sumaGarantias: state.sumaGarantias,
         posicion: state.posicion,
         fecha: state.fecha,
+        cantidadChequesConFecha: state.cantidadChequesConFecha,
         saldoVivo: state.saldoVivo,
         cendeuUltimoRegistro: state.cendeuUltimoRegistro,
         nombreEntidad: state.nombreEntidad,

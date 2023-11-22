@@ -18,7 +18,10 @@ export default function Operaciones() {
     buscando,
     buscar,
     sumaTradicionales,
-    promedioDias
+    promedioDias,
+    sumaCheques,
+    sumaGarantias,
+    cantidadChequesConFecha
   } = useContext(Context)
 
   useEffect(() => {
@@ -49,8 +52,9 @@ export default function Operaciones() {
     fetchData()
   }, [])
 
-  const ordentradicionalesYTradicionalesExpress = tradicionalesYTradicionalesExpress.sort((a, b) => b[12] - a[12])
-  const [popUpOperaciones, setPopUpOperaciones] = useState(false)
+  const ordentradicionalesYTradicionalesExpress = tradicionalesYTradicionalesExpress.sort((a, b) => b[13] - a[13])
+
+
   return (
     <div>
       {buscar ? (<Espere />) : (<><div className='p-5'>
@@ -65,9 +69,6 @@ export default function Operaciones() {
               <>
                 <div className="d-flex mb-2 mt-2">
                   <div className='text-start'>
-                    {/* <b className='titulo fst-italic fw-bold'>
-                      Tradicionales y tradicionales Express
-                    </b> */}
                     <b> Monto Total: $ {sumaTradicionales?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} |</b>{" "}
                     <b>Cantidad de garantias: {tradicionalesYTradicionalesExpress?.length} |</b>{" "}
                     <b>Promedio Dias: {Math.round(promedioDias / tradicionalesYTradicionalesExpress?.length)} </b>
@@ -133,8 +134,8 @@ export default function Operaciones() {
                           <td >{item[8]}</td>
                           <td>{item[9]}</td>
                           <td >{item[10]}</td>
-                          <td >{item[11]}</td>
-                          <td>{item[12] >= 30 && item[12] < 60 && <td className='p-2 text-center bg-warning fw-bold rounded-circle' >{item[12]}</td>} {item[12] >= 60 && <td className='p-2 text-center  bg-danger fw-bold rounded-circle text-white'>{item[12]}</td>}  {item[12] < 30 && <td className='p-2 text-center  fw-bold'>{item[12]}</td>}</td>
+                          <td >{item[12]}</td>
+                          <td>{item[13] >= 30 && item[13] < 60 && <td className='p-2 text-center bg-warning fw-bold rounded-circle' >{item[13]}</td>} {item[13] >= 60 && <td className='p-2 text-center  bg-danger fw-bold rounded-circle text-white'>{item[13]}</td>}  {item[13] < 30 && <td className='p-2 text-center  fw-bold'>{item[13]}</td>}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -156,10 +157,13 @@ export default function Operaciones() {
             <hr className='border border-primary border-2 opacity-50 mt-5 mb-5' />
             {Array.isArray(operacionesDeCheques) && operacionesDeCheques.length ? (
               <>
-                <div className=' text-start w-50 mb-2 mt-2'>
-                  <b className='titulo fst-italic fw-bold'>
-                    Operaciones de Cheques de Pago Diferido
-                  </b>
+                <h3 className="text-capitalize fst-italic fw-bold text-decoration-underline p-2">Operaciones de Cheques de Pago Diferido</h3>
+                <div className="d-flex mb-2 mt-2">
+                  <div className='text-start'>
+                    <b> Cantidad total de Cheques:  {sumaCheques} |</b>{" "}
+                    <b>Valor Total de Garantias: ${sumaGarantias?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} |</b>{" "}
+                    <b>Porcentaje Activas: {cantidadChequesConFecha / operacionesDeCheques?.length * 100} %</b>
+                  </div>
                 </div>
                 <table className='table text-center table-bordered small '>
                   <thead>
@@ -171,10 +175,10 @@ export default function Operaciones() {
                         Codigo
                       </th>
                       <th scope='col' className='bg-primary text-light'>
-                        Razon Social
+                        CUIT
                       </th>
                       <th scope='col' className='bg-primary text-light'>
-                        CUIT
+                        Razon Social
                       </th>
                       <th scope='col' className='bg-primary text-light'>
                         Linea
@@ -195,12 +199,12 @@ export default function Operaciones() {
                   </thead>
                   <tbody>
                     {operacionesDeCheques?.map((item, index) => (
+
                       <tr key={index}>
                         <th >{item[0]}</th>
                         <td>{item[1]}</td>
-
-                        <td >{item[2]}</td>
                         <td >{item[3].replace("/", "").replace("-", "")}</td>
+                        <td >{item[2]}</td>
                         <td>{item[4]}</td>
                         <td className='text-end'>${item[5]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                         <td>{format(new Date(item[6]?.match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</td>
