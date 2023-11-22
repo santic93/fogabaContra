@@ -84,7 +84,7 @@ app.get('/operaciones', async (req, res) => {
       const result = await connection.execute(query);
       const data = result.rows;
       // operaciones de cheques
-      const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP FROM FOGABASIS.VOPVIGCPD_PORTAL `;
+      const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP, UTILIZADO FROM FOGABASIS.VOPVIGCPD_PORTAL `;
       const result2 = await connection.execute(query2);
       const data2 = result2.rows;
       res.json({ data, data2 });

@@ -53,7 +53,7 @@ export default function Operaciones() {
   }, [])
 
   const ordentradicionalesYTradicionalesExpress = tradicionalesYTradicionalesExpress.sort((a, b) => b[13] - a[13])
-
+  console.log(operacionesDeCheques)
 
   return (
     <div>
@@ -195,6 +195,9 @@ export default function Operaciones() {
                       <th scope='col' className='bg-primary text-light'>
                         Fecha Ult.Op
                       </th>
+                      <th scope='col' className='bg-primary text-light'>
+                        Utilizado
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -210,6 +213,7 @@ export default function Operaciones() {
                         <td>{format(new Date(item[6]?.match(/^.*?(?=T)/)[0]), "dd/MM/yyyy")}</td>
                         <td className='fw-bold'>{item[7]}</td>
                         <td className='fw-bold'>{item[8] ? format(new Date(item[8]?.match(/^.*?(?=T)/)[0]), "dd/MM/yyyy") : "No Registra"}</td>
+                        <td >${item[9]?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                       </tr>
                     ))}
                   </tbody>
