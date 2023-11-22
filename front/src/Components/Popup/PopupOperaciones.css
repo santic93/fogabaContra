@@ -14,7 +14,7 @@
   }
   .modal-contenttt {
     background-color: whitesmoke;
-    width: 700px; /* Ancho deseado del modal cuadrado */
+    width: 900px; /* Ancho deseado del modal cuadrado */
     height: 500px; /* Alto deseado del modal cuadrado */
     border-radius: 10px;
     box-shadow: 6px 6px 10px gainsboro;
