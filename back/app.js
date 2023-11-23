@@ -90,34 +90,34 @@ app.get('/operaciones', async (req, res) => {
       res.json({ data, data2 });
     } else if (primeraPalabra === 'MAXFER') {
       const query = `SELECT FECHA, OPERACION_SOLICITUD, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, GARANTIA,
-      OFICIAL, ORIGEN, OPERADOR, TIPO, TIEMPO_DIAS from FOGABASIS.VOPTRTREX_PORTAL WHERE (COMERCIAL='${primeraPalabra}' OR
+      OFICIAL, ORIGEN, OPERADOR, COMERCIAL, TIPO, TIEMPO_DIAS from FOGABASIS.VOPTRTREX_PORTAL WHERE (COMERCIAL='${primeraPalabra}' OR
       UPPER(OFICIAL) LIKE 'FERNANDEZ%')`;
       const result = await connection.execute(query);
       const data = result.rows;
       // operaciones de cheques
-      const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP FROM FOGABASIS.VOPVIGCPD_PORTAL `;
+      const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP, UTILIZADO FROM FOGABASIS.VOPVIGCPD_PORTAL `;
       const result2 = await connection.execute(query2);
       const data2 = result2.rows;
       res.json({ data, data2 });
     } else if (primeraPalabra === 'GUIPAL') {
       const query = `SELECT FECHA, OPERACION_SOLICITUD, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, GARANTIA,
-      OFICIAL, ORIGEN, OPERADOR, TIPO, TIEMPO_DIAS from FOGABASIS.VOPTRTREX_PORTAL WHERE (COMERCIAL='${primeraPalabra}' OR
+      OFICIAL, ORIGEN, OPERADOR, COMERCIAL, TIPO, TIEMPO_DIAS from FOGABASIS.VOPTRTREX_PORTAL WHERE (COMERCIAL='${primeraPalabra}' OR
       UPPER(OFICIAL) LIKE 'PALMUCCI%')`;
       const result = await connection.execute(query);
       const data = result.rows;
       // operaciones de cheques
-      const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP FROM FOGABASIS.VOPVIGCPD_PORTAL `;
+      const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP, UTILIZADO FROM FOGABASIS.VOPVIGCPD_PORTAL `;
       const result2 = await connection.execute(query2);
       const data2 = result2.rows;
       res.json({ data, data2 });
     } else {
       //tradicionales express
       const query = `SELECT FECHA, OPERACION_SOLICITUD, CUIT, RAZONSOCIAL, BANCO, SUCURSAL, ESTADO, GARANTIA,
-      OFICIAL, ORIGEN, OPERADOR, TIPO, TIEMPO_DIAS from FOGABASIS.VOPTRTREX_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
+      OFICIAL, ORIGEN, OPERADOR, COMERCIAL, TIPO, TIEMPO_DIAS from FOGABASIS.VOPTRTREX_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
       const result = await connection.execute(query);
       const data = result.rows;
       // operaciones de cheques
-      const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP FROM FOGABASIS.VOPVIGCPD_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
+      const query2 = `SELECT IDOPERACION, ENT, NOMBRE, NROCUIT, DESCRIPCION, IMPGARANTUM, VENCLINEA, CANTCPD, ULTOP, UTILIZADO FROM FOGABASIS.VOPVIGCPD_PORTAL WHERE COMERCIAL='${primeraPalabra}'`;
       const result2 = await connection.execute(query2);
       const data2 = result2.rows;
       res.json({ data, data2 });

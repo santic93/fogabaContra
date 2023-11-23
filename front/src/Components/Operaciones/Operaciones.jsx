@@ -45,7 +45,7 @@ export default function Operaciones() {
           }
         }
       } catch (error) {
-        console.log(error)
+        console.warn(error)
         buscando(false)
       }
     }
@@ -53,7 +53,7 @@ export default function Operaciones() {
   }, [])
 
   const ordentradicionalesYTradicionalesExpress = tradicionalesYTradicionalesExpress.sort((a, b) => b[13] - a[13])
-  console.log(operacionesDeCheques)
+ 
 
   return (
     <div>
